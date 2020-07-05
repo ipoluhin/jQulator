@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/normalize.css" />
+		<link rel="stylesheet" href="./css/style.css" />
+		<script src="./js/jquery-1.12.4.min.js"></script>
+		<title>Calculator jQuery</title>
+	</head>
+	<body>
+		<section class="calc-body" id="calc-body">
+			<header class="header">
+				<nav class="themes">
+					<button class="theme" id="theme-1">Тема 1</button>
+					<button class="theme" id="theme-2">Тема 2</button>
+					<button class="theme" id="theme-3">Тема 3</button>
+					<button class="theme" id="theme-4">Тема 4</button>
+				</nav>
+			</header>
+			<main class="main">
+				<section class="output">
+					<span class="pre-text" id="pre-text"></span>
+				</section>
+				<section class="buttons">
+					<section class="number-block">
+						<button type="button" class="btn number" id="1">1</button>
+						<button type="button" class="btn number" id="2">2</button>
+						<button type="button" class="btn number" id="3">3</button>
+						<button type="button" class="btn number" id="4">4</button>
+						<button type="button" class="btn number" id="5">5</button>
+						<button type="button" class="btn number" id="6">6</button>
+						<button type="button" class="btn number" id="7">7</button>
+						<button type="button" class="btn number" id="8">8</button>
+						<button type="button" class="btn number" id="9">9</button>
+						<button type="button" class="btn number" id="0">0</button>
+						<button type="button" class="btn number" id="coma">.</button>
+						<button type="button" class="btn number" id="eql">=</button>
+					</section>
+					<section class="func-block">
+						<button type="button" class="btn function" id="slash">/</button>
+						<button type="button" class="btn function" id="multiply">X</button>
+						<button type="button" class="btn function" id="minus">-</button>
+						<button type="button" class="btn function" id="plus">+</button>
+					</section>
+				</section>
+				<section class="reset-func">
+					<button type="button" class="btn-reset" id="btn-reset">
+						<span class="reset-text">AC</span>
+					</button>
+				</section>
+			</main>
+			<span class="footer-label">Calculator jQuery&copy; 2020</span>
+		</section>
+		<script src="./js/main.js"></script>
+	</body>
+</html>

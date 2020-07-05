@@ -1,0 +1,268 @@
+@charset "UTF-8";
+body {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+body .calc-body_theme-1 {
+  background: #27d6c8;
+}
+
+body .calc-body_theme-2 {
+  background: #27d630;
+}
+
+body .calc-body_theme-3 {
+  background: #d66d27;
+}
+
+body .calc-body_theme-4 {
+  background: #010505;
+  border: 1px solid #27d6c8;
+}
+
+body .calc-body_theme-4 .footer-label {
+  color: #fff;
+}
+
+body .calc-body,
+body .calc-body_theme-1,
+body .calc-body_theme-2,
+body .calc-body_theme-3,
+body .calc-body_theme-4 {
+  width: 360px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 20px 10px;
+}
+
+body .calc-body .header,
+body .calc-body_theme-1 .header,
+body .calc-body_theme-2 .header,
+body .calc-body_theme-3 .header,
+body .calc-body_theme-4 .header {
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 10px 10px;
+  max-width: 340px;
+  background-color: #ccc;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -1px -1px 0px #000;
+  margin: 0 0 10px;
+}
+
+body .calc-body .header .themes,
+body .calc-body_theme-1 .header .themes,
+body .calc-body_theme-2 .header .themes,
+body .calc-body_theme-3 .header .themes,
+body .calc-body_theme-4 .header .themes {
+  min-width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+body .calc-body .header .themes .theme,
+body .calc-body_theme-1 .header .themes .theme,
+body .calc-body_theme-2 .header .themes .theme,
+body .calc-body_theme-3 .header .themes .theme,
+body .calc-body_theme-4 .header .themes .theme {
+  background-color: #62a4be;
+  border-radius: 5px;
+  box-shadow: -1px -1px 0px #000;
+  outline: none;
+}
+
+body .calc-body .header .themes .theme_active,
+body .calc-body_theme-1 .header .themes .theme_active,
+body .calc-body_theme-2 .header .themes .theme_active,
+body .calc-body_theme-3 .header .themes .theme_active,
+body .calc-body_theme-4 .header .themes .theme_active {
+  box-sizing: border-box;
+  background-color: grey;
+  border-radius: 5px;
+  box-shadow: -1px -1px 0px #000;
+  outline: none;
+  border: 1px solid;
+}
+
+body .calc-body .main,
+body .calc-body_theme-1 .main,
+body .calc-body_theme-2 .main,
+body .calc-body_theme-3 .main,
+body .calc-body_theme-4 .main {
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 10px 10px;
+  max-width: 340px;
+  background-color: #ccc;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: -1px -1px 0px #000;
+  margin: 0 0 10px;
+}
+
+body .calc-body .main .output,
+body .calc-body_theme-1 .main .output,
+body .calc-body_theme-2 .main .output,
+body .calc-body_theme-3 .main .output,
+body .calc-body_theme-4 .main .output {
+  margin: 10px auto;
+  box-sizing: border-box;
+  padding: 10px 10px;
+  width: 300px;
+  height: 40px;
+  background-color: #ccc;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -1px -1px 0px #000;
+  text-align: center;
+  position: relative;
+}
+
+body .calc-body .main .output .pre-text,
+body .calc-body_theme-1 .main .output .pre-text,
+body .calc-body_theme-2 .main .output .pre-text,
+body .calc-body_theme-3 .main .output .pre-text,
+body .calc-body_theme-4 .main .output .pre-text {
+  color: #000;
+}
+
+body .calc-body .main .output::before,
+body .calc-body_theme-1 .main .output::before,
+body .calc-body_theme-2 .main .output::before,
+body .calc-body_theme-3 .main .output::before,
+body .calc-body_theme-4 .main .output::before {
+  position: absolute;
+  content: '/jQulator© 2020/';
+  display: block;
+  top: center;
+  right: center;
+  color: #131212;
+  opacity: 0.1;
+  z-index: 3;
+}
+
+body .calc-body .main .buttons,
+body .calc-body_theme-1 .main .buttons,
+body .calc-body_theme-2 .main .buttons,
+body .calc-body_theme-3 .main .buttons,
+body .calc-body_theme-4 .main .buttons {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  margin: 0 0 10px 0;
+  padding: 5px;
+  box-sizing: border-box;
+  box-shadow: -1px -1px 0px #000;
+}
+
+body .calc-body .main .buttons .number-block,
+body .calc-body .main .buttons .func-block,
+body .calc-body_theme-1 .main .buttons .number-block,
+body .calc-body_theme-1 .main .buttons .func-block,
+body .calc-body_theme-2 .main .buttons .number-block,
+body .calc-body_theme-2 .main .buttons .func-block,
+body .calc-body_theme-3 .main .buttons .number-block,
+body .calc-body_theme-3 .main .buttons .func-block,
+body .calc-body_theme-4 .main .buttons .number-block,
+body .calc-body_theme-4 .main .buttons .func-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 100%;
+  margin: 21px 0 0 10px;
+}
+
+body .calc-body .main .buttons .number-block .btn,
+body .calc-body .main .buttons .func-block .btn,
+body .calc-body_theme-1 .main .buttons .number-block .btn,
+body .calc-body_theme-1 .main .buttons .func-block .btn,
+body .calc-body_theme-2 .main .buttons .number-block .btn,
+body .calc-body_theme-2 .main .buttons .func-block .btn,
+body .calc-body_theme-3 .main .buttons .number-block .btn,
+body .calc-body_theme-3 .main .buttons .func-block .btn,
+body .calc-body_theme-4 .main .buttons .number-block .btn,
+body .calc-body_theme-4 .main .buttons .func-block .btn {
+  width: 40px;
+  background-color: #299614;
+  outline: none;
+  border-radius: 30%;
+  text-align: center;
+  box-shadow: -1px -1px 0px #000;
+  padding: 10px;
+}
+
+body .calc-body .main .buttons .number-block .number,
+body .calc-body .main .buttons .func-block .number,
+body .calc-body_theme-1 .main .buttons .number-block .number,
+body .calc-body_theme-1 .main .buttons .func-block .number,
+body .calc-body_theme-2 .main .buttons .number-block .number,
+body .calc-body_theme-2 .main .buttons .func-block .number,
+body .calc-body_theme-3 .main .buttons .number-block .number,
+body .calc-body_theme-3 .main .buttons .func-block .number,
+body .calc-body_theme-4 .main .buttons .number-block .number,
+body .calc-body_theme-4 .main .buttons .func-block .number {
+  color: blue;
+  margin: 0px 10px 21px 0;
+  padding: 10px;
+}
+
+body .calc-body .main .buttons .number-block .number:active,
+body .calc-body .main .buttons .func-block .number:active,
+body .calc-body_theme-1 .main .buttons .number-block .number:active,
+body .calc-body_theme-1 .main .buttons .func-block .number:active,
+body .calc-body_theme-2 .main .buttons .number-block .number:active,
+body .calc-body_theme-2 .main .buttons .func-block .number:active,
+body .calc-body_theme-3 .main .buttons .number-block .number:active,
+body .calc-body_theme-3 .main .buttons .func-block .number:active,
+body .calc-body_theme-4 .main .buttons .number-block .number:active,
+body .calc-body_theme-4 .main .buttons .func-block .number:active {
+  background-color: grey;
+}
+
+body .calc-body .main .buttons .number-block .function,
+body .calc-body .main .buttons .func-block .function,
+body .calc-body_theme-1 .main .buttons .number-block .function,
+body .calc-body_theme-1 .main .buttons .func-block .function,
+body .calc-body_theme-2 .main .buttons .number-block .function,
+body .calc-body_theme-2 .main .buttons .func-block .function,
+body .calc-body_theme-3 .main .buttons .number-block .function,
+body .calc-body_theme-3 .main .buttons .func-block .function,
+body .calc-body_theme-4 .main .buttons .number-block .function,
+body .calc-body_theme-4 .main .buttons .func-block .function {
+  color: red;
+  background-color: #ccc;
+  font-weight: 500;
+  margin: 0 0 5px 0;
+}
+
+body .calc-body .main .reset-func .btn-reset,
+body .calc-body_theme-1 .main .reset-func .btn-reset,
+body .calc-body_theme-2 .main .reset-func .btn-reset,
+body .calc-body_theme-3 .main .reset-func .btn-reset,
+body .calc-body_theme-4 .main .reset-func .btn-reset {
+  box-sizing: border-box;
+  padding: 10px 10px;
+  width: 300px;
+  background-color: #df0f0f;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: -1px -1px 0px #000;
+  outline: none;
+}
