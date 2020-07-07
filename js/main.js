@@ -1,7 +1,7 @@
 "use strict";
 
-let num = 0;
-let sum = 0;
+let num = 0;            //Промеуточная переменная для пользовательского ввода
+let result = 0;         //Результат вычислений
 
 /* Функция очистки тем */
 function clearTheme() {
@@ -109,49 +109,37 @@ let funcPanel = {
         } else { return num; }
     },
     division: function () {
-        funcPanel.init();
-        $('#pre-text').text('');
-        num = +num;
-        sum = sum / num;
-        num = 0;
-        console.log('Sum ' + sum);
-        return sum;
+
     },
     multiply: function () {
-        funcPanel.init();
-        $('#pre-text').text('');
-        num = +num;
-        sum = sum * num;
-        num = 0;
-        console.log('Sum ' + sum);
-        return sum;
+
     },
     substruction: function () {
         funcPanel.init();
         $('#pre-text').text('');
         num = +num;
-        sum = sum - num;
-        console.log('Sum ' + sum);
-        return Math.sign(sum);
+        result = result - num;
+        console.log('Sum ' + result);
+        return Math.sign(result);
     },
     summary: function () {
         funcPanel.init();
         $('#pre-text').text('');
         num = +num;
-        sum += num;
+        result += num;
         num = 0;
-        return sum;
+        return result;
     },
     equal: function () {                   //Метод "равно" считает итоговое значение
-        sum += +num;
+        result += +num;
         num = 0;
         $('#pre-text').text('')
-            .text(sum);
-        return sum;
+            .text(result);
+        return result;
     },
     reset: function () {
         $('#pre-text').text('');
-        return num = 0, sum = 0;
+        return num = 0, result = 0;
     }
 }
 
