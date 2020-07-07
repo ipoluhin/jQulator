@@ -1,5 +1,9 @@
 "use strict";
 
+let num = 0;
+let sum = 0;
+
+/* Функция очистки тем */
 function clearTheme() {
     $('#calc-body')
         .removeClass('calc-body_theme-1')
@@ -9,98 +13,173 @@ function clearTheme() {
         .addClass('calc-body');
 }
 
-//theme buttons
-$('#theme-1').on('click', function () {
-    $('.theme_active').removeClass('theme_active').addClass('theme');
-    $('#theme-1').removeClass('theme').addClass('theme_active');
-    clearTheme();
-    $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-1');
-})
-$('#theme-2').on('click', function () {
-    $('.theme_active').removeClass('theme_active').addClass('theme');
-    $('#theme-2').removeClass('theme').addClass('theme_active');
-    clearTheme();
-    $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-2');
-})
-$('#theme-3').on('click', function () {
-    $('.theme_active').removeClass('theme_active').addClass('theme');
-    $('#theme-3').removeClass('theme').addClass('theme_active');
-    clearTheme();
-    $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-3');
-})
-$('#theme-4').on('click', function () {
-    $('.theme_active').removeClass('theme_active').addClass('theme');
-    $('#theme-4').removeClass('theme').addClass('theme_active');
-    clearTheme();
-    $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-4');
-})
 
-//number block
-$('#1').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '1');
-    console.log($('#pre-text'));
-});
-$('#2').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '2');
-    console.log('2');
-});
-$('#3').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '3');
-    console.log('3');
-});
-$('#4').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '4');
-    console.log('4');
-});
-$('#5').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '5');
-    console.log('5');
-});
-$('#6').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '6');
-    console.log('6');
-});
-$('#7').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '7');
-    console.log('7');
-});
-$('#8').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '8');
-    console.log('8');
-});
-$('#9').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '9');
-    console.log('9');
-});
-$('#0').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '0');
-    console.log('0');
-});
-$('#coma').on('click', function () {
-    $('#pre-text').text($('#pre-text').text() + '.');
-    console.log('.');
-});
-$('#eql').on('click', function () {
-    let number = ($('#pre-text').val(''));
-    console.log(number);
-});
+//Панель переключения тем
+let themesPanel = {
+    one: function () {
+        $('.theme_active').removeClass('theme_active').addClass('theme');
+        $('#theme-1').removeClass('theme').addClass('theme_active');
+        clearTheme();
+        $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-1');
+    },
+    two: function () {
+        $('.theme_active').removeClass('theme_active').addClass('theme');
+        $('#theme-2').removeClass('theme').addClass('theme_active');
+        clearTheme();
+        $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-2');
+    },
+    three: function () {
+        $('.theme_active').removeClass('theme_active').addClass('theme');
+        $('#theme-3').removeClass('theme').addClass('theme_active');
+        clearTheme();
+        $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-3');
+    },
+    four: function () {
+        $('.theme_active').removeClass('theme_active').addClass('theme');
+        $('#theme-4').removeClass('theme').addClass('theme_active');
+        clearTheme();
+        $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-4');
+    },
+}
 
-//function block
-$('#slash').on('click', function () {
-    let number = $('#pre-text').text('');
-    number = number;
-});
-$('#multiply').on('click', function () {
-    $('#pre-text').text('');
-});
-$('#minus').on('click', function () {
-    $('#pre-text').text('');
-});
-$('#plus').on('click', function () {
-    $('#pre-text').text('');
-});
+//Цифровая панель (отрисовка выводимых значений на экране калькулятора)
+let numberPanel = {
+    one: function () {
+        $('#pre-text').text($('#pre-text').text() + '1');
+        funcPanel.init(1);
+    },
+    two: function () {
+        $('#pre-text').text($('#pre-text').text() + '2');
+        funcPanel.init(2);
+    },
+    three: function () {
+        $('#pre-text').text($('#pre-text').text() + '3');
+        funcPanel.init(3);
+    },
+    four: function () {
+        $('#pre-text').text($('#pre-text').text() + '4');
+        funcPanel.init(4);
+    },
+    five: function () {
+        $('#pre-text').text($('#pre-text').text() + '5');
+        funcPanel.init(5);
+    },
+    six: function () {
+        $('#pre-text').text($('#pre-text').text() + '6');
+        funcPanel.init(6);
+    },
+    seven: function () {
+        $('#pre-text').text($('#pre-text').text() + '7');
+        funcPanel.init(7);
+    },
+    eigth: function () {
+        $('#pre-text').text($('#pre-text').text() + '8');
+        funcPanel.init(8);
+    },
+    nine: function () {
+        $('#pre-text').text($('#pre-text').text() + '9');
+        funcPanel.init(9);
+    },
+    zero: function () {
+        $('#pre-text').text($('#pre-text').text() + '0');
+        funcPanel.init(0);
+    },
+    dot: function (e) {
+        if ($('#pre-text').text().includes('.')) {
+            e.preventDefault();                    // Нельзя вводить точку дважды
+            return;
+        }
+        /* if ($('#pre-text').text().includes('' + '.')) {
+            $('#pre-text').text('0.');
+        } */
+        $('#pre-text').text($('#pre-text').text() + '.');
+        funcPanel.init('.');
+        console.log($('#pre-text').text().toString());
+        return num;
+    },
+}
+
+//Функциональная панель
+let funcPanel = {
+    init: function (inNum) {            //метод принимает значение от юзера
+        if (inNum != undefined) {       //если вводится число, то оно конкатенируется   
+            num += inNum.toString();    //с предыдущим, если числа нет, берется старое
+            console.log(num);           //значение
+            return num;
+        } else { return num; }
+    },
+    division: function () {
+        funcPanel.init();
+        $('#pre-text').text('');
+        num = +num;
+        sum = sum / num;
+        num = 0;
+        console.log('Sum ' + sum);
+        return sum;
+    },
+    multiply: function () {
+        funcPanel.init();
+        $('#pre-text').text('');
+        num = +num;
+        sum = sum * num;
+        num = 0;
+        console.log('Sum ' + sum);
+        return sum;
+    },
+    substruction: function () {
+        funcPanel.init();
+        $('#pre-text').text('');
+        num = +num;
+        sum = sum - num;
+        console.log('Sum ' + sum);
+        return Math.sign(sum);
+    },
+    summary: function () {
+        funcPanel.init();
+        $('#pre-text').text('');
+        num = +num;
+        sum += num;
+        num = 0;
+        return sum;
+    },
+    equal: function () {                   //Метод "равно" считает итоговое значение
+        sum += +num;
+        num = 0;
+        $('#pre-text').text('')
+            .text(sum);
+        return sum;
+    },
+    reset: function () {
+        $('#pre-text').text('');
+        return num = 0, sum = 0;
+    }
+}
+
+//Функционал переключения тем
+$('#theme-1').on('click', themesPanel.one);
+$('#theme-2').on('click', themesPanel.two);
+$('#theme-3').on('click', themesPanel.three);
+$('#theme-4').on('click', themesPanel.four);
+
+//Функционал числовой панели
+$('#1').on('click', numberPanel.one);
+$('#2').on('click', numberPanel.two);
+$('#3').on('click', numberPanel.three);
+$('#4').on('click', numberPanel.four);
+$('#5').on('click', numberPanel.five);
+$('#6').on('click', numberPanel.six);
+$('#7').on('click', numberPanel.seven);
+$('#8').on('click', numberPanel.eigth);
+$('#9').on('click', numberPanel.nine);
+$('#0').on('click', numberPanel.zero);
+$('#dot').on('click', numberPanel.dot);
+
+//Функциональная панель
+$('#eql').on('click', funcPanel.equal);
+$('#division').on('click', funcPanel.division);
+$('#multiply').on('click', funcPanel.multiply);
+$('#substruction').on('click', funcPanel.substruction);
+$('#sum').on('click', funcPanel.summary);
 
 //reset button
-$('#btn-reset').on('click', function () {
-    $('#pre-text').text('');
-});
+$('#btn-reset').on('click', funcPanel.reset);
