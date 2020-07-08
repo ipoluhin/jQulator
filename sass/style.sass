@@ -2,28 +2,42 @@ body
     max-width: 360px
     margin: 10px auto
 
-    .calc-body_theme-1
-        background: #27d6c8
-    .calc-body_theme-2
-        background: #27d630
-    .calc-body_theme-3
-        background: #d66d27
-    .calc-body_theme-4
+    .calc-body-theme-1
         background: #010505
-        border: 1px solid #27d6c8
-        & .footer-label
-            color: #fff
-    .calc-body,
-    .calc-body_theme-1,
-    .calc-body_theme-2,
-    .calc-body_theme-3,
-    .calc-body_theme-4
+    .calc-body-theme-1  .header,
+    .calc-body-theme-1  .main
+        box-shadow: -2px -1px 3px #000 inset
+    .calc-body-theme-1  .footer
+        color: #fff
+        &:hover
+            color: #ccc
+    .calc-body-theme-2
+        background: #27d630
+    .calc-body-theme-2  .header,
+    .calc-body-theme-2  .main
+        box-shadow: -2px -1px 3px #27d630 inset
+    .calc-body-theme-3
+        background: #d66d27
+    .calc-body-theme-3  .header,
+    .calc-body-theme-3  .main
+        box-shadow: -2px -1px 3px #d66d27 inset
+    .calc-body-theme-4
+        background: #27d6c8
+    .calc-body-theme-4  .header,
+    .calc-body-theme-4  .main
+        box-shadow: -2px -1px 3px #27d6c8 inset
+    .calc-body-theme-1,
+    .calc-body-theme-2,
+    .calc-body-theme-3,
+    .calc-body-theme-4
         width: 360px
         margin: 0 auto
         box-sizing: border-box
         border: 2px solid
         border-radius: 10px
         padding: 20px 10px
+        box-shadow: -3px -3px 15px #fff inset
+        transition: 0.5s
         .header
             box-sizing: border-box
             padding: 10px 10px
@@ -34,7 +48,6 @@ body
             display: flex
             justify-content: center
             align-items: center
-            box-shadow: -1px -1px 0px #000
             margin: 0 0 10px
             .themes
                 min-width: 100%
@@ -44,9 +57,8 @@ body
                 .theme
                     background-color: #62a4be
                     border-radius: 5px
-                    box-shadow: -1px -1px 0px #000
                     outline: none
-                    &_active
+                    &-active
                         box-sizing: border-box
                         background-color: grey
                         border-radius: 5px
@@ -64,7 +76,6 @@ body
             justify-content: center
             align-items: center
             flex-direction: column
-            box-shadow: -1px -1px 0px #000
             margin: 0 0 10px
             .output
                 margin: 10px auto
@@ -83,6 +94,7 @@ body
                 position: relative
                 .pre-text
                     color: #000
+                    max-width: 90%
                 &::before
                     position: absolute
                     content: '/jQulator© 2020/'
@@ -129,6 +141,17 @@ body
                         background-color: #ccc
                         font-weight: 500
                         margin: 0 0 5px 0
+                    .deactive
+                        color: grey
+                        background-color: #ccc
+                        font-weight: 500
+                        margin: 0 0 5px 0
+                        position: relative
+                        .errore-class-function
+                            color: red
+                            font-size: 20px
+                            position: absolute
+
             .reset-func
                 .btn-reset
                     box-sizing: border-box
@@ -146,7 +169,6 @@ body
             justify-content: space-between
             padding: 5px 10px 0 10px
             text-decoration: none
-            color: #000
             transition: 0.4s
             &:hover
                 color: #cfc9c9

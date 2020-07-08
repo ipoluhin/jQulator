@@ -1,49 +1,52 @@
 "use strict";
 
-let num = 0;            //Промеуточная переменная для пользовательского ввода
-let result = 0;         //Результат вычислений
+//Вспомогательные переменные
+const vars = {
+    num: 0,         //Промеуточная переменная для пользовательского ввода
+    result: 0,      //Результат вычислений
+    fistNum: 0,
+}
+
 
 /* Функция очистки тем */
 function clearTheme() {
     $('#calc-body')
-        .removeClass('calc-body_theme-1')
-        .removeClass('calc-body_theme-2')
-        .removeClass('calc-body_theme-3')
-        .removeClass('calc-body_theme-4')
-        .addClass('calc-body');
+        .removeClass('calc-body-theme-2')
+        .removeClass('calc-body-theme-3')
+        .removeClass('calc-body-theme-4')
+        .addClass('calc-body-theme-1');
 }
 
 
 //Панель переключения тем
-let themesPanel = {
+const themesPanel = {
     one: function () {
-        $('.theme_active').removeClass('theme_active').addClass('theme');
-        $('#theme-1').removeClass('theme').addClass('theme_active');
+        $('.theme-active').removeClass('theme-active').addClass('theme');
+        $('#theme-1').removeClass('theme').addClass('theme-active');
         clearTheme();
-        $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-1');
     },
     two: function () {
-        $('.theme_active').removeClass('theme_active').addClass('theme');
-        $('#theme-2').removeClass('theme').addClass('theme_active');
+        $('.theme-active').removeClass('theme-active').addClass('theme');
+        $('#theme-2').removeClass('theme').addClass('theme-active');
         clearTheme();
-        $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-2');
+        $('.calc-body-theme-1').removeClass('calc-body-theme-1').addClass('calc-body-theme-2');
     },
     three: function () {
-        $('.theme_active').removeClass('theme_active').addClass('theme');
-        $('#theme-3').removeClass('theme').addClass('theme_active');
+        $('.theme-active').removeClass('theme-active').addClass('theme');
+        $('#theme-3').removeClass('theme').addClass('theme-active');
         clearTheme();
-        $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-3');
+        $('.calc-body-theme-1').removeClass('calc-body-theme-1').addClass('calc-body-theme-3');
     },
     four: function () {
-        $('.theme_active').removeClass('theme_active').addClass('theme');
-        $('#theme-4').removeClass('theme').addClass('theme_active');
+        $('.theme-active').removeClass('theme-active').addClass('theme');
+        $('#theme-4').removeClass('theme').addClass('theme-active');
         clearTheme();
-        $('#calc-body').removeClass('calc-body').addClass('calc-body_theme-4');
+        $('.calc-body-theme-1').removeClass('calc-body-theme-1').addClass('calc-body-theme-4');
     },
 }
 
 //Цифровая панель (отрисовка выводимых значений на экране калькулятора)
-let numberPanel = {
+const numberPanel = {
     one: function () {
         $('#pre-text').text($('#pre-text').text() + '1');
         funcPanel.init(1);
@@ -100,46 +103,76 @@ let numberPanel = {
 }
 
 //Функциональная панель
-let funcPanel = {
-    init: function (inNum) {            //метод принимает значение от юзера
-        if (inNum != undefined) {       //если вводится число, то оно конкатенируется   
-            num += inNum.toString();    //с предыдущим, если числа нет, берется старое
-            console.log(num);           //значение
-            return num;
-        } else { return num; }
+const funcPanel = {
+    init: function (inNum) {                       //метод принимает значение от юзера.
+        if (inNum != undefined) {                  //если вводится число, то оно конкатенируется   
+            vars.num += inNum.toString();          //с предыдущим, если числа нет, берется предыдущее
+            /* console.log(vars.num); */           //значение
+            return vars.num;
+        }
     },
     division: function () {
-
+        /* alert(`Функция временно недоступна. Попробуйте позже. 
+        С уважением, Администрация проекта.`) */
     },
     multiply: function () {
-
+        /* alert(`Функция временно недоступна. Попробуйте позже. 
+        С уважением, Администрация проекта.`) */
     },
     substruction: function () {
-        funcPanel.init();
+        /* alert(`Функция работает, но пока некорректно. Попробуйте позже. 
+        С уважением, Администрация проекта.`); */
+        /* funcPanel.init();
         $('#pre-text').text('');
-        num = +num;
-        result = result - num;
-        console.log('Sum ' + result);
-        return Math.sign(result);
+        vars.num = +vars.num;
+        if (vars.result === 0) {
+            vars.result = vars.num;
+        }
+        if (vars.result !== 0 && +vars.num === 0) {
+            return vars.result;
+        } else {
+            vars.result -= vars.num;
+        }
+        console.log('Результат операции ' + vars.result);
+        return vars.result; */
     },
     summary: function () {
-        funcPanel.init();
         $('#pre-text').text('');
-        num = +num;
-        result += num;
-        num = 0;
-        return result;
+        funcPanel.init();
+        if (vars.result === 0) {
+            vars.result = +vars.num;
+            vars.num = 0;
+            $('#pre-text').text('');
+            return vars.result;
+        }
+        if (vars.result !== 0 && +vars.num === 0) {
+            $('#pre-text').text('');
+            return vars.result;
+        }
+        else
+        /* if (vars.result !== 0 && vars.result === +vars.num) */ {
+            vars.result = +vars.result + +vars.num;
+            $('#pre-text').text('');
+            vars.num = 0;
+            return vars.result;
+        }
     },
-    equal: function () {                   //Метод "равно" считает итоговое значение
-        result += +num;
-        num = 0;
-        $('#pre-text').text('')
-            .text(result);
-        return result;
+    equal: function () {                    //Метод "равно" выводит итоговое значение        
+        if (vars.result === 0) {
+            $('#pre-text').text('')
+                .text(vars.num);
+            return vars.num;
+        } else {
+            vars.result = +vars.result + +vars.num;
+            $('#pre-text').text('')
+                .text(vars.result);
+            vars.num = 0;
+            return vars.result;
+        }
     },
     reset: function () {
         $('#pre-text').text('');
-        return num = 0, result = 0;
+        return vars.num = 0, vars.result = 0;
     }
 }
 
@@ -171,3 +204,4 @@ $('#sum').on('click', funcPanel.summary);
 
 //reset button
 $('#btn-reset').on('click', funcPanel.reset);
+
