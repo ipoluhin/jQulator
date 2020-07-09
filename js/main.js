@@ -228,6 +228,10 @@ const equalBlock = {
         if (vars.operationID === 1) {
             equalBlock.equalDiv();
             return vars.result;
+        }
+        if (vars.operationID === 2) {
+            equalBlock.equalMult();
+            return vars.result;
         }                                   //Метод 'общее равно' выводит итоговое значение по нажатию '='       
         if (vars.result === 0) {            //При нулевом результирующем, ему присваивается значение пользователя
             vars.result = vars.num;         //и возвращается функцией с выводом на экран калькулятора.
