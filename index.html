@@ -12,10 +12,10 @@
 		<section class="calc-body-theme-1" id="calc-body">
 			<header class="header">
 				<nav class="themes">
-					<button class="theme-active" id="theme-1">Тема 1</button>
-					<button class="theme" id="theme-2">Тема 2</button>
-					<button class="theme" id="theme-3">Тема 3</button>
-					<button class="theme" id="theme-4">Тема 4</button>
+					<button class="theme-active" id="theme-1">Сажа</button>
+					<button class="theme" id="theme-2">Киви</button>
+					<button class="theme" id="theme-3">Оранж</button>
+					<button class="theme" id="theme-4">Небо</button>
 				</nav>
 			</header>
 			<main class="main">
@@ -24,36 +24,76 @@
 				</section>
 				<section class="buttons">
 					<section class="number-block">
-						<button type="button" class="btn number" id="1">1</button>
-						<button type="button" class="btn number" id="2">2</button>
-						<button type="button" class="btn number" id="3">3</button>
-						<button type="button" class="btn number" id="4">4</button>
-						<button type="button" class="btn number" id="5">5</button>
-						<button type="button" class="btn number" id="6">6</button>
-						<button type="button" class="btn number" id="7">7</button>
-						<button type="button" class="btn number" id="8">8</button>
-						<button type="button" class="btn number" id="9">9</button>
-						<button type="button" class="btn number" id="0">0</button>
-						<button type="button" class="btn number" id="dot">.</button>
-						<button type="button" class="btn number" id="eql">=</button>
+						<button type="button" class="btn number" id="1">
+							<span class="num-text">1</span>
+						</button>
+						<button type="button" class="btn number" id="2">
+							<span class="num-text">2</span>
+						</button>
+						<button type="button" class="btn number" id="3">
+							<span class="num-text">3</span>
+						</button>
+						<button type="button" class="btn number" id="4">
+							<span class="num-text">4</span>
+						</button>
+						<button type="button" class="btn number" id="5">
+							<span class="num-text">5</span>
+						</button>
+						<button type="button" class="btn number" id="6">
+							<span class="num-text">6</span>
+						</button>
+						<button type="button" class="btn number" id="7">
+							<span class="num-text">7</span>
+						</button>
+						<button type="button" class="btn number" id="8">
+							<span class="num-text">8</span>
+						</button>
+						<button type="button" class="btn number" id="9">
+							<span class="num-text">9</span>
+						</button>
+						<button type="button" class="btn number" id="0">
+							<span class="num-text">0</span>
+						</button>
+						<button type="button" class="btn number" id="dot">
+							<span class="num-text special">.</span>
+						</button>
+						<button type="button" class="btn number" id="eql">
+							<span class="num-text special">=</span>
+						</button>
+						<section class="memory-function">
+							<button type="button" class="btn memory" id="mr">
+								<span class="num-text special">MR</span>
+							</button>
+							<button type="button" class="btn memory" id="mc">
+								<span class="num-text special">MC</span>
+							</button>
+						</section>
 					</section>
 					<section class="func-block">
-						<button type="button" class="btn deactive" id="division">/</button>
-						<button type="button" class="btn deactive" id="multiply">X</button>
-						<button type="button" class="btn deactive" id="substruction">-</button>
+						<button type="button" class="btn function" id="division">/</button>
+						<button type="button" class="btn function" id="multiply">x</button>
+						<button type="button" class="btn function" id="substruction">-</button>
 						<button type="button" class="btn function" id="sum">+</button>
+						<button type="button" class="btn function erase" id="btn-erase">
+							<span class="erase-text">C</span>
+						</button>
+						<button type="button" class="btn function reset" id="btn-reset">
+							<span class="reset-text">AC</span>
+						</button>
 					</section>
 				</section>
-				<section class="reset-func">
+				<!-- <section class="reset-func">
 					<button type="button" class="btn-reset" id="btn-reset">
 						<span class="reset-text">AC</span>
 					</button>
-				</section>
+				</section> -->
 			</main>
-			<a href="https://github.com/ipoluhin/jQulator.git" class="footer">
-				<span class="footer-label">Calculator jQuery 2020</span>
-				<span class="footer-label">/jQulator&copy;/</span>
-			</a>
+			<footer class="footer">
+				<span class="footer-label">Калькулятор jQuery 2020</span>
+				<a href="https://github.com/ipoluhin/jQulator.git" class="footer-link">
+					<span class="gitsource-link">/jQulator&copy;/</span>
+				</a>
+			</footer>
 		</section>
 		<script src="./js/main.js"></script>
 	</body>

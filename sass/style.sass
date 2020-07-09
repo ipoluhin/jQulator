@@ -11,21 +11,29 @@ body
         color: #fff
         &:hover
             color: #ccc
+    .calc-body-theme-1 .main .buttons .number-block .number
+        background: #000000
     .calc-body-theme-2
         background: #27d630
     .calc-body-theme-2  .header,
     .calc-body-theme-2  .main
         box-shadow: -2px -1px 3px #27d630 inset
+    .calc-body-theme-2 .main .buttons .number-block .number
+        background: #199119
     .calc-body-theme-3
         background: #d66d27
     .calc-body-theme-3  .header,
     .calc-body-theme-3  .main
         box-shadow: -2px -1px 3px #d66d27 inset
+    .calc-body-theme-3 .main .buttons .number-block .number
+        background: #9e4b14
     .calc-body-theme-4
         background: #27d6c8
     .calc-body-theme-4  .header,
     .calc-body-theme-4  .main
         box-shadow: -2px -1px 3px #27d6c8 inset
+    .calc-body-theme-4 .main .buttons .number-block .number
+        background: #138d79
     .calc-body-theme-1,
     .calc-body-theme-2,
     .calc-body-theme-3,
@@ -58,6 +66,15 @@ body
                     background-color: #62a4be
                     border-radius: 5px
                     outline: none
+                    &:first-child
+                        background-color: #000000
+                        color: #cccccc
+                    &:nth-child(2)
+                        background-color: #27d630
+                    &:nth-child(3)
+                        background-color: #d66d27
+                    &:last-child
+                        background-color: #27d6c8
                     &-active
                         box-sizing: border-box
                         background-color: grey
@@ -82,7 +99,7 @@ body
                 box-sizing: border-box
                 padding: 10px 10px
                 width: 300px
-                height: 40px
+                height: 50px
                 background-color: #ccc
                 border: 1px solid #000000
                 border-radius: 5px
@@ -95,6 +112,8 @@ body
                 .pre-text
                     color: #000
                     max-width: 90%
+                    font-size: 23px
+                    font-weight: 300
                 &::before
                     position: absolute
                     content: '/jQulator© 2020/'
@@ -123,52 +142,73 @@ body
                     margin: 21px 0 0 10px
                     .btn
                         width: 40px
-                        background-color: #299614
                         outline: none
                         border-radius: 30%
-                        text-align: center
                         box-shadow: -1px -1px 0px #000
-                        padding: 10px
+                        .num-text
+                            color: #ffffff
+                            font-size: 20px
+                        .special
+                            margin: 0 0 0 -4px
                     .number
                         color: blue
-                        margin: 0px 10px 21px 0
-                        padding: 10px
+                        margin: 0px 10px 13px 0px
+                        padding: 15px 20px 5px 20px
                         transition: 0.4s
                         &:active
                             background-color: grey
+                    .memory-function
+                        width: 135px
+                        display: flex
+                        justify-content: space-between
+                        .memory
+                            background-color: #060c5e
+                            color: #ccc
+                            margin: 0 -13px 0px 0
+                            padding: 3px 30px 3px 30px
+                            border-radius: 20%
+                            .special
+                                position: relative
+                                right: 11px
                     .function
-                        color: red
+                        color: #000000
                         background-color: #ccc
-                        font-weight: 500
-                        margin: 0 0 5px 0
+                        margin: 0 -13px 5px 10px
+                        padding: 10px 30px 10px 20px
+                    .erase
+                        color: #cccccc
+                        background-color: #df0f0f
+                        margin: 0 -13px 5px 10px
+                        .erase-text
                     .deactive
                         color: grey
                         background-color: #ccc
                         font-weight: 500
                         margin: 0 0 5px 0
                         position: relative
-                        .errore-class-function
-                            color: red
-                            font-size: 20px
-                            position: absolute
-
-            .reset-func
-                .btn-reset
-                    box-sizing: border-box
-                    padding: 10px 10px
-                    width: 300px
-                    background-color: #df0f0f
-                    border-radius: 10px
-                    color: #fff
-                    box-shadow: -1px -1px 0px #000
-                    outline: none
-                    .reset-text
+                        margin: 0 -13px 5px 10px
+                    .reset
+                        box-sizing: border-box
+                        padding: 10px 30px 10px 20px
+                        margin: 0 -13px 5px 10px
+                        background-color: #df0f0f
+                        border-radius: 10px
+                        color: #cccccc
+                        box-shadow: -1px -1px 0px #000
+                        outline: none
+                        .reset-text
+                            position: relative
+                            right: 6px
         .footer
             display: flex
             align-items: center
             justify-content: space-between
             padding: 5px 10px 0 10px
-            text-decoration: none
-            transition: 0.4s
-            &:hover
-                color: #cfc9c9
+            &-label
+                color: #ffffff
+            &-link
+                color: #ffffff
+                text-decoration: none
+                transition: 0.4s
+                &:hover
+                    color: #cfc9c9
