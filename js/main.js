@@ -137,7 +137,6 @@ const funcPanel = {
                 .html('<span style="color: red">Логическая ошибка при делении на ноль!</span>');
             return vars.result;
         } */
-        alert(`Функция в разработке.`)
     },
     multiply: function () {
         vars.operationID = 2;
@@ -302,13 +301,18 @@ const equalBlock = {
 }
 
 const memory = {
+    ms: function () {
+        /* alert(`Запись в память в разработке.`); */
+        /* $('#pre-text')
+            .html('<span style="color: red">Функция временно недоступна!</span>'); */
+    },
     mr: function () {
-        alert(`Функция в разработке.`)
+        /* alert(`Чтение из памяти в разработке.`); */
         /* $('#pre-text')
             .html('<span style="color: red">Функция временно недоступна!</span>'); */
     },
     mc: function () {
-        alert(`Функция в разработке.`)
+        /* alert(`Очистка памяти в разработке.`); */
         /* $('#pre-text')
             .html('<span style="color: red">Функция временно недоступна!</span>'); */
     },
@@ -345,5 +349,6 @@ $('#btn-erase').on('click', funcPanel.erase);
 $('#btn-reset').on('click', funcPanel.reset);
 
 //memory buttons
+$('#ms').on('click', memory.ms);
 $('#mr').on('click', memory.mr);
 $('#mc').on('click', memory.mc);

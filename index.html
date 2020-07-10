@@ -14,7 +14,7 @@
 				<nav class="themes">
 					<button class="theme-active" id="theme-1">Сажа</button>
 					<button class="theme" id="theme-2">Киви</button>
-					<button class="theme" id="theme-3">Оранж</button>
+					<button class="theme" id="theme-3">Апельсин</button>
 					<button class="theme" id="theme-4">Небо</button>
 				</nav>
 			</header>
@@ -61,16 +61,21 @@
 							<span class="num-text special">=</span>
 						</button>
 						<section class="memory-function">
-							<button type="button" class="btn memory" id="mr">
+							<button type="button" class="btn memory disabled" id="ms">
+								<span class="num-text special">MS</span>
+							</button>
+							<button type="button" class="btn memory disabled" id="mr">
 								<span class="num-text special">MR</span>
 							</button>
-							<button type="button" class="btn memory" id="mc">
+							<button type="button" class="btn memory disabled" id="mc">
 								<span class="num-text special">MC</span>
 							</button>
 						</section>
 					</section>
 					<section class="func-block">
-						<button type="button" class="btn function" id="division">/</button>
+						<button type="button" class="btn function disabled" id="division">
+							/
+						</button>
 						<button type="button" class="btn function" id="multiply">x</button>
 						<button type="button" class="btn function" id="substruction">-</button>
 						<button type="button" class="btn function" id="sum">+</button>
@@ -82,11 +87,6 @@
 						</button>
 					</section>
 				</section>
-				<!-- <section class="reset-func">
-					<button type="button" class="btn-reset" id="btn-reset">
-						<span class="reset-text">AC</span>
-					</button>
-				</section> -->
 			</main>
 			<footer class="footer">
 				<span class="footer-label">Калькулятор jQuery 2020</span>
