@@ -110,10 +110,11 @@ const numberPanel = {
 }
 /**
  * Арифметические операции.
- * Init - принимает пользовательские числа
- * 4 арифметических операции. В начале идет завершение предыдущей операции
+ * Init - принимает пользовательские числа. Включено поддержка отрицательных значений(ОЗн).
+ * 4 основных арифметических операции. В начале идет завершение предыдущей операции
  * по ID и далее уже устанавливается свой ID и выполняется непосредственно 
- * выбранная.
+ * выбранная. Экранировки ОЗн в цепочке операций нет - происходит смена типа операции 
+ * на вычитание.
  */
 const funcPanel = {
     init: function (userInput) {
@@ -122,11 +123,20 @@ const funcPanel = {
             return;
         }
     },
-    division: function (e) {
+    division: function () {
         equalBlock.commonEqual();
         vars.operationID = 1;
+        if (vars.buffer === 0 && +vars.input === 0) {
+            if ($('#pre-text').text().includes('/')) {
+                $('#pre-text').text('');
+                return;
+            } else {
+                $('#pre-text').text(`/ `);
+                return;
+            }
+        }
         $('#pre-text').text('');
-        equalBlock.equalDiv(e);
+        equalBlock.equalDiv();
         $('#pre-text').text('');
         vars.buffer = +vars.input;
         vars.input = 0;
@@ -135,6 +145,15 @@ const funcPanel = {
     multiply: function () {
         equalBlock.commonEqual();
         vars.operationID = 2;
+        if (vars.buffer === 0 && +vars.input === 0) {
+            if ($('#pre-text').text().includes('*')) {
+                $('#pre-text').text('');
+                return;
+            } else {
+                $('#pre-text').text(`*`);
+                return;
+            }
+        }
         $('#pre-text').text('');
         equalBlock.equalMult();
         $('#pre-text').text('');
@@ -145,9 +164,33 @@ const funcPanel = {
     substruction: function () {
         equalBlock.commonEqual();
         vars.operationID = 3;
+        if (vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
+            if ($('#pre-text').text().includes(`-`)) {
+                $('#pre-text').text('');
+                return;
+            } else {
+                $('#pre-text').text(`-`);
+                vars.input = '-0';
+                vars.buffer = vars.input;
+                vars.input = 0;
+                return;
+            }
+        }
+        if (vars.buffer === 0 && +vars.input === 0 && vars.result !== 0) {
+            $('#pre-text').text(`-`);/* 
+            vars.input = '-0'; */
+            vars.buffer = vars.result;
+            return;
+        }
+        if (+vars.buffer === 0 && +vars.input !== 0) {
+            $('#pre-text').text(`-`);
+            vars.buffer = vars.input;
+            vars.input = 0;
+            return;
+        }
         $('#pre-text').text('');
         if (vars.buffer === 0) {
-            vars.buffer = +vars.input;
+            vars.buffer = vars.input;
             vars.input = 0;
         } else {
             equalBlock.equalSub();
@@ -159,10 +202,19 @@ const funcPanel = {
     },
     summary: function () {
         equalBlock.commonEqual();
-        vars.operationID = 4
+        vars.operationID = 4;
+        if (vars.buffer === 0 && +vars.input === 0) {
+            if ($('#pre-text').text().includes('+')) {
+                $('#pre-text').text('');
+                return;
+            } else {
+                $('#pre-text').text(`+`);
+                return;
+            }
+        }
         $('#pre-text').text('');
         if (vars.buffer === 0) {
-            vars.buffer = +vars.input;
+            vars.buffer = vars.input;
             vars.input = 0;
         } else {
             equalBlock.equalSum();
@@ -180,7 +232,10 @@ const funcPanel = {
     },
     reset: function () {
         $('#pre-text').text('');
-        return vars.input = 0, vars.buffer = 0, vars.result = 0;
+        return vars.input = 0,
+            vars.buffer = 0,
+            vars.result = 0,
+            vars.operationID = 0;
     },
 }
 /**
@@ -220,13 +275,13 @@ const equalBlock = {
      * Выбранные по ID операции
      */
     equalDiv: function () {
-        if (vars.buffer === 0 && vars.input === 0) {
+        if (vars.buffer === 0 && +vars.input === 0) {
             return;
         }
         if (vars.buffer === 0 && vars.result === 0) {
             return;
         }
-        if (vars.buffer === 0 && vars.input !== 0 && vars.result !== 0) {
+        if (vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer / +vars.input;
             $('#pre-text').text('')
@@ -255,13 +310,13 @@ const equalBlock = {
         }
     },
     equalMult: function () {
-        if (vars.buffer === 0 && vars.input === 0) {
+        if (vars.buffer === 0 && +vars.input === 0) {
             return;
         }
         if (vars.buffer === 0 && vars.result === 0) {
             return;
         }
-        if (vars.buffer === 0 && vars.input !== 0 && vars.result !== 0) {
+        if (vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer * +vars.input;
             $('#pre-text').text('')
@@ -279,10 +334,13 @@ const equalBlock = {
         }
     },
     equalSub: function () {
-        if (vars.buffer === 0 && vars.input === 0) {
+        if (vars.buffer === 0 && +vars.input === 0) {
             return;
         }
-        if (vars.buffer === 0 && vars.input !== 0 && vars.result !== 0) {
+        if (vars.buffer === 0 && vars.result === 0) {
+            return;
+        }
+        if (vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer - +vars.input;
             $('#pre-text').text('')
@@ -300,6 +358,9 @@ const equalBlock = {
         }
     },
     equalSum: function () {
+        if (vars.buffer === 0 && +vars.input === 0) {
+            return;
+        }
         if (vars.buffer === 0) {
             vars.buffer = vars.result;
         }
