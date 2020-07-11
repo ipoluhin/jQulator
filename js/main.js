@@ -348,6 +348,10 @@ const equalBlock = {
             vars.input = 0;
             vars.buffer = 0;
             return;
+        }
+        if (+vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
+            $('#pre-text').text('-');
+            return;
         } else {
             vars.result = +vars.buffer - +vars.input;
             $('#pre-text').text('')
