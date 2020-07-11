@@ -1,14 +1,19 @@
 "use strict";
 
-//Вспомогательные переменные
+/**
+ * Служебные переменные
+ */
 const vars = {
-    num: 0,         //Промеуточная переменная для пользовательского ввода
-    result: 0,      //Результат вычислений
-    operationID: 0,
+    input: 0,          //Промеуточная переменная для пользовательского ввода
+    buffer: 0,         //Оперативная переменная
+    result: 0,         //Результат вычислений
+    operationID: 0,    //ID фрифметической операции
 }
 
 
-/* Функция очистки тем */
+/**
+* Функция очистки тем
+*/
 function clearTheme() {
     $('#calc-body')
         .removeClass('calc-body-theme-2')
@@ -18,7 +23,9 @@ function clearTheme() {
 }
 
 
-//Панель переключения тем
+/**
+ * Панель переключения тем (отрисовка на экране в span)
+ */
 const themesPanel = {
     one: function () {
         $('.theme-active').removeClass('theme-active').addClass('theme');
@@ -45,7 +52,9 @@ const themesPanel = {
     },
 }
 
-//Цифровая панель (отрисовка выводимых значений на экране калькулятора)
+/**
+* Цифровая панель (отрисовка выводимых значений на экране калькулятора)
+*/
 const numberPanel = {
     one: function () {
         $('#pre-text').text($('#pre-text').text() + '1');
@@ -88,235 +97,238 @@ const numberPanel = {
         funcPanel.init(0);
     },
     dot: function (e) {
-        if ($('#pre-text').text().includes('.')) {
-            e.preventDefault();                    // Нельзя вводить точку дважды
+        // Нельзя вводить точку дважды       
+        if (!Number.isInteger(+vars.input)) {
+            e.preventDefault();
             return;
         }
-        /* if ($('#pre-text').text().includes('' + '.')) {
-            $('#pre-text').text('0.');
-        } */
         $('#pre-text').text($('#pre-text').text() + '.');
         funcPanel.init('.');
         console.log($('#pre-text').text().toString());
-        return num;
+        return;
     },
 }
 /**
- * Операции в функциональной панели начинаются с метода init, который определяет содержится ли
- * в вводе числа пользователя или же надо оставить прошлое значение. Далее задается операционный
- * идентификатор vars.operationID, который затем может учитываться в блоке вывода значения
- * по окончании операции. В некоторых ситуациях этот ID не требуется. ID хранится до выбора следующей
- * операции.
+ * Арифметические операции.
+ * Init - принимает пользовательские числа
+ * 4 арифметических операции. В начале идет завершение предыдущей операции
+ * по ID и далее уже устанавливается свой ID и выполняется непосредственно 
+ * выбранная.
  */
 const funcPanel = {
-    init: function (inNum) {                       //метод принимает значение от юзера(строка переводится в число).
-        if (inNum != undefined) {                  //если вводится число, то оно конкатенируется   
-            vars.num += inNum.toString();          //с предыдущим, если числа нет, берется предыдущее
-            vars.num = +vars.num;                  //значение
-            return vars.num;
+    init: function (userInput) {
+        if (userInput != undefined) {
+            vars.input += userInput.toString();
+            return;
         }
     },
-    division: function () {
-        /* vars.operationID = 1;
+    division: function (e) {
+        equalBlock.commonEqual();
+        vars.operationID = 1;
         $('#pre-text').text('');
-        funcPanel.init();
-        if (vars.result === 0) {
-            $('#pre-text').text('');
-            vars.result = vars.num;
-            vars.num = 0;
-            return vars.result;
-        }
-        if (vars.result !== 0 && vars.num !== 0) {
-            vars.result = vars.result / vars.num;
-            $('#pre-text').text('');
-            vars.num = 0;
-            return vars.result;
-        }
-        if (vars.result !== 0 && vars.num === 0) {
-            $('#pre-text')
-                .html('<span style="color: red">Логическая ошибка при делении на ноль!</span>');
-            return vars.result;
-        } */
+        equalBlock.equalDiv(e);
+        $('#pre-text').text('');
+        vars.buffer = +vars.input;
+        vars.input = 0;
+        return;
     },
     multiply: function () {
+        equalBlock.commonEqual();
         vars.operationID = 2;
         $('#pre-text').text('');
-        funcPanel.init();
-        if (vars.result !== 0 && vars.num === 0) {
-            $('#pre-text').text('');
-            return vars.result;
-        }
-        if (vars.result === 0) {
-            vars.result = vars.num;
-            vars.num = 0;
-            $('#pre-text').text('');
-            return vars.result;
-        }
-        else {
-            vars.result = vars.result * vars.num;
-            $('#pre-text').text('');
-            vars.num = 0;
-            return vars.result;
-        }
+        equalBlock.equalMult();
+        $('#pre-text').text('');
+        vars.buffer = vars.input;
+        vars.input = 0;
+        return;
     },
     substruction: function () {
+        equalBlock.commonEqual();
         vars.operationID = 3;
         $('#pre-text').text('');
-        funcPanel.init();
-        if (vars.result === 0) {
-            vars.result = vars.num;
-            vars.num = 0;
+        if (vars.buffer === 0) {
+            vars.buffer = +vars.input;
+            vars.input = 0;
+        } else {
+            equalBlock.equalSub();
+            vars.input = 0;
+            vars.buffer = 0;
             $('#pre-text').text('');
-            return vars.result;
         }
-        if (vars.result !== 0 && vars.num !== 0) {
-            vars.result = vars.result - vars.num;
-            $('#pre-text').text('');
-            vars.num = 0;
-            return vars.result;
-        }
-        if (vars.result !== 0 && vars.num === 0) {
-            $('#pre-text').text('');
-            return vars.result;
-        }
+        return;
     },
     summary: function () {
-        vars.operationID = 4;
+        equalBlock.commonEqual();
+        vars.operationID = 4
         $('#pre-text').text('');
-        funcPanel.init();
-        if (vars.result === 0) {
-            vars.result = vars.num;
-            vars.num = 0;
+        if (vars.buffer === 0) {
+            vars.buffer = +vars.input;
+            vars.input = 0;
+        } else {
+            equalBlock.equalSum();
+            vars.input = 0;
+            vars.buffer = 0;
             $('#pre-text').text('');
-            return vars.result;
         }
-        if (vars.result !== 0 && vars.num !== 0) {
-            vars.result = +vars.result + +vars.num;
-            $('#pre-text').text('');
-            vars.num = 0;
-            return vars.result;
-        }
-        if (vars.result !== 0 && vars.num === 0) {
-            $('#pre-text').text('');
-            return vars.result;
-        }
+        return;
     },
 
     erase: function () {
         $('#pre-text').text('');
-        vars.num = 0;
+        vars.input = 0;
         return vars.result;
     },
     reset: function () {
         $('#pre-text').text('');
-        return vars.num = 0, vars.result = 0;
+        return vars.input = 0, vars.buffer = 0, vars.result = 0;
     },
 }
 /**
  * Вывод итогового значения при нажатии кнопки "равно" состоит, фактически,
- * из двух блоков: общее равно (для ситуаций, когда либо пользовательское,
- * либо результирующее значение равно нулю) и блока рассчета результат при
- * не нулевых значения пользователя и результирующего. При этом во втором блоке
+ * из двух блоков: общее равно (выбор операции по ID операции) и блока расчета 
+ * результата. При этом во втором блоке
  * вариант берется согласно ID проводимой операции. 
  * Сам ID задается в переменной vars.operationID в начале каждой арифметической
  * операции и сохраняется до выбора следующей операции. 
  */
 const equalBlock = {
+    /***
+    * Модуль выбора операции по ее ID.
+    */
     commonEqual: function () {
-        if (vars.operationID === 1) {
-            equalBlock.equalDiv();
-            return vars.result;
-        }
-        if (vars.operationID === 2) {
-            equalBlock.equalMult();
-            return vars.result;
-        }                                   //Метод 'общее равно' выводит итоговое значение по нажатию '='       
-        if (vars.result === 0) {            //При нулевом результирующем, ему присваивается значение пользователя
-            vars.result = vars.num;         //и возвращается функцией с выводом на экран калькулятора.
-            vars.num = 0;                   //Значение пользователя зануляется
-            $('#pre-text').text('')
-                .text(vars.result);
-            return vars.result;
-        }
-        if (vars.result !== 0 && vars.num === 0) {      //При нулевом значении пользователя 
-            $('#pre-text').text('')                     //выводится результирущее
-                .text(vars.result);
-            return vars.result;
-        } else {
-            switch (vars.operationID) {    //Модуль вычисления при не нулевых значениях  по ID операции
-                case 1:
-                    equalBlock.equalDiv();
-                    break;
-                case 2:
-                    equalBlock.equalMult();
-                    break;
-                case 3:
-                    equalBlock.equalSub();
-                    break;
-                case 4:
-                    equalBlock.equalSum();
-                    break;
-            }
+        switch (vars.operationID) {
+            case 1:
+                equalBlock.equalDiv();
+                break;
+            case 2:
+                equalBlock.equalMult();
+                break;
+            case 3:
+                equalBlock.equalSub();
+                break;
+            case 4:
+                equalBlock.equalSum();
+                break;
+            default:
+                if (vars.result === 0 && vars.buffer === 0) {
+                    vars.result === +vars.input;
+                    return;
+                }
         }
     },
+    /**
+     * Выбранные по ID операции
+     */
     equalDiv: function () {
-        if (vars.result === 0) {
-            $('#pre-text').text('');
-            return vars.result;
+        if (vars.buffer === 0 && vars.input === 0) {
+            return;
         }
-        if (vars.result !== 0 && vars.num !== 0) {
-            vars.result = vars.result / vars.num;
+        if (vars.buffer === 0 && vars.result === 0) {
+            return;
+        }
+        if (vars.buffer === 0 && vars.input !== 0 && vars.result !== 0) {
+            vars.buffer = vars.result;
+            vars.result = +vars.buffer / +vars.input;
             $('#pre-text').text('')
                 .text(vars.result);
-            vars.num = 0;
-            return vars.result;
+            vars.input = 0;
+            vars.buffer = 0;
+            return;
         }
-        if (vars.num === 0) {
+        if (+vars.input !== 0) {
+            vars.result = +vars.buffer / +vars.input;
+            $('#pre-text').text('')
+                .text(vars.result);
+            vars.input = 0;
+            vars.buffer = 0;
+            return;
+        }
+        //Проверка на деление на ноль и прерывание операции
+        if (+vars.input === 0) {
             $('#pre-text')
-                .html('<span style="color: red">Логическая ошибка при делении на ноль!</span>');
-            return vars.result;
+                .html('<span style="color: red">Ошибка деления на ноль!</span>');
+            setTimeout(() => { $('#pre-text').text(''); }, 1500);
+            if (+vars.input === 0) {
+                e.preventDefault();
+            }
+            return;
         }
     },
     equalMult: function () {
-        vars.result = vars.result * vars.num;
-        $('#pre-text').text('')
-            .text(vars.result);
-        vars.num = 0;
-        return vars.result;
+        if (vars.buffer === 0 && vars.input === 0) {
+            return;
+        }
+        if (vars.buffer === 0 && vars.result === 0) {
+            return;
+        }
+        if (vars.buffer === 0 && vars.input !== 0 && vars.result !== 0) {
+            vars.buffer = vars.result;
+            vars.result = +vars.buffer * +vars.input;
+            $('#pre-text').text('')
+                .text(vars.result);
+            vars.input = 0;
+            vars.buffer = 0;
+            return;
+        } else {
+            vars.result = +vars.buffer * +vars.input;
+            $('#pre-text').text('')
+                .text(vars.result);
+            vars.input = 0;
+            vars.buffer = 0;
+            return;
+        }
     },
     equalSub: function () {
-        vars.result = vars.result - vars.num;
-        $('#pre-text').text('')
-            .text(vars.result);
-        vars.num = 0;
-        return vars.result;
+        if (vars.buffer === 0 && vars.input === 0) {
+            return;
+        }
+        if (vars.buffer === 0 && vars.input !== 0 && vars.result !== 0) {
+            vars.buffer = vars.result;
+            vars.result = +vars.buffer - +vars.input;
+            $('#pre-text').text('')
+                .text(vars.result);
+            vars.input = 0;
+            vars.buffer = 0;
+            return;
+        } else {
+            vars.result = +vars.buffer - +vars.input;
+            $('#pre-text').text('')
+                .text(vars.result);
+            vars.input = 0;
+            vars.buffer = 0;
+            return;
+        }
     },
     equalSum: function () {
-        vars.result = +vars.result + +vars.num;
+        if (vars.buffer === 0) {
+            vars.buffer = vars.result;
+        }
+        vars.result = +vars.buffer + +vars.input;
         $('#pre-text').text('')
             .text(vars.result);
-        vars.num = 0;
-        return vars.result;
+        vars.input = 0;
+        vars.buffer = 0;
+        return;
     },
 }
 
-const memory = {
-    ms: function () {
-        /* alert(`Запись в память в разработке.`); */
-        /* $('#pre-text')
-            .html('<span style="color: red">Функция временно недоступна!</span>'); */
-    },
-    mr: function () {
-        /* alert(`Чтение из памяти в разработке.`); */
-        /* $('#pre-text')
-            .html('<span style="color: red">Функция временно недоступна!</span>'); */
-    },
-    mc: function () {
-        /* alert(`Очистка памяти в разработке.`); */
-        /* $('#pre-text')
-            .html('<span style="color: red">Функция временно недоступна!</span>'); */
-    },
-}
+//const memory = {
+//    ms: function () {
+/* alert(`Запись в память в разработке.`); */
+/* $('#pre-text')
+    .html('<span style="color: red">Функция временно недоступна!</span>'); */
+//    },
+//    mr: function () {
+/* alert(`Чтение из памяти в разработке.`); */
+/* $('#pre-text')
+    .html('<span style="color: red">Функция временно недоступна!</span>'); */
+//    },
+//    mc: function () {
+/* alert(`Очистка памяти в разработке.`); */
+/* $('#pre-text')
+    .html('<span style="color: red">Функция временно недоступна!</span>'); */
+//    },
+//}
 
 //Функционал переключения тем
 $('#theme-1').on('click', themesPanel.one);
@@ -349,6 +361,7 @@ $('#btn-erase').on('click', funcPanel.erase);
 $('#btn-reset').on('click', funcPanel.reset);
 
 //memory buttons
-$('#ms').on('click', memory.ms);
+/* $('#ms').on('click', memory.ms);
 $('#mr').on('click', memory.mr);
 $('#mc').on('click', memory.mc);
+*/
