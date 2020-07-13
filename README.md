@@ -1,7 +1,7 @@
 # jQulator
 
 jQulator - веб-калькулятор. Калькулятор способен считать неограниченное количество операций до вывода результирующих данных. В целом, попытка сымитировать реальный счетный не инженерный инструмент. Учебная работа по теме jquery.
-<a href="https://ipoluhin.github.io/jQulator/"><img src="https://yadi.sk/i/iyguMR3KkRwV8Q" alt="jqulator-img" /></a>
+<a href="https://ipoluhin.github.io/jQulator/"><img src="./img/theme_in_out1.png" alt="jqulator-img" /></a>
 На данный момент реализовано:
 -разделены поля ввода и вывода чисел
 -переключение тем оформления.
