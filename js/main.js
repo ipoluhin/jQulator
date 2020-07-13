@@ -303,7 +303,7 @@ const equalBlock = {
             vars.buffer = +vars.result;
             vars.result = +vars.buffer / +vars.input;
             if (+vars.buffer % +vars.input !== 0) {
-                vars.result = vars.result.toFixed(4);
+                vars.result = vars.result.toFixed(2);
             }
             $('#result-text').text('')
                 .text(vars.result);
@@ -315,7 +315,7 @@ const equalBlock = {
         if (+vars.input !== 0) {
             vars.result = +vars.buffer / +vars.input;
             if (+vars.buffer % +vars.input) {
-                vars.result = vars.result.toFixed(4);
+                vars.result = vars.result.toFixed(2);
             }
             $('#result-text').text('')
                 .text(vars.result);
@@ -345,7 +345,7 @@ const equalBlock = {
         if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer * +vars.input;
-            vars.result = vars.result;
+            vars.result = vars.result.toFixed(2);
             $('#result-text').text('')
                 .text(vars.result);
             $('#input-text').text('');
@@ -372,7 +372,7 @@ const equalBlock = {
         if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer - +vars.input;
-            vars.result = vars.result.toFixed(4);
+            vars.result = vars.result.toFixed(2);
             $('#result-text').text('')
                 .text(vars.result);
             vars.input = 0;
@@ -384,7 +384,7 @@ const equalBlock = {
             return;
         } else {
             vars.result = +vars.buffer - +vars.input;
-            vars.result = vars.result;
+            vars.result = vars.result.toFixed(2);
             $('#result-text').text('')
                 .text(vars.result);
             $('#input-text').text('');
@@ -401,6 +401,7 @@ const equalBlock = {
             vars.buffer = vars.result;
         }
         vars.result = +vars.buffer + +vars.input;
+        vars.result = vars.result.toFixed(2);
         $('#result-text').text('')
             .text(vars.result);
         $('#input-text').text('');
