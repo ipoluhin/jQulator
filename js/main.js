@@ -314,7 +314,7 @@ const equalBlock = {
         }
         if (+vars.input !== 0) {
             vars.result = +vars.buffer / +vars.input;
-            if (+vars.buffer % +vars.input) {
+            if (+vars.buffer % +vars.input !== 0) {
                 vars.result = vars.result.toFixed(2);
             }
             $('#result-text').text('')

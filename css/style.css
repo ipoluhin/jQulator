@@ -220,7 +220,7 @@ body .calc-body-theme-4 .main .output .result-text {
   position: relative;
   outline: 1px solid #05000027;
   font-size: 18px;
-  font-family: digital-7, 'arial', sans-serif;
+  font-family: digital-7;
 }
 
 body .calc-body-theme-1 .main .output .input-text::before,
