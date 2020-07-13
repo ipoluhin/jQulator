@@ -9,6 +9,7 @@
 body {
   max-width: 360px;
   margin: 10px auto;
+  background-color: grey;
 }
 
 body .calc-body-theme-1 {
