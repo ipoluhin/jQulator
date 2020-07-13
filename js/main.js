@@ -173,6 +173,7 @@ const funcPanel = {
                 $('#input-text').text(`- `);
                 vars.input = '-0';
                 vars.buffer = vars.input;
+                vars.result = +vars.buffer;
                 vars.input = 0;
                 return;
             }
@@ -184,7 +185,9 @@ const funcPanel = {
         }
         if (+vars.buffer === 0 && +vars.input !== 0) {
             $('#input-text').text(`- `);
+            vars.result = +vars.buffer;
             vars.buffer = vars.input;
+            $('#result-text').text(vars.result);
             vars.input = 0;
             return;
         }
@@ -282,10 +285,10 @@ const equalBlock = {
      * Выбранные по ID операции
      */
     equalDiv: function () {   /* !!! Прописать кнопки округления чисел в случае десятичных дробей */
-        if (+vars.buffer === 0 && +vars.input === 0) {
+        if (vars.buffer === 0 && +vars.input === 0) {
             return;
         }
-        if (+vars.buffer === 0 && vars.result === 0) {
+        if (vars.buffer === 0 && vars.result === 0) {
             return;
         }
         if (+vars.buffer === 0 && +vars.input === 0 && vars.result !== 0) {
@@ -333,10 +336,10 @@ const equalBlock = {
         }
     },
     equalMult: function () {
-        if (+vars.buffer === 0 && +vars.input === 0) {
+        if (vars.buffer === 0 && +vars.input === 0) {
             return;
         }
-        if (+vars.buffer === 0 && vars.result === 0) {
+        if (vars.buffer === 0 && vars.result === 0) {
             return;
         }
         if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
@@ -360,16 +363,16 @@ const equalBlock = {
         }
     },
     equalSub: function () {
-        if (+vars.buffer === 0 && +vars.input === 0) {
+        if (vars.buffer === 0 && +vars.input === 0) {
             return;
         }
-        if (+vars.buffer === 0 && vars.result === 0) {
+        if (vars.buffer === 0 && vars.result === 0) {
             return;
         }
         if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer - +vars.input;
-            vars.result = vars.result;
+            vars.result = vars.result.toFixed(4);
             $('#result-text').text('')
                 .text(vars.result);
             vars.input = 0;
