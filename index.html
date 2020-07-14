@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- <link rel="stylesheet" href="./fonts/digital-7.ttf" /> -->
 		<link rel="stylesheet" href="./css/normalize.css" />
 		<link rel="stylesheet" href="./css/style.css" />
 		<title>Calculator jQuery</title>
@@ -26,6 +25,17 @@
 				</section>
 				<section class="buttons">
 					<section class="number-block">
+						<section class="round">
+							<button type="button" class="btn round-vol" id="int">
+								<span class="round-text">Int</span>
+							</button>
+							<button type="button" class="btn round-vol" id="ml">
+								<span class="round-text">.00</span>
+							</button>
+							<button type="button" class="btn round-vol round-vol-active" id="nrml">
+								<span class="round-text">.000</span>
+							</button>
+						</section>
 						<button type="button" class="btn number" id="1">
 							<span class="num-text">1</span>
 						</button>
@@ -63,18 +73,21 @@
 							<span class="num-text special">=</span>
 						</button>
 						<section class="memory-function">
-							<button type="button" class="btn memory disabled" id="ms">
+							<button type="button" class="btn memory" id="ms">
 								<span class="num-text special">MS</span>
 							</button>
-							<button type="button" class="btn memory disabled" id="mr">
+							<button type="button" class="btn memory" id="mr">
 								<span class="num-text special">MR</span>
 							</button>
-							<button type="button" class="btn memory disabled" id="mc">
+							<button type="button" class="btn memory" id="mc">
 								<span class="num-text special">MC</span>
 							</button>
 						</section>
 					</section>
 					<section class="func-block">
+						<button type="button" class="btn random" id="random">
+							&nbsp;&nbsp;Rnd
+						</button>
 						<button type="button" class="btn function" id="division">
 							/
 						</button>

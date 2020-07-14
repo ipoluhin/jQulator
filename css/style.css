@@ -293,7 +293,7 @@ body .calc-body-theme-4 .main .buttons .func-block {
   flex-wrap: wrap;
   justify-content: space-between;
   height: 100%;
-  margin: 21px 0 0 10px;
+  margin: 5px 0 0 10px;
 }
 
 body .calc-body-theme-1 .main .buttons .number-block .btn,
@@ -343,7 +343,7 @@ body .calc-body-theme-4 .main .buttons .number-block .number,
 body .calc-body-theme-4 .main .buttons .func-block .number {
   color: blue;
   margin: 0px 10px 13px 0px;
-  padding: 15px 20px 5px 20px;
+  padding: 5px 20px 5px 20px;
   transition: 0.4s;
 }
 
@@ -379,7 +379,7 @@ body .calc-body-theme-3 .main .buttons .number-block .memory-function .memory,
 body .calc-body-theme-3 .main .buttons .func-block .memory-function .memory,
 body .calc-body-theme-4 .main .buttons .number-block .memory-function .memory,
 body .calc-body-theme-4 .main .buttons .func-block .memory-function .memory {
-  background-color: #cccccc;
+  background-color: #060c5e;
   color: #cccccc;
   margin: 0 -47px 0px 0;
   padding: 3px 10px 3px 10px;
@@ -398,18 +398,103 @@ body .calc-body-theme-4 .main .buttons .func-block .memory-function .memory .spe
   right: 4px;
 }
 
+body .calc-body-theme-1 .main .buttons .number-block .round,
+body .calc-body-theme-1 .main .buttons .func-block .round,
+body .calc-body-theme-2 .main .buttons .number-block .round,
+body .calc-body-theme-2 .main .buttons .func-block .round,
+body .calc-body-theme-3 .main .buttons .number-block .round,
+body .calc-body-theme-3 .main .buttons .func-block .round,
+body .calc-body-theme-4 .main .buttons .number-block .round,
+body .calc-body-theme-4 .main .buttons .func-block .round {
+  display: flex;
+  flex-flow: row no-wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 97%;
+  margin: 0 0 15px 0;
+}
+
+body .calc-body-theme-1 .main .buttons .number-block .round .round-vol,
+body .calc-body-theme-1 .main .buttons .func-block .round .round-vol,
+body .calc-body-theme-2 .main .buttons .number-block .round .round-vol,
+body .calc-body-theme-2 .main .buttons .func-block .round .round-vol,
+body .calc-body-theme-3 .main .buttons .number-block .round .round-vol,
+body .calc-body-theme-3 .main .buttons .func-block .round .round-vol,
+body .calc-body-theme-4 .main .buttons .number-block .round .round-vol,
+body .calc-body-theme-4 .main .buttons .func-block .round .round-vol {
+  box-sizing: border-box;
+  border-radius: 2px;
+  height: 20px;
+  background-color: #1c0472;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px 0 0;
+}
+
+body .calc-body-theme-1 .main .buttons .number-block .round .round-vol-active,
+body .calc-body-theme-1 .main .buttons .func-block .round .round-vol-active,
+body .calc-body-theme-2 .main .buttons .number-block .round .round-vol-active,
+body .calc-body-theme-2 .main .buttons .func-block .round .round-vol-active,
+body .calc-body-theme-3 .main .buttons .number-block .round .round-vol-active,
+body .calc-body-theme-3 .main .buttons .func-block .round .round-vol-active,
+body .calc-body-theme-4 .main .buttons .number-block .round .round-vol-active,
+body .calc-body-theme-4 .main .buttons .func-block .round .round-vol-active {
+  background-color: grey;
+  border: 1px solid;
+  box-shadow: -1px -1px 1px #000000;
+  border-radius: 2px;
+}
+
+body .calc-body-theme-1 .main .buttons .number-block .round .round-vol .round-text,
+body .calc-body-theme-1 .main .buttons .func-block .round .round-vol .round-text,
+body .calc-body-theme-2 .main .buttons .number-block .round .round-vol .round-text,
+body .calc-body-theme-2 .main .buttons .func-block .round .round-vol .round-text,
+body .calc-body-theme-3 .main .buttons .number-block .round .round-vol .round-text,
+body .calc-body-theme-3 .main .buttons .func-block .round .round-vol .round-text,
+body .calc-body-theme-4 .main .buttons .number-block .round .round-vol .round-text,
+body .calc-body-theme-4 .main .buttons .func-block .round .round-vol .round-text {
+  position: absolute;
+  color: #ffffff;
+  font-size: 12px;
+}
+
 body .calc-body-theme-1 .main .buttons .number-block .function,
+body .calc-body-theme-1 .main .buttons .number-block .random,
 body .calc-body-theme-1 .main .buttons .func-block .function,
+body .calc-body-theme-1 .main .buttons .func-block .random,
 body .calc-body-theme-2 .main .buttons .number-block .function,
+body .calc-body-theme-2 .main .buttons .number-block .random,
 body .calc-body-theme-2 .main .buttons .func-block .function,
+body .calc-body-theme-2 .main .buttons .func-block .random,
 body .calc-body-theme-3 .main .buttons .number-block .function,
+body .calc-body-theme-3 .main .buttons .number-block .random,
 body .calc-body-theme-3 .main .buttons .func-block .function,
+body .calc-body-theme-3 .main .buttons .func-block .random,
 body .calc-body-theme-4 .main .buttons .number-block .function,
-body .calc-body-theme-4 .main .buttons .func-block .function {
+body .calc-body-theme-4 .main .buttons .number-block .random,
+body .calc-body-theme-4 .main .buttons .func-block .function,
+body .calc-body-theme-4 .main .buttons .func-block .random {
   color: #000000;
   background-color: #ccc;
   margin: 0 -13px 5px 10px;
-  padding: 10px 30px 10px 20px;
+  padding: 5px 30px 5px 20px;
+}
+
+body .calc-body-theme-1 .main .buttons .number-block .random,
+body .calc-body-theme-1 .main .buttons .func-block .random,
+body .calc-body-theme-2 .main .buttons .number-block .random,
+body .calc-body-theme-2 .main .buttons .func-block .random,
+body .calc-body-theme-3 .main .buttons .number-block .random,
+body .calc-body-theme-3 .main .buttons .func-block .random,
+body .calc-body-theme-4 .main .buttons .number-block .random,
+body .calc-body-theme-4 .main .buttons .func-block .random {
+  background-color: #000000;
+  color: #cccccc;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 body .calc-body-theme-1 .main .buttons .number-block .erase,
@@ -422,7 +507,7 @@ body .calc-body-theme-4 .main .buttons .number-block .erase,
 body .calc-body-theme-4 .main .buttons .func-block .erase {
   color: #cccccc;
   background-color: #df0f0f;
-  margin: 0 -13px 5px 10px;
+  margin: 5px -13px 5px 10px;
 }
 
 body .calc-body-theme-1 .main .buttons .number-block .disabled,
@@ -451,7 +536,7 @@ body .calc-body-theme-3 .main .buttons .func-block .reset,
 body .calc-body-theme-4 .main .buttons .number-block .reset,
 body .calc-body-theme-4 .main .buttons .func-block .reset {
   box-sizing: border-box;
-  padding: 10px 30px 10px 20px;
+  padding: 5px 30px 5px 20px;
   margin: 0 -13px 5px 10px;
   background-color: #df0f0f;
   border-radius: 10px;

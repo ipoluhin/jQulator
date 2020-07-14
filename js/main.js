@@ -8,8 +8,9 @@ const vars = {
     buffer: 0,         //Оперативная переменная
     result: 0,         //Результат вычислений
     operationID: 0,    //ID фрифметической операции
+    numAfterDot: 3,    //Знаков после запятой
+    memory: null,         //Число в памяти
 }
-
 
 /**
 * Функция очистки тем
@@ -21,7 +22,6 @@ function clearTheme() {
         .removeClass('calc-body-theme-4')
         .addClass('calc-body-theme-1');
 }
-
 
 /**
  * Панель переключения тем (отрисовка на экране в span)
@@ -57,43 +57,33 @@ const themesPanel = {
 */
 const numberPanel = {
     one: function () {
-        $('#input-text').text($('#input-text').text() + '1');
         funcPanel.init(1);
     },
     two: function () {
-        $('#input-text').text($('#input-text').text() + '2');
         funcPanel.init(2);
     },
     three: function () {
-        $('#input-text').text($('#input-text').text() + '3');
         funcPanel.init(3);
     },
     four: function () {
-        $('#input-text').text($('#input-text').text() + '4');
         funcPanel.init(4);
     },
     five: function () {
-        $('#input-text').text($('#input-text').text() + '5');
         funcPanel.init(5);
     },
     six: function () {
-        $('#input-text').text($('#input-text').text() + '6');
         funcPanel.init(6);
     },
     seven: function () {
-        $('#input-text').text($('#input-text').text() + '7');
         funcPanel.init(7);
     },
     eigth: function () {
-        $('#input-text').text($('#input-text').text() + '8');
         funcPanel.init(8);
     },
     nine: function () {
-        $('#input-text').text($('#input-text').text() + '9');
         funcPanel.init(9);
     },
     zero: function () {
-        $('#input-text').text($('#input-text').text() + '0');
         funcPanel.init(0);
     },
     dot: function (e) {
@@ -102,9 +92,7 @@ const numberPanel = {
             e.preventDefault();
             return;
         }
-        $('#input-text').text($('#input-text').text() + '.');
         funcPanel.init('.');
-        console.log($('#input-text').text().toString());
         return;
     },
 }
@@ -119,9 +107,72 @@ const numberPanel = {
 const funcPanel = {
     init: function (userInput) {
         if (userInput != undefined) {
-            vars.input += userInput.toString();
-            return;
+            vars.input = vars.input.toString();
+            if (vars.input.length < 10) {
+                vars.input += userInput.toString();
+                $('#input-text').text($('#input-text').text() + `${userInput}`);
+                return;
+            }
         }
+    },
+    toInt: function () {
+        if (vars.numAfterDot !== 0) {
+            vars.numAfterDot = 0;
+            $('.round-vol-active')
+                .removeClass('round-vol-active');
+            $('#int').addClass('round-vol-active');
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                let temp = $('#result-text').text();
+                $('#result-text').text('')
+                    .text(Math.trunc(+temp));
+                $('#input-text').text('');
+            }
+        }
+    },
+    toMilli: function () {
+        if (vars.numAfterDot !== 2) {
+            vars.numAfterDot = 2;
+            $('.round-vol-active')
+                .removeClass('round-vol-active');
+            $('#ml').addClass('round-vol-active');
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                let temp = $('#result-text').text();
+                $('#result-text').text('')
+                    .text((+vars.result).toFixed(vars.numAfterDot));
+                $('#input-text').text('');
+            }
+        }
+    },
+    toNormal: function () {
+        if (vars.numAfterDot !== 3) {
+            vars.numAfterDot = 3;
+            $('.round-vol-active')
+                .removeClass('round-vol-active');
+            $('#nrml').addClass('round-vol-active');
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                let temp = $('#result-text').text();
+                $('#result-text').text('')
+                    .text((+vars.result).toFixed(vars.numAfterDot));
+                $('#input-text').text('');
+            }
+        }
+    },
+    random: function () {
+        equalBlock.commonEqual();
+        vars.buffer = +vars.input;
+        vars.input = (Math.random() * 10).toFixed(0);
+        console.log(vars.input);
+        $('#input-text').text(vars.input);
+        return;
     },
     division: function () {
         equalBlock.commonEqual();
@@ -145,13 +196,6 @@ const funcPanel = {
         equalBlock.commonEqual();
         vars.operationID = 2;
         if (+vars.buffer === 0 && +vars.input === 0) {
-            /* if ($('#input-text').text().includes('*')) {
-                $('#input-text').text('');
-                return;
-            } else {
-                $('#input-text').text(`*`);
-                return;
-            } */
             $('#input-text').text(`*`);
             return;
         }
@@ -207,13 +251,6 @@ const funcPanel = {
         equalBlock.commonEqual();
         vars.operationID = 4;
         if (+vars.buffer === 0 && +vars.input === 0) {
-            /* if ($('#input-text').text().includes(`+`)) {
-                $('#input-text').text('');
-                return;
-            } else {
-                $('#input-text').text(`+`);
-                return;
-            } */
             $('#input-text').text(`+`);
             return;
         }
@@ -243,6 +280,7 @@ const funcPanel = {
             vars.buffer = 0,
             vars.result = 0,
             vars.operationID = 0;
+        vars.memory = null;
     },
 }
 /**
@@ -274,9 +312,26 @@ const equalBlock = {
             default:
                 if (vars.result === 0 && vars.buffer === 0) {
                     vars.result = +vars.input;
-                    $('#input-text').text('');
-                    $('#result-text').text(vars.result);
                     vars.input = 0;
+                    if (Number.isInteger(vars.result)) {
+                        $('#result-text').text('')
+                            .text(vars.result);
+                    } else {
+                        $('#result-text').text('')
+                            .text((+vars.result).toFixed(vars.numAfterDot));
+                    }
+                    $('#input-text').text('');
+                    return;
+                }
+                if (vars.input === 0 && vars.buffer === 0 && vars.result !== 0) {
+                    if (Number.isInteger(vars.result)) {
+                        $('#result-text').text('')
+                            .text(vars.result);
+                    } else {
+                        $('#result-text').text('')
+                            .text((+vars.result).toFixed(vars.numAfterDot));
+                    }
+                    $('#input-text').text('');
                     return;
                 }
         }
@@ -284,7 +339,7 @@ const equalBlock = {
     /**
      * Выбранные по ID операции
      */
-    equalDiv: function () {   /* !!! Прописать кнопки округления чисел в случае десятичных дробей */
+    equalDiv: function () {
         if (vars.buffer === 0 && +vars.input === 0) {
             return;
         }
@@ -294,7 +349,7 @@ const equalBlock = {
         if (+vars.buffer === 0 && +vars.input === 0 && vars.result !== 0) {
             vars.buffer = +vars.result;
             $('#result-text').text('')
-                .text(vars.result);
+                .text((+vars.result).toFixed(vars.numAfterDot));
             $('#input-text').text('');
             vars.input = 0;
             return;
@@ -302,11 +357,13 @@ const equalBlock = {
         if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = +vars.result;
             vars.result = +vars.buffer / +vars.input;
-            if (+vars.buffer % +vars.input !== 0) {
-                vars.result = vars.result.toFixed(2);
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                $('#result-text').text('')
+                    .text(vars.result.toFixed(vars.numAfterDot));
             }
-            $('#result-text').text('')
-                .text(vars.result);
             $('#input-text').text('');
             vars.input = 0;
             vars.buffer = 0;
@@ -314,8 +371,12 @@ const equalBlock = {
         }
         if (+vars.input !== 0) {
             vars.result = +vars.buffer / +vars.input;
-            if (+vars.buffer % +vars.input !== 0) {
-                vars.result = vars.result.toFixed(2);
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                $('#result-text').text('')
+                    .text(vars.result.toFixed(vars.numAfterDot));
             }
             $('#result-text').text('')
                 .text(vars.result);
@@ -345,21 +406,38 @@ const equalBlock = {
         if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer * +vars.input;
-            vars.result = vars.result.toFixed(2);
-            $('#result-text').text('')
-                .text(vars.result);
-            $('#input-text').text('');
-            vars.input = 0;
-            vars.buffer = 0;
-            return;
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                $('#result-text').text('')
+                    .text(vars.result.toFixed(vars.numAfterDot));
+            }
+            if (vars.result.toString().length < 13) {
+                $('#result-text').text('')
+                    .text(vars.result);
+                $('#input-text').text('');
+                vars.input = 0;
+                vars.buffer = 0;
+                return;
+            }
         } else {
             vars.result = +vars.buffer * +vars.input;
-            $('#result-text').text('')
-                .text(vars.result);
-            $('#input-text').text('');
-            vars.input = 0;
-            vars.buffer = 0;
-            return;
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                $('#result-text').text('')
+                    .text(vars.result.toFixed(vars.numAfterDot));
+            }
+            if (vars.result.toString().length < 13) {
+                $('#result-text').text('')
+                    .text(vars.result);
+                $('#input-text').text('');
+                vars.input = 0;
+                vars.buffer = 0;
+                return;
+            }
         }
     },
     equalSub: function () {
@@ -372,25 +450,54 @@ const equalBlock = {
         if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer - +vars.input;
-            vars.result = vars.result.toFixed(2);
-            $('#result-text').text('')
-                .text(vars.result);
-            vars.input = 0;
-            vars.buffer = 0;
-            return;
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                $('#result-text').text('')
+                    .text(vars.result.toFixed(vars.numAfterDot));
+            }
+            if (vars.result.toString().length < 13) {
+                $('#result-text').text('')
+                    .text(vars.result);
+                $('#input-text').text('');
+                vars.input = 0;
+                vars.buffer = 0;
+                return;
+            } else {
+                $('#result-text')
+                    .html('<span style="color: red; font-size: 16px">error-long number</span>');
+                setTimeout(() => { $('#result-text').text(''); }, 1500);
+                $('#input-text').text('');
+
+            }
         }
         if (+vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
             $('#input-text').text('-');
             return;
         } else {
             vars.result = +vars.buffer - +vars.input;
-            vars.result = vars.result.toFixed(2);
-            $('#result-text').text('')
-                .text(vars.result);
-            $('#input-text').text('');
-            vars.input = 0;
-            vars.buffer = 0;
-            return;
+            vars.result = vars.result.toFixed(vars.numAfterDot);
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                $('#result-text').text('')
+                    .text(vars.result.toFixed(vars.numAfterDot));
+            }
+            if (vars.result.toString().length < 13) {
+                $('#result-text').text('')
+                    .text(vars.result);
+                $('#input-text').text('');
+                vars.input = 0;
+                vars.buffer = 0;
+                return;
+            } else {
+                $('#result-text')
+                    .html('<span style="color: red; font-size: 16px">error-long number</span>');
+                setTimeout(() => { $('#result-text').text(''); }, 1500);
+                $('#input-text').text('');
+            }
         }
     },
     equalSum: function () {
@@ -401,33 +508,52 @@ const equalBlock = {
             vars.buffer = vars.result;
         }
         vars.result = +vars.buffer + +vars.input;
-        vars.result = vars.result.toFixed(2);
-        $('#result-text').text('')
-            .text(vars.result);
-        $('#input-text').text('');
-        vars.input = 0;
-        vars.buffer = 0;
-        return;
+        vars.result = vars.result.toFixed(vars.numAfterDot);
+        if (Number.isInteger(vars.result)) {
+            $('#result-text').text('')
+                .text(vars.result);
+        } else {
+            $('#result-text').text('')
+                .text(vars.result.toFixed(vars.numAfterDot));
+        }
+        if (vars.result.toString().length < 13) {
+            $('#result-text').text('')
+                .text(vars.result);
+            $('#input-text').text('');
+            vars.input = 0;
+            vars.buffer = 0;
+            return;
+        } else {
+            $('#result-text')
+                .html('<span style="color: red; font-size: 16px">error-long number</span>');
+            setTimeout(() => { $('#result-text').text(''); }, 1500);
+            $('#input-text').text('');
+        }
     },
 }
 
-//const memory = {
-//    ms: function () {
-/* alert(`Запись в память в разработке.`); */
-/* $('#result-text')
-    .html('<span style="color: red">Функция временно недоступна!</span>'); */
-//    },
-//    mr: function () {
-/* alert(`Чтение из памяти в разработке.`); */
-/* $('#result-text')
-    .html('<span style="color: red">Функция временно недоступна!</span>'); */
-//    },
-//    mc: function () {
-/* alert(`Очистка памяти в разработке.`); */
-/* $('#result-text')
-    .html('<span style="color: red">Функция временно недоступна!</span>'); */
-//    },
-//}
+const memory = {
+    ms: function () {
+        if (vars.result !== 0) {
+            vars.memory = vars.result.toString();
+        } else {
+            vars.memory = vars.input.toString();
+        }
+        $('#result-text')
+            .html('<span style="color: blue; font-size: 16px">memory saved</span>');
+        setTimeout(() => { $('#result-text').text(''); }, 1500);
+    },
+    mr: function () {
+        vars.input = +vars.memory;
+        $('#input-text').text($('#input-text').text() + `${vars.input}`);
+    },
+    mc: function () {
+        vars.memory = 0;
+        $('#result-text')
+            .html('<span style="color: blue; font-size: 16px">memory cleared</span>');
+        setTimeout(() => { $('#result-text').text(''); }, 1500);
+    },
+}
 
 //Функционал переключения тем
 $('#theme-1').on('click', themesPanel.one);
@@ -449,6 +575,10 @@ $('#0').on('click', numberPanel.zero);
 $('#dot').on('click', numberPanel.dot);
 
 //Функциональная панель
+$('#int').on('click', funcPanel.toInt);
+$('#ml').on('click', funcPanel.toMilli);
+$('#nrml').on('click', funcPanel.toNormal);
+$('#random').on('click', funcPanel.random);
 $('#eql').on('click', equalBlock.commonEqual);
 $('#division').on('click', funcPanel.division);
 $('#multiply').on('click', funcPanel.multiply);
@@ -460,7 +590,6 @@ $('#btn-erase').on('click', funcPanel.erase);
 $('#btn-reset').on('click', funcPanel.reset);
 
 //memory buttons
-/* $('#ms').on('click', memory.ms);
+$('#ms').on('click', memory.ms);
 $('#mr').on('click', memory.mr);
 $('#mc').on('click', memory.mc);
-*/
