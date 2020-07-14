@@ -17,4 +17,4 @@
 
 Публичная ссылка <https://ipoluhin.github.io/jQulator/></span>
 
-<a href="https://ipoluhin.github.io/jQulator/"><img src="./img/theme_in_out1.png" alt="jqulator-img" /></a><br>
+<img src="./img/theme_in_out1.png" alt="jqulator-img" /><br>
