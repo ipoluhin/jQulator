@@ -437,6 +437,13 @@ const equalBlock = {
                 vars.input = 0;
                 vars.buffer = 0;
                 return;
+            } else {
+                $('#result-text').text('')
+                    .text((+vars.result).toFixed(vars.numAfterDot));
+                /* $('#result-text')
+                    .html('<span style="color: red; font-size: 16px">error-long number</span>');
+                setTimeout(() => { $('#result-text').text(''); }, 1500); */
+                $('#input-text').text('');
             }
         }
     },
@@ -456,47 +463,50 @@ const equalBlock = {
             } else {
                 $('#result-text').text('')
                     .text(vars.result.toFixed(vars.numAfterDot));
+                if (vars.result.toString().length < 13) {
+                    $('#result-text').text('')
+                        .text(vars.result);
+                    $('#input-text').text('');
+                    vars.input = 0;
+                    vars.buffer = 0;
+                    return;
+                } else {
+                    $('#result-text').text('')
+                        .text((+vars.result).toFixed(vars.numAfterDot));
+                    /* $('#result-text')
+                        .html('<span style="color: red; font-size: 16px">error-long number</span>');
+                    setTimeout(() => { $('#result-text').text(''); }, 1500); */
+                    $('#input-text').text('');
+                }
             }
-            if (vars.result.toString().length < 13) {
-                $('#result-text').text('')
-                    .text(vars.result);
-                $('#input-text').text('');
-                vars.input = 0;
-                vars.buffer = 0;
+            if (+vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
+                $('#input-text').text('-');
                 return;
             } else {
-                $('#result-text')
-                    .html('<span style="color: red; font-size: 16px">error-long number</span>');
-                setTimeout(() => { $('#result-text').text(''); }, 1500);
-                $('#input-text').text('');
-
-            }
-        }
-        if (+vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
-            $('#input-text').text('-');
-            return;
-        } else {
-            vars.result = +vars.buffer - +vars.input;
-            vars.result = vars.result.toFixed(vars.numAfterDot);
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                $('#result-text').text('')
-                    .text(vars.result.toFixed(vars.numAfterDot));
-            }
-            if (vars.result.toString().length < 13) {
-                $('#result-text').text('')
-                    .text(vars.result);
-                $('#input-text').text('');
-                vars.input = 0;
-                vars.buffer = 0;
-                return;
-            } else {
-                $('#result-text')
-                    .html('<span style="color: red; font-size: 16px">error-long number</span>');
-                setTimeout(() => { $('#result-text').text(''); }, 1500);
-                $('#input-text').text('');
+                vars.result = +vars.buffer - +vars.input;
+                vars.result = vars.result.toFixed(vars.numAfterDot);
+                if (Number.isInteger(vars.result)) {
+                    $('#result-text').text('')
+                        .text(vars.result);
+                } else {
+                    $('#result-text').text('')
+                        .text(vars.result.toFixed(vars.numAfterDot));
+                }
+                if (vars.result.toString().length < 13) {
+                    $('#result-text').text('')
+                        .text(vars.result);
+                    $('#input-text').text('');
+                    vars.input = 0;
+                    vars.buffer = 0;
+                    return;
+                } else {
+                    $('#result-text').text('')
+                        .text((+vars.result).toFixed(vars.numAfterDot));
+                    /* $('#result-text')
+                        .html('<span style="color: red; font-size: 16px">error-long number</span>');
+                    setTimeout(() => { $('#result-text').text(''); }, 1500); */
+                    $('#input-text').text('');
+                }
             }
         }
     },
@@ -524,9 +534,11 @@ const equalBlock = {
             vars.buffer = 0;
             return;
         } else {
-            $('#result-text')
+            $('#result-text').text('')
+                .text((+vars.result).toFixed(vars.numAfterDot));
+            /* $('#result-text')
                 .html('<span style="color: red; font-size: 16px">error-long number</span>');
-            setTimeout(() => { $('#result-text').text(''); }, 1500);
+            setTimeout(() => { $('#result-text').text(''); }, 1500); */
             $('#input-text').text('');
         }
     },
