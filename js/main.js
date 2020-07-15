@@ -564,27 +564,29 @@ const equalBlock = {
             }
             return;
         }
-        vars.result = +vars.buffer - +vars.input;
-        if (Number.isInteger(vars.result)) {
-            $('#result-text').text('')
-                .text(vars.result);
-            return;
-        } else {
-            $('#result-text').text('')
-                .text((+vars.result).toFixed(vars.numAfterDot));
-            if (vars.result.toString().length < 13) {
+        if (+vars.buffer !== 0 && +vars.input !== 0 && vars.result !== 0) {
+            vars.result = +vars.buffer - +vars.input;
+            if (Number.isInteger(vars.result)) {
                 $('#result-text').text('')
                     .text(vars.result);
-                $('#input-text').text('');
-                vars.input = 0;
-                vars.buffer = 0;
                 return;
             } else {
                 $('#result-text').text('')
                     .text((+vars.result).toFixed(vars.numAfterDot));
-                $('#input-text').text('');
+                if (vars.result.toString().length < 13) {
+                    $('#result-text').text('')
+                        .text(vars.result);
+                    $('#input-text').text('');
+                    vars.input = 0;
+                    vars.buffer = 0;
+                    return;
+                } else {
+                    $('#result-text').text('')
+                        .text((+vars.result).toFixed(vars.numAfterDot));
+                    $('#input-text').text('');
+                }
+                return;
             }
-            return;
         }
     },
     equalSum: function () {
