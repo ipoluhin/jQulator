@@ -366,7 +366,7 @@ const equalBlock = {
                     .text(vars.result);
             } else {
                 $('#result-text').text('')
-                    .text(vars.result.toFixed(vars.numAfterDot));
+                    .text((+vars.result).toFixed(vars.numAfterDot));
             }
             $('#input-text').text('');
             vars.input = 0;
@@ -380,7 +380,7 @@ const equalBlock = {
                     .text(vars.result);
             } else {
                 $('#result-text').text('')
-                    .text(vars.result.toFixed(vars.numAfterDot));
+                    .text((+vars.result).toFixed(vars.numAfterDot));
             }
             $('#result-text').text('')
                 .text(vars.result);
@@ -415,7 +415,7 @@ const equalBlock = {
                     .text(vars.result);
             } else {
                 $('#result-text').text('')
-                    .text(vars.result.toFixed(vars.numAfterDot));
+                    .text((+vars.result).toFixed(vars.numAfterDot));
             }
             if (vars.result.toString().length < 13) {
                 $('#result-text').text('')
@@ -439,7 +439,7 @@ const equalBlock = {
                     .text(vars.result);
             } else {
                 $('#result-text').text('')
-                    .text(vars.result.toFixed(vars.numAfterDot));
+                    .text((+vars.result).toFixed(vars.numAfterDot));
             }
             if (vars.result.toString().length < 13) {
                 $('#result-text').text('')
@@ -473,7 +473,7 @@ const equalBlock = {
                     .text(vars.result);
             } else {
                 $('#result-text').text('')
-                    .text(vars.result.toFixed(vars.numAfterDot));
+                    .text((+vars.result).toFixed(vars.numAfterDot));
                 if (vars.result.toString().length < 13) {
                     $('#result-text').text('')
                         .text(vars.result);
@@ -501,7 +501,7 @@ const equalBlock = {
                         .text(vars.result);
                 } else {
                     $('#result-text').text('')
-                        .text(vars.result.toFixed(vars.numAfterDot));
+                        .text((+vars.result).toFixed(vars.numAfterDot));
                 }
                 if (vars.result.toString().length < 13) {
                     $('#result-text').text('')
@@ -535,7 +535,7 @@ const equalBlock = {
                 .text(vars.result);
         } else {
             $('#result-text').text('')
-                .text(vars.result.toFixed(vars.numAfterDot));
+                .text((+vars.result).toFixed(vars.numAfterDot));
         }
         if (vars.result.toString().length < 13) {
             $('#result-text').text('')
