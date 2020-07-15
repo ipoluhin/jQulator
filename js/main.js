@@ -486,11 +486,7 @@ const equalBlock = {
         if (vars.buffer === 0 && +vars.input === 0) {
             return;
         }
-        if (vars.buffer === 0 && vars.result === 0) {
-            return;
-        }
-        if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
-            vars.buffer = vars.result;
+        /* if (+vars.buffer === 0 && vars.result === 0 && +vars.input !== 0) {
             vars.result = +vars.buffer - +vars.input;
             if (Number.isInteger(vars.result)) {
                 $('#result-text').text('')
@@ -507,11 +503,33 @@ const equalBlock = {
                     return;
                 } else {
                     $('#result-text').text('')
-                        .text((+vars.result).toFixed(vars.numAfterDot));
-                    /* $('#result-text')
-                        .html('<span style="color: red; font-size: 16px">error-long number</span>');
-                    setTimeout(() => { $('#result-text').text(''); }, 1500); */
+                        .text((+vars.result).toFixed(vars.numAfterDot)); */
+        /* $('#result-text')
+            .html('<span style="color: red; font-size: 16px">error-long number</span>');
+        setTimeout(() => { $('#result-text').text(''); }, 1500); */
+        /*      $('#input-text').text('');
+         }
+     }
+ } */
+        if (vars.buffer === 0 && vars.result === 0) {
+            return;
+        }
+        if (+vars.buffer === 0 && +vars.input !== 0) {
+            vars.buffer = vars.result;
+            vars.result = +vars.buffer - +vars.input;
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                $('#result-text').text('')
+                    .text((+vars.result).toFixed(vars.numAfterDot));
+                if (vars.result.toString().length < 13) {
+                    $('#result-text').text('')
+                        .text(vars.result);
                     $('#input-text').text('');
+                    vars.input = 0;
+                    vars.buffer = 0;
+                    return;
                 }
             }
             if (+vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
@@ -519,7 +537,6 @@ const equalBlock = {
                 return;
             } else {
                 vars.result = +vars.buffer - +vars.input;
-                vars.result = vars.result.toFixed(vars.numAfterDot);
                 if (Number.isInteger(vars.result)) {
                     $('#result-text').text('')
                         .text(vars.result);
