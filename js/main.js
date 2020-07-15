@@ -586,13 +586,13 @@ const memory = {
             vars.memory = vars.input.toString();
         }
         $('#result-text')
-            .html('<span style="color: blue; font-size: 16px">memory saved</span>');
+            .html('<span style="color: blue; font-size: 16px">saved</span>');
         setTimeout(() => { $('#result-text').text(''); }, 1500);
     },
     mr: function () {
         if (+vars.memory === 0 || +vars.memory === null) {
             $('#result-text')
-                .html('<span style="color: blue; font-size: 16px">memory is empty</span>');
+                .html('<span style="color: blue; font-size: 16px">empty slot</span>');
             setTimeout(() => { $('#result-text').text(''); }, 1500);
         } else {
             vars.input = +vars.memory;
@@ -602,7 +602,7 @@ const memory = {
     mc: function () {
         vars.memory = 0;
         $('#result-text')
-            .html('<span style="color: blue; font-size: 16px">memory cleared</span>');
+            .html('<span style="color: blue; font-size: 16px">cleared</span>');
         setTimeout(() => { $('#result-text').text(''); }, 1500);
     },
 }
