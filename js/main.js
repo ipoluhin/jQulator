@@ -569,6 +569,7 @@ const equalBlock = {
             if (Number.isInteger(vars.result)) {
                 $('#result-text').text('')
                     .text(vars.result);
+                $('#input-text').text('');
                 return;
             } else {
                 $('#result-text').text('')
