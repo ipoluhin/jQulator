@@ -529,7 +529,6 @@ const equalBlock = {
             vars.buffer = vars.result;
         }
         vars.result = +vars.buffer + +vars.input;
-        vars.result = vars.result.toFixed(vars.numAfterDot);
         if (Number.isInteger(vars.result)) {
             $('#result-text').text('')
                 .text(vars.result);
