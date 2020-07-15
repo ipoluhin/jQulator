@@ -562,11 +562,13 @@ const equalBlock = {
                     $('#input-text').text('');
                 }
             }
+            return;
         }
         vars.result = +vars.buffer - +vars.input;
         if (Number.isInteger(vars.result)) {
             $('#result-text').text('')
                 .text(vars.result);
+            return;
         } else {
             $('#result-text').text('')
                 .text((+vars.result).toFixed(vars.numAfterDot));
@@ -582,6 +584,7 @@ const equalBlock = {
                     .text((+vars.result).toFixed(vars.numAfterDot));
                 $('#input-text').text('');
             }
+            return;
         }
     },
     equalSum: function () {
