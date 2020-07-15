@@ -159,55 +159,49 @@ body
                 border: 1px solid #000000
                 border-radius: 5px
                 margin: 0 0 10px 0
-                padding: 5px
+                padding: 10px
                 box-sizing: border-box
                 box-shadow: -1px -1px 0px #000
-                .number-block,
-                .func-block
+                .btn
+                    width: 40px
+                    outline: none
+                    border-radius: 30%
+                    box-shadow: -1px -1px 0px #000
+                .left-panel
+                    width: 70%
                     display: flex
-                    flex-wrap: wrap
+                    flex-flow: column
+                    align-items: center
                     justify-content: space-between
-                    height: 100%
-                    margin: 5px 0 0 10px
-                    .btn
-                        width: 40px
-                        outline: none
-                        border-radius: 30%
-                        box-shadow: -1px -1px 0px #000
-                        .num-text
-                            color: #ffffff
-                            font-size: 20px
-                        .special
-                            margin: 0 0 0 -4px
-                    .number
-                        color: blue
-                        margin: 0px 10px 13px 0px
-                        padding: 5px 20px 5px 20px
-                        transition: 0.4s
-                        &:active
-                            background-color: grey
-                    .memory-function
-                        width: 135px
+                    margin: 0 5px 0 5px
+                    .number-block
                         display: flex
+                        flex-flow: wrap column
                         justify-content: space-between
-                        .memory
-                            background-color: #060c5e
-                            // background-color: #cccccc  цвет фона в нерабочем состоянии
-                            color: #cccccc
-                            margin: 0 -47px 0px 0
-                            padding: 3px 10px 3px 10px
-                            border-radius: 20%
-                            .special
-                                position: relative
-                                right: 4px
-                    .round
+                        margin: 5px 0 0 10px
+                        .number
+                            color: blue
+                            margin: 0px 10px 13px 0px
+                            padding: 5px 20px 5px 20px
+                            transition: 0.4s
+                            .num-text
+                                color: #ffffff
+                                font-size: 20px
+                            &:active
+                                background-color: grey
+                    .number-block
+                        flex-direction: row
+                        margin: 10px 0 0 5px
+                    .memory-function,
+                    .round-function,
                         display: flex
-                        flex-flow: row no-wrap
+                        flex-direction: row
                         align-items: center
                         justify-content: space-between
                         width: 97%
-                        margin: 0 0 15px 0
-                        .round-vol
+                        margin: 5px 0 0 0
+                        .memory,
+                        .round-vol,
                             box-sizing: border-box
                             border-radius: 2px
                             height: 20px
@@ -226,23 +220,39 @@ body
                                 position: absolute
                                 color: #ffffff
                                 font-size: 12px
+                        .memory
+                            background-color: #0b5e03
+                        .memory .memory-text
+                            position: absolute
+                            color: #ffffff
+                            font-size: 12px
+                    .memory-function
+                        margin: 10px 0 20px 0
+                .func-block
+                    width: 30%
+                    max-height: 280px
+                    display: flex
+                    flex-direction: column
+                    justify-content: space-between
+                    align-items: center
+                    margin: 5px 0 0 10px
                     .function,
                     .random
+                        margin: 0 -13px 11px 10px
+                        padding: 3px 20px 3px 20px
+                        background-color: #cccccc
                         color: #000000
-                        background-color: #ccc
-                        margin: 0 -13px 5px 10px
-                        padding: 5px 30px 5px 20px
-                    .random
-                        background-color: #000000
-                        color: #cccccc
                         display: flex
                         align-content: center
                         justify-content: center
+                    .random
+                        background-color: #000000
+                        color: #cccccc
+                        border-radius: 0
                     .erase
                         color: #cccccc
                         background-color: #df0f0f
                         margin: 5px -13px 5px 10px
-                        .erase-text
                     .disabled
                         color: grey
                         border: 1px dotted
@@ -253,8 +263,8 @@ body
                         margin: 0 -13px 5px 10px
                     .reset
                         box-sizing: border-box
-                        padding: 5px 30px 5px 20px
-                        margin: 0 -13px 5px 10px
+                        padding: 5px 20px 5px 20px
+                        margin: 0 -13px 13px 10px
                         background-color: #df0f0f
                         border-radius: 10px
                         color: #cccccc
@@ -262,7 +272,6 @@ body
                         outline: none
                         .reset-text
                             position: relative
-                            right: 6px
         .footer
             display: flex
             align-items: center

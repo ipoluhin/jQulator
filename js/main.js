@@ -8,7 +8,7 @@ const vars = {
     buffer: 0,         //Оперативная переменная
     result: 0,         //Результат вычислений
     operationID: 0,    //ID фрифметической операции
-    numAfterDot: 3,    //Знаков после запятой
+    numAfterDot: 6,    //Знаков после запятой
     memory: null,         //Число в памяти
 }
 
@@ -112,57 +112,6 @@ const funcPanel = {
                 vars.input += userInput.toString();
                 $('#input-text').text($('#input-text').text() + `${userInput}`);
                 return;
-            }
-        }
-    },
-    toInt: function () {
-        if (vars.numAfterDot !== 0) {
-            vars.numAfterDot = 0;
-            $('.round-vol-active')
-                .removeClass('round-vol-active');
-            $('#int').addClass('round-vol-active');
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                let temp = $('#result-text').text();
-                $('#result-text').text('')
-                    .text(Math.trunc(+temp));
-                $('#input-text').text('');
-            }
-        }
-    },
-    toMilli: function () {
-        if (vars.numAfterDot !== 2) {
-            vars.numAfterDot = 2;
-            $('.round-vol-active')
-                .removeClass('round-vol-active');
-            $('#ml').addClass('round-vol-active');
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                let temp = $('#result-text').text();
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-                $('#input-text').text('');
-            }
-        }
-    },
-    toNormal: function () {
-        if (vars.numAfterDot !== 3) {
-            vars.numAfterDot = 3;
-            $('.round-vol-active')
-                .removeClass('round-vol-active');
-            $('#nrml').addClass('round-vol-active');
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                let temp = $('#result-text').text();
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-                $('#input-text').text('');
             }
         }
     },
@@ -274,7 +223,7 @@ const funcPanel = {
     },
     reset: function () {
         $('#input-text').text('');
-        $('#result-text').text('');
+        $('#result-text').text('0');
 
         return vars.input = 0,
             vars.buffer = 0,
@@ -283,6 +232,61 @@ const funcPanel = {
         vars.memory = null;
     },
 }
+
+const round = {
+    toNormal: function () {
+        let lastNumAfterDot = vars.numAfterDot;
+        vars.numAfterDot = 6;
+        if (vars.numAfterDot !== lastNumAfterDot) {
+            $('.round-vol-active')
+                .removeClass('round-vol-active');
+            $('#normal').addClass('round-vol-active');
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                $('#result-text').text('')
+                    .text((+vars.result).toFixed(vars.numAfterDot));
+                $('#input-text').text('');
+            }
+        }
+    },
+    toMilli: function () {
+        let lastNumAfterDot = vars.numAfterDot;
+        vars.numAfterDot = 2;
+        if (vars.numAfterDot !== lastNumAfterDot) {
+            $('.round-vol-active')
+                .removeClass('round-vol-active');
+            $('#ml').addClass('round-vol-active');
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                $('#result-text').text('')
+                    .text((+vars.result).toFixed(vars.numAfterDot));
+                $('#input-text').text('');
+            }
+        }
+    },
+    toMickro: function () {
+        let lastNumAfterDot = vars.numAfterDot;
+        vars.numAfterDot = 3;
+        if (vars.numAfterDot !== lastNumAfterDot) {
+            $('.round-vol-active')
+                .removeClass('round-vol-active');
+            $('#mk').addClass('round-vol-active');
+            if (Number.isInteger(vars.result)) {
+                $('#result-text').text('')
+                    .text(vars.result);
+            } else {
+                $('#result-text').text('')
+                    .text((+vars.result).toFixed(vars.numAfterDot));
+                $('#input-text').text('');
+            }
+        }
+    },
+}
+
 /**
  * Вывод итогового значения при нажатии кнопки "равно" состоит, фактически,
  * из двух блоков: общее равно (выбор операции по ID операции) и блока расчета 
@@ -420,6 +424,13 @@ const equalBlock = {
                 vars.input = 0;
                 vars.buffer = 0;
                 return;
+            } else {
+                $('#result-text').text('')
+                    .text((+vars.result).toFixed(vars.numAfterDot));
+                /* $('#result-text')
+                    .html('<span style="color: red; font-size: 16px">error-long number</span>');
+                setTimeout(() => { $('#result-text').text(''); }, 1500); */
+                $('#input-text').text('');
             }
         } else {
             vars.result = +vars.buffer * +vars.input;
@@ -556,8 +567,14 @@ const memory = {
         setTimeout(() => { $('#result-text').text(''); }, 1500);
     },
     mr: function () {
-        vars.input = +vars.memory;
-        $('#input-text').text($('#input-text').text() + `${vars.input}`);
+        if (+vars.memory === 0 || +vars.memory === null) {
+            $('#result-text')
+                .html('<span style="color: blue; font-size: 16px">memory is empty</span>');
+            setTimeout(() => { $('#result-text').text(''); }, 1500);
+        } else {
+            vars.input = +vars.memory;
+            $('#input-text').text($('#input-text').text() + `${vars.input}.toFixed(vars.numAfterDot)`);
+        }
     },
     mc: function () {
         vars.memory = 0;
@@ -587,9 +604,9 @@ $('#0').on('click', numberPanel.zero);
 $('#dot').on('click', numberPanel.dot);
 
 //Функциональная панель
-$('#int').on('click', funcPanel.toInt);
-$('#ml').on('click', funcPanel.toMilli);
-$('#nrml').on('click', funcPanel.toNormal);
+$('#normal').on('click', round.toNormal);
+$('#ml').on('click', round.toMilli);
+$('#mk').on('click', round.toMickro);
 $('#random').on('click', funcPanel.random);
 $('#eql').on('click', equalBlock.commonEqual);
 $('#division').on('click', funcPanel.division);
@@ -605,3 +622,6 @@ $('#btn-reset').on('click', funcPanel.reset);
 $('#ms').on('click', memory.ms);
 $('#mr').on('click', memory.mr);
 $('#mc').on('click', memory.mc);
+
+//Включение :)
+$('#result-text').text('0');

@@ -24,69 +24,86 @@
 					<span class="result-text" id="result-text"></span>
 				</section>
 				<section class="buttons">
-					<section class="number-block">
-						<section class="round">
-							<button type="button" class="btn round-vol" id="int">
-								<span class="round-text">Int</span>
+					<section class="left-panel">
+						<section class="round-function">
+							<button
+								type="button"
+								class="btn round-vol round-vol-active"
+								id="normal"
+							>
+								<span class="round-text">F</span>
 							</button>
 							<button type="button" class="btn round-vol" id="ml">
 								<span class="round-text">.00</span>
 							</button>
-							<button type="button" class="btn round-vol round-vol-active" id="nrml">
+							<button type="button" class="btn round-vol" id="mk">
 								<span class="round-text">.000</span>
 							</button>
 						</section>
-						<button type="button" class="btn number" id="1">
-							<span class="num-text">1</span>
-						</button>
-						<button type="button" class="btn number" id="2">
-							<span class="num-text">2</span>
-						</button>
-						<button type="button" class="btn number" id="3">
-							<span class="num-text">3</span>
-						</button>
-						<button type="button" class="btn number" id="4">
-							<span class="num-text">4</span>
-						</button>
-						<button type="button" class="btn number" id="5">
-							<span class="num-text">5</span>
-						</button>
-						<button type="button" class="btn number" id="6">
-							<span class="num-text">6</span>
-						</button>
-						<button type="button" class="btn number" id="7">
-							<span class="num-text">7</span>
-						</button>
-						<button type="button" class="btn number" id="8">
-							<span class="num-text">8</span>
-						</button>
-						<button type="button" class="btn number" id="9">
-							<span class="num-text">9</span>
-						</button>
-						<button type="button" class="btn number" id="0">
-							<span class="num-text">0</span>
-						</button>
-						<button type="button" class="btn number" id="dot">
-							<span class="num-text special">.</span>
-						</button>
-						<button type="button" class="btn number" id="eql">
-							<span class="num-text special">=</span>
-						</button>
 						<section class="memory-function">
 							<button type="button" class="btn memory" id="ms">
-								<span class="num-text special">MS</span>
+								<span class="memory-text">MS</span>
 							</button>
 							<button type="button" class="btn memory" id="mr">
-								<span class="num-text special">MR</span>
+								<span class="memory-text">MR</span>
 							</button>
 							<button type="button" class="btn memory" id="mc">
-								<span class="num-text special">MC</span>
+								<span class="memory-text">MC</span>
+							</button>
+						</section>
+						<!-- <section class="new-function">
+							<button type="button" class="btn new" id="new">
+								<span class="new-text">...</span>
+							</button>
+							<button type="button" class="btn new" id="new">
+								<span class="new-text">...</span>
+							</button>
+							<button type="button" class="btn new" id="new">
+								<span class="new-text">...</span>
+							</button>
+						</section> -->
+						<section class="number-block">
+							<button type="button" class="btn number" id="1">
+								<span class="num-text">1</span>
+							</button>
+							<button type="button" class="btn number" id="2">
+								<span class="num-text">2</span>
+							</button>
+							<button type="button" class="btn number" id="3">
+								<span class="num-text">3</span>
+							</button>
+							<button type="button" class="btn number" id="4">
+								<span class="num-text">4</span>
+							</button>
+							<button type="button" class="btn number" id="5">
+								<span class="num-text">5</span>
+							</button>
+							<button type="button" class="btn number" id="6">
+								<span class="num-text">6</span>
+							</button>
+							<button type="button" class="btn number" id="7">
+								<span class="num-text">7</span>
+							</button>
+							<button type="button" class="btn number" id="8">
+								<span class="num-text">8</span>
+							</button>
+							<button type="button" class="btn number" id="9">
+								<span class="num-text">9</span>
+							</button>
+							<button type="button" class="btn number" id="0">
+								<span class="num-text">0</span>
+							</button>
+							<button type="button" class="btn number" id="dot">
+								<span class="num-text special">.</span>
+							</button>
+							<button type="button" class="btn number" id="eql">
+								<span class="num-text special">=</span>
 							</button>
 						</section>
 					</section>
 					<section class="func-block">
 						<button type="button" class="btn random" id="random">
-							&nbsp;&nbsp;Rnd
+							Rand
 						</button>
 						<button type="button" class="btn function" id="division">
 							/

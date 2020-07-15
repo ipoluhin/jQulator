@@ -276,152 +276,108 @@ body .calc-body-theme-4 .main .buttons {
   border: 1px solid #000000;
   border-radius: 5px;
   margin: 0 0 10px 0;
-  padding: 5px;
+  padding: 10px;
   box-sizing: border-box;
   box-shadow: -1px -1px 0px #000;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block,
-body .calc-body-theme-1 .main .buttons .func-block,
-body .calc-body-theme-2 .main .buttons .number-block,
-body .calc-body-theme-2 .main .buttons .func-block,
-body .calc-body-theme-3 .main .buttons .number-block,
-body .calc-body-theme-3 .main .buttons .func-block,
-body .calc-body-theme-4 .main .buttons .number-block,
-body .calc-body-theme-4 .main .buttons .func-block {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  height: 100%;
-  margin: 5px 0 0 10px;
-}
-
-body .calc-body-theme-1 .main .buttons .number-block .btn,
-body .calc-body-theme-1 .main .buttons .func-block .btn,
-body .calc-body-theme-2 .main .buttons .number-block .btn,
-body .calc-body-theme-2 .main .buttons .func-block .btn,
-body .calc-body-theme-3 .main .buttons .number-block .btn,
-body .calc-body-theme-3 .main .buttons .func-block .btn,
-body .calc-body-theme-4 .main .buttons .number-block .btn,
-body .calc-body-theme-4 .main .buttons .func-block .btn {
+body .calc-body-theme-1 .main .buttons .btn,
+body .calc-body-theme-2 .main .buttons .btn,
+body .calc-body-theme-3 .main .buttons .btn,
+body .calc-body-theme-4 .main .buttons .btn {
   width: 40px;
   outline: none;
   border-radius: 30%;
   box-shadow: -1px -1px 0px #000;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .btn .num-text,
-body .calc-body-theme-1 .main .buttons .func-block .btn .num-text,
-body .calc-body-theme-2 .main .buttons .number-block .btn .num-text,
-body .calc-body-theme-2 .main .buttons .func-block .btn .num-text,
-body .calc-body-theme-3 .main .buttons .number-block .btn .num-text,
-body .calc-body-theme-3 .main .buttons .func-block .btn .num-text,
-body .calc-body-theme-4 .main .buttons .number-block .btn .num-text,
-body .calc-body-theme-4 .main .buttons .func-block .btn .num-text {
-  color: #ffffff;
-  font-size: 20px;
+body .calc-body-theme-1 .main .buttons .left-panel,
+body .calc-body-theme-2 .main .buttons .left-panel,
+body .calc-body-theme-3 .main .buttons .left-panel,
+body .calc-body-theme-4 .main .buttons .left-panel {
+  width: 70%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 5px 0 5px;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .btn .special,
-body .calc-body-theme-1 .main .buttons .func-block .btn .special,
-body .calc-body-theme-2 .main .buttons .number-block .btn .special,
-body .calc-body-theme-2 .main .buttons .func-block .btn .special,
-body .calc-body-theme-3 .main .buttons .number-block .btn .special,
-body .calc-body-theme-3 .main .buttons .func-block .btn .special,
-body .calc-body-theme-4 .main .buttons .number-block .btn .special,
-body .calc-body-theme-4 .main .buttons .func-block .btn .special {
-  margin: 0 0 0 -4px;
+body .calc-body-theme-1 .main .buttons .left-panel .number-block,
+body .calc-body-theme-2 .main .buttons .left-panel .number-block,
+body .calc-body-theme-3 .main .buttons .left-panel .number-block,
+body .calc-body-theme-4 .main .buttons .left-panel .number-block {
+  display: flex;
+  flex-flow: wrap column;
+  justify-content: space-between;
+  margin: 5px 0 0 10px;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .number,
-body .calc-body-theme-1 .main .buttons .func-block .number,
-body .calc-body-theme-2 .main .buttons .number-block .number,
-body .calc-body-theme-2 .main .buttons .func-block .number,
-body .calc-body-theme-3 .main .buttons .number-block .number,
-body .calc-body-theme-3 .main .buttons .func-block .number,
-body .calc-body-theme-4 .main .buttons .number-block .number,
-body .calc-body-theme-4 .main .buttons .func-block .number {
+body .calc-body-theme-1 .main .buttons .left-panel .number-block .number,
+body .calc-body-theme-2 .main .buttons .left-panel .number-block .number,
+body .calc-body-theme-3 .main .buttons .left-panel .number-block .number,
+body .calc-body-theme-4 .main .buttons .left-panel .number-block .number {
   color: blue;
   margin: 0px 10px 13px 0px;
   padding: 5px 20px 5px 20px;
   transition: 0.4s;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .number:active,
-body .calc-body-theme-1 .main .buttons .func-block .number:active,
-body .calc-body-theme-2 .main .buttons .number-block .number:active,
-body .calc-body-theme-2 .main .buttons .func-block .number:active,
-body .calc-body-theme-3 .main .buttons .number-block .number:active,
-body .calc-body-theme-3 .main .buttons .func-block .number:active,
-body .calc-body-theme-4 .main .buttons .number-block .number:active,
-body .calc-body-theme-4 .main .buttons .func-block .number:active {
+body .calc-body-theme-1 .main .buttons .left-panel .number-block .number .num-text,
+body .calc-body-theme-2 .main .buttons .left-panel .number-block .number .num-text,
+body .calc-body-theme-3 .main .buttons .left-panel .number-block .number .num-text,
+body .calc-body-theme-4 .main .buttons .left-panel .number-block .number .num-text {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+body .calc-body-theme-1 .main .buttons .left-panel .number-block .number:active,
+body .calc-body-theme-2 .main .buttons .left-panel .number-block .number:active,
+body .calc-body-theme-3 .main .buttons .left-panel .number-block .number:active,
+body .calc-body-theme-4 .main .buttons .left-panel .number-block .number:active {
   background-color: grey;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .memory-function,
-body .calc-body-theme-1 .main .buttons .func-block .memory-function,
-body .calc-body-theme-2 .main .buttons .number-block .memory-function,
-body .calc-body-theme-2 .main .buttons .func-block .memory-function,
-body .calc-body-theme-3 .main .buttons .number-block .memory-function,
-body .calc-body-theme-3 .main .buttons .func-block .memory-function,
-body .calc-body-theme-4 .main .buttons .number-block .memory-function,
-body .calc-body-theme-4 .main .buttons .func-block .memory-function {
-  width: 135px;
+body .calc-body-theme-1 .main .buttons .left-panel .number-block,
+body .calc-body-theme-2 .main .buttons .left-panel .number-block,
+body .calc-body-theme-3 .main .buttons .left-panel .number-block,
+body .calc-body-theme-4 .main .buttons .left-panel .number-block {
+  flex-direction: row;
+  margin: 10px 0 0 5px;
+}
+
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function {
   display: flex;
-  justify-content: space-between;
-}
-
-body .calc-body-theme-1 .main .buttons .number-block .memory-function .memory,
-body .calc-body-theme-1 .main .buttons .func-block .memory-function .memory,
-body .calc-body-theme-2 .main .buttons .number-block .memory-function .memory,
-body .calc-body-theme-2 .main .buttons .func-block .memory-function .memory,
-body .calc-body-theme-3 .main .buttons .number-block .memory-function .memory,
-body .calc-body-theme-3 .main .buttons .func-block .memory-function .memory,
-body .calc-body-theme-4 .main .buttons .number-block .memory-function .memory,
-body .calc-body-theme-4 .main .buttons .func-block .memory-function .memory {
-  background-color: #060c5e;
-  color: #cccccc;
-  margin: 0 -47px 0px 0;
-  padding: 3px 10px 3px 10px;
-  border-radius: 20%;
-}
-
-body .calc-body-theme-1 .main .buttons .number-block .memory-function .memory .special,
-body .calc-body-theme-1 .main .buttons .func-block .memory-function .memory .special,
-body .calc-body-theme-2 .main .buttons .number-block .memory-function .memory .special,
-body .calc-body-theme-2 .main .buttons .func-block .memory-function .memory .special,
-body .calc-body-theme-3 .main .buttons .number-block .memory-function .memory .special,
-body .calc-body-theme-3 .main .buttons .func-block .memory-function .memory .special,
-body .calc-body-theme-4 .main .buttons .number-block .memory-function .memory .special,
-body .calc-body-theme-4 .main .buttons .func-block .memory-function .memory .special {
-  position: relative;
-  right: 4px;
-}
-
-body .calc-body-theme-1 .main .buttons .number-block .round,
-body .calc-body-theme-1 .main .buttons .func-block .round,
-body .calc-body-theme-2 .main .buttons .number-block .round,
-body .calc-body-theme-2 .main .buttons .func-block .round,
-body .calc-body-theme-3 .main .buttons .number-block .round,
-body .calc-body-theme-3 .main .buttons .func-block .round,
-body .calc-body-theme-4 .main .buttons .number-block .round,
-body .calc-body-theme-4 .main .buttons .func-block .round {
-  display: flex;
-  flex-flow: row no-wrap;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 97%;
-  margin: 0 0 15px 0;
+  margin: 5px 0 0 0;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .round .round-vol,
-body .calc-body-theme-1 .main .buttons .func-block .round .round-vol,
-body .calc-body-theme-2 .main .buttons .number-block .round .round-vol,
-body .calc-body-theme-2 .main .buttons .func-block .round .round-vol,
-body .calc-body-theme-3 .main .buttons .number-block .round .round-vol,
-body .calc-body-theme-3 .main .buttons .func-block .round .round-vol,
-body .calc-body-theme-4 .main .buttons .number-block .round .round-vol,
-body .calc-body-theme-4 .main .buttons .func-block .round .round-vol {
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .memory,
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .round-vol,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .round-vol,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .memory,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .round-vol,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .round-vol,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .memory,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .round-vol,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .round-vol,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .memory,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .round-vol,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol {
   box-sizing: border-box;
   border-radius: 2px;
   height: 20px;
@@ -433,90 +389,131 @@ body .calc-body-theme-4 .main .buttons .func-block .round .round-vol {
   margin: 0 5px 0 0;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .round .round-vol-active,
-body .calc-body-theme-1 .main .buttons .func-block .round .round-vol-active,
-body .calc-body-theme-2 .main .buttons .number-block .round .round-vol-active,
-body .calc-body-theme-2 .main .buttons .func-block .round .round-vol-active,
-body .calc-body-theme-3 .main .buttons .number-block .round .round-vol-active,
-body .calc-body-theme-3 .main .buttons .func-block .round .round-vol-active,
-body .calc-body-theme-4 .main .buttons .number-block .round .round-vol-active,
-body .calc-body-theme-4 .main .buttons .func-block .round .round-vol-active {
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .memory-active,
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .round-vol-active,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .memory-active,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .round-vol-active,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .memory-active,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .round-vol-active,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .memory-active,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .round-vol-active,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .memory-active,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .round-vol-active,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .memory-active,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .round-vol-active,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .memory-active,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .round-vol-active,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory-active,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol-active {
   background-color: grey;
   border: 1px solid;
   box-shadow: -1px -1px 1px #000000;
   border-radius: 2px;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .round .round-vol .round-text,
-body .calc-body-theme-1 .main .buttons .func-block .round .round-vol .round-text,
-body .calc-body-theme-2 .main .buttons .number-block .round .round-vol .round-text,
-body .calc-body-theme-2 .main .buttons .func-block .round .round-vol .round-text,
-body .calc-body-theme-3 .main .buttons .number-block .round .round-vol .round-text,
-body .calc-body-theme-3 .main .buttons .func-block .round .round-vol .round-text,
-body .calc-body-theme-4 .main .buttons .number-block .round .round-vol .round-text,
-body .calc-body-theme-4 .main .buttons .func-block .round .round-vol .round-text {
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .memory .round-text,
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .round-vol .round-text,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .memory .round-text,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .round-vol .round-text,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .memory .round-text,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .round-vol .round-text,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .memory .round-text,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .round-vol .round-text,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .memory .round-text,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .round-vol .round-text,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .memory .round-text,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .round-vol .round-text,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .memory .round-text,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .round-vol .round-text,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory .round-text,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol .round-text {
   position: absolute;
   color: #ffffff;
   font-size: 12px;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .function,
-body .calc-body-theme-1 .main .buttons .number-block .random,
-body .calc-body-theme-1 .main .buttons .func-block .function,
-body .calc-body-theme-1 .main .buttons .func-block .random,
-body .calc-body-theme-2 .main .buttons .number-block .function,
-body .calc-body-theme-2 .main .buttons .number-block .random,
-body .calc-body-theme-2 .main .buttons .func-block .function,
-body .calc-body-theme-2 .main .buttons .func-block .random,
-body .calc-body-theme-3 .main .buttons .number-block .function,
-body .calc-body-theme-3 .main .buttons .number-block .random,
-body .calc-body-theme-3 .main .buttons .func-block .function,
-body .calc-body-theme-3 .main .buttons .func-block .random,
-body .calc-body-theme-4 .main .buttons .number-block .function,
-body .calc-body-theme-4 .main .buttons .number-block .random,
-body .calc-body-theme-4 .main .buttons .func-block .function,
-body .calc-body-theme-4 .main .buttons .func-block .random {
-  color: #000000;
-  background-color: #ccc;
-  margin: 0 -13px 5px 10px;
-  padding: 5px 30px 5px 20px;
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .memory,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .memory,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .memory,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .memory,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory {
+  background-color: #0b5e03;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .random,
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .memory .memory-text,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .memory .memory-text,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .memory .memory-text,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .memory .memory-text,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .memory .memory-text,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .memory .memory-text,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .memory .memory-text,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory .memory-text {
+  position: absolute;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function {
+  margin: 10px 0 20px 0;
+}
+
+body .calc-body-theme-1 .main .buttons .func-block,
+body .calc-body-theme-2 .main .buttons .func-block,
+body .calc-body-theme-3 .main .buttons .func-block,
+body .calc-body-theme-4 .main .buttons .func-block {
+  width: 30%;
+  max-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0 0 10px;
+}
+
+body .calc-body-theme-1 .main .buttons .func-block .function,
 body .calc-body-theme-1 .main .buttons .func-block .random,
-body .calc-body-theme-2 .main .buttons .number-block .random,
+body .calc-body-theme-2 .main .buttons .func-block .function,
 body .calc-body-theme-2 .main .buttons .func-block .random,
-body .calc-body-theme-3 .main .buttons .number-block .random,
+body .calc-body-theme-3 .main .buttons .func-block .function,
 body .calc-body-theme-3 .main .buttons .func-block .random,
-body .calc-body-theme-4 .main .buttons .number-block .random,
+body .calc-body-theme-4 .main .buttons .func-block .function,
 body .calc-body-theme-4 .main .buttons .func-block .random {
-  background-color: #000000;
-  color: #cccccc;
+  margin: 0 -13px 11px 10px;
+  padding: 3px 20px 3px 20px;
+  background-color: #cccccc;
+  color: #000000;
   display: flex;
   align-content: center;
   justify-content: center;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .erase,
+body .calc-body-theme-1 .main .buttons .func-block .random,
+body .calc-body-theme-2 .main .buttons .func-block .random,
+body .calc-body-theme-3 .main .buttons .func-block .random,
+body .calc-body-theme-4 .main .buttons .func-block .random {
+  background-color: #000000;
+  color: #cccccc;
+  border-radius: 0;
+}
+
 body .calc-body-theme-1 .main .buttons .func-block .erase,
-body .calc-body-theme-2 .main .buttons .number-block .erase,
 body .calc-body-theme-2 .main .buttons .func-block .erase,
-body .calc-body-theme-3 .main .buttons .number-block .erase,
 body .calc-body-theme-3 .main .buttons .func-block .erase,
-body .calc-body-theme-4 .main .buttons .number-block .erase,
 body .calc-body-theme-4 .main .buttons .func-block .erase {
   color: #cccccc;
   background-color: #df0f0f;
   margin: 5px -13px 5px 10px;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .disabled,
 body .calc-body-theme-1 .main .buttons .func-block .disabled,
-body .calc-body-theme-2 .main .buttons .number-block .disabled,
 body .calc-body-theme-2 .main .buttons .func-block .disabled,
-body .calc-body-theme-3 .main .buttons .number-block .disabled,
 body .calc-body-theme-3 .main .buttons .func-block .disabled,
-body .calc-body-theme-4 .main .buttons .number-block .disabled,
 body .calc-body-theme-4 .main .buttons .func-block .disabled {
   color: grey;
   border: 1px dotted;
@@ -527,17 +524,13 @@ body .calc-body-theme-4 .main .buttons .func-block .disabled {
   margin: 0 -13px 5px 10px;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .reset,
 body .calc-body-theme-1 .main .buttons .func-block .reset,
-body .calc-body-theme-2 .main .buttons .number-block .reset,
 body .calc-body-theme-2 .main .buttons .func-block .reset,
-body .calc-body-theme-3 .main .buttons .number-block .reset,
 body .calc-body-theme-3 .main .buttons .func-block .reset,
-body .calc-body-theme-4 .main .buttons .number-block .reset,
 body .calc-body-theme-4 .main .buttons .func-block .reset {
   box-sizing: border-box;
-  padding: 5px 30px 5px 20px;
-  margin: 0 -13px 5px 10px;
+  padding: 5px 20px 5px 20px;
+  margin: 0 -13px 13px 10px;
   background-color: #df0f0f;
   border-radius: 10px;
   color: #cccccc;
@@ -545,16 +538,11 @@ body .calc-body-theme-4 .main .buttons .func-block .reset {
   outline: none;
 }
 
-body .calc-body-theme-1 .main .buttons .number-block .reset .reset-text,
 body .calc-body-theme-1 .main .buttons .func-block .reset .reset-text,
-body .calc-body-theme-2 .main .buttons .number-block .reset .reset-text,
 body .calc-body-theme-2 .main .buttons .func-block .reset .reset-text,
-body .calc-body-theme-3 .main .buttons .number-block .reset .reset-text,
 body .calc-body-theme-3 .main .buttons .func-block .reset .reset-text,
-body .calc-body-theme-4 .main .buttons .number-block .reset .reset-text,
 body .calc-body-theme-4 .main .buttons .func-block .reset .reset-text {
   position: relative;
-  right: 6px;
 }
 
 body .calc-body-theme-1 .footer,
