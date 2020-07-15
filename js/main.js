@@ -489,6 +489,8 @@ const equalBlock = {
         }
         if (+vars.buffer === 0 && vars.result === 0 && +vars.input !== 0) {
             vars.result = +vars.buffer - +vars.input;
+            vars.input = 0;
+            vars.buffer = 0;
             if (Number.isInteger(vars.result)) {
                 $('#result-text').text('')
                     .text(vars.result);
@@ -508,6 +510,8 @@ const equalBlock = {
                     $('#input-text').text('');
                 }
             }
+            $('#input-text').text('');
+            return;
         }
         if (vars.buffer === 0 && vars.result === 0) {
             return;
