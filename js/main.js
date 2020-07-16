@@ -503,9 +503,11 @@ const equalBlock = {
 const memory = {
     ms: function () {
         if (vars.result !== 0) {
+            vars.memory = 0;
             vars.memory = vars.result.toString();
             $('#input-text').text('');
         } else {
+            vars.memory = 0;
             vars.memory = vars.input.toString();
             $('#input-text').text('');
         }
