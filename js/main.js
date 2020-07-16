@@ -164,10 +164,7 @@ const funcPanel = {
                 return;
             } else {
                 $('#input-text').text(`- `);
-                vars.input = '-0';
-                vars.buffer = vars.input;
-                vars.result = +vars.buffer;
-                vars.input = 0;
+                /* vars.input = '-0'; */
                 return;
             }
         }
@@ -437,14 +434,17 @@ const equalBlock = {
             vars.input = 0;
             vars.buffer = 0;
             funcPanel.checkResult();
+            return;
         }
         if (+vars.buffer !== 0 && +vars.input === 0 && vars.result !== 0) {
             funcPanel.checkResult();
+            return;
         } else {
             vars.result = +vars.buffer * +vars.input;
             vars.input = 0;
             vars.buffer = 0;
             funcPanel.checkResult();
+            return;
         }
     },
     equalSub: function () {
@@ -456,6 +456,7 @@ const equalBlock = {
             vars.input = 0;
             vars.buffer = 0;
             funcPanel.checkResult();
+            return;
         }
         if (vars.buffer === 0 && vars.result === 0) {
             return;
@@ -466,6 +467,7 @@ const equalBlock = {
             vars.input = 0;
             vars.buffer = 0;
             funcPanel.checkResult();
+            return;
         }
         if (+vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
             $('#input-text').text('-');
