@@ -231,7 +231,6 @@ const funcPanel = {
             vars.buffer = 0,
             vars.result = 0,
             vars.operationID = 0;
-        vars.memory = null;
     },
     /**Проверка результата на форму вывода(целое-дробное, количество знаков-округление) */
     checkResult: function () {
