@@ -8,7 +8,7 @@ const vars = {
     buffer: 0,         //Оперативная переменная
     result: 0,         //Результат вычислений
     operationID: 0,    //ID фрифметической операции
-    numAfterDot: 6,    //Знаков после запятой
+    numAfterDot: 3,    //Знаков после запятой
     memory: null,         //Число в памяти
 }
 
@@ -127,17 +127,12 @@ const funcPanel = {
     division: function () {
         equalBlock.commonEqual();
         vars.operationID = 1;
-        if (+vars.buffer === 0 && +vars.input === 0) {
-            if ($('#input-text').html().includes('&#247;')) {
-                $('#input-text').text('');
-                return;
-            } else {
-                $('#input-text').html('&#247;');
-                return;
-            }
+        if ($('#input-text').text().includes(`/`)) {
+            $('#input-text').text('');
+        } else {
+            $('#input-text').text(`/ `);
         }
         equalBlock.equalDiv();
-        $('#input-text').html('&#247;');
         vars.buffer = +vars.input;
         vars.input = 0;
         return;
@@ -145,28 +140,32 @@ const funcPanel = {
     multiply: function () {
         equalBlock.commonEqual();
         vars.operationID = 2;
-        if (+vars.buffer === 0 && +vars.input === 0) {
-            $('#input-text').text(`*`);
+        if ($('#input-text').text().includes(`*`)) {
+            $('#input-text').text('');
+        } else {
+            $('#input-text').text(`* `);
         }
-        $('#input-text').text('');
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
+            $('#input-text').text(`*`);
+            vars.buffer = vars.input;
+            vars.input = 0;
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result !== 0) {
+            $('#input-text').text('*');
+            vars.buffer = vars.result;
+            return;
+        }
         equalBlock.equalMult();
-        $('#input-text').text('*');
-        vars.buffer = vars.result;
-        vars.input = 0;
-        return;
     },
     substruction: function () {
         equalBlock.commonEqual();
         vars.operationID = 3;
-        if (+vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
-            if ($('#input-text').text().includes(`-`)) {
-                $('#input-text').text('');
-                return;
-            } else {
-                $('#input-text').text(`- `);
-                /* vars.input = '-0'; */
-                return;
-            }
+        if ($('#input-text').text().includes(`-`)) {
+            $('#input-text').text('');
+        } else {
+            $('#input-text').text(`- `);
+            /* vars.input = '-0'; */
         }
         if (+vars.buffer === 0 && +vars.input === 0 && vars.result !== 0) {
             $('#input-text').text(`-`);
@@ -197,6 +196,11 @@ const funcPanel = {
     summary: function () {
         equalBlock.commonEqual();
         vars.operationID = 4;
+        if ($('#input-text').text().includes(`+`)) {
+            $('#input-text').text('');
+        } else {
+            $('#input-text').text(`+ `);
+        }
         if (+vars.buffer === 0 && +vars.input === 0) {
             $('#input-text').text(`+`);
             return;
@@ -341,13 +345,13 @@ const equalBlock = {
                     $('#input-text').text('');
                     return;
                 }
-                if (vars.input != 0 && vars.buffer === 0 && vars.result === 0) {
-                    vars.result = +vars.input;
+                /* if (vars.input != 0 && vars.buffer === 0 && vars.result === 0) {
+                    vars.buffer = +vars.input;
                     vars.input = 0;
                     funcPanel.checkResult();
                     $('#input-text').text('');
                     return;
-                }
+                } */
                 if (vars.input === 0 && vars.buffer === 0 && vars.result !== 0) {
                     if (Number.isInteger(vars.result)) {
                         $('#result-text').text('')
@@ -411,15 +415,13 @@ const equalBlock = {
             funcPanel.checkResult();
         }
         //Проверка деления на ноль и прерывание операции
-        if (+vars.input === 0) {
+        /* if (vars.buffer !== 0 && +vars.input === 0) {
             $('#result-text')
                 .html('<span style="color: red">ERROR!</span>');
             setTimeout(() => { $('#result-text').text(''); }, 1500);
-            if (+vars.input === 0) {
-                e.preventDefault();
-            }
+            vars.input = 0;
             return;
-        }
+        } */
     },
     equalMult: function () {
         if (vars.buffer === 0 && +vars.input === 0) {
