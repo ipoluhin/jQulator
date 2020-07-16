@@ -123,6 +123,7 @@ const funcPanel = {
         $('#input-text').text(vars.input);
         return;
     },
+
     division: function () {
         equalBlock.commonEqual();
         vars.operationID = 1;
@@ -146,12 +147,11 @@ const funcPanel = {
         vars.operationID = 2;
         if (+vars.buffer === 0 && +vars.input === 0) {
             $('#input-text').text(`*`);
-            return;
         }
         $('#input-text').text('');
         equalBlock.equalMult();
         $('#input-text').text('*');
-        vars.buffer = vars.input;
+        vars.buffer = vars.result;
         vars.input = 0;
         return;
     },
@@ -231,6 +231,28 @@ const funcPanel = {
             vars.result = 0,
             vars.operationID = 0;
         vars.memory = null;
+    },
+    /**Проверка результата на форму вывода(целое-дробное, количество знаков-округление) */
+    checkResult: function () {
+        if (Number.isInteger(vars.result)) {
+            $('#result-text').text('')
+                .text(vars.result);
+        } else {
+            $('#result-text').text('')
+                .text((+vars.result).toFixed(vars.numAfterDot));
+        }
+        if (vars.result.toString().length < 13) {
+            $('#result-text').text('')
+                .text(vars.result);
+            $('#input-text').text('');
+        } else {
+            $('#result-text').text('')
+                .text((+vars.result).toFixed(vars.numAfterDot));
+            /* $('#result-text')
+                .html('<span style="color: red; font-size: 16px">error-long number</span>');
+            setTimeout(() => { $('#result-text').text(''); }, 1500); */
+            $('#input-text').text('');
+        }
     },
 }
 
@@ -315,16 +337,17 @@ const equalBlock = {
                 equalBlock.equalSum();
                 break;
             default:
-                if (vars.result === 0 && vars.buffer === 0) {
+                if (vars.input != 0 && vars.buffer === 0 && vars.result !== 0) {
                     vars.result = +vars.input;
                     vars.input = 0;
-                    if (Number.isInteger(vars.result)) {
-                        $('#result-text').text('')
-                            .text(vars.result);
-                    } else {
-                        $('#result-text').text('')
-                            .text((+vars.result).toFixed(vars.numAfterDot));
-                    }
+                    funcPanel.checkResult();
+                    $('#input-text').text('');
+                    return;
+                }
+                if (vars.input != 0 && vars.buffer === 0 && vars.result === 0) {
+                    vars.result = +vars.input;
+                    vars.input = 0;
+                    funcPanel.checkResult();
                     $('#input-text').text('');
                     return;
                 }
@@ -337,7 +360,17 @@ const equalBlock = {
                             .text((+vars.result).toFixed(vars.numAfterDot));
                     }
                     $('#input-text').text('');
+                    vars.input = 0;
                     return;
+                }
+                if (vars.input !== 0 && vars.buffer !== 0) {
+                    if (vars.operationID === 0) {
+                        vars.input = 0;
+                        vars.buffer = 0; funcPanel.checkResult();
+                        $('#input-text').text('');
+                        funcPanel.checkResult();
+                        return;
+                    }
                 }
         }
     },
@@ -362,6 +395,8 @@ const equalBlock = {
         if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = +vars.result;
             vars.result = +vars.buffer / +vars.input;
+            vars.input = 0;
+            vars.buffer = 0;
             if (Number.isInteger(vars.result)) {
                 $('#result-text').text('')
                     .text(vars.result);
@@ -370,27 +405,15 @@ const equalBlock = {
                     .text((+vars.result).toFixed(vars.numAfterDot));
             }
             $('#input-text').text('');
-            vars.input = 0;
-            vars.buffer = 0;
             return;
         }
         if (+vars.input !== 0) {
             vars.result = +vars.buffer / +vars.input;
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-            }
-            $('#result-text').text('')
-                .text(vars.result);
-            $('#input-text').text('');
             vars.input = 0;
             vars.buffer = 0;
-            return;
+            funcPanel.checkResult();
         }
-        //Проверка на деление на ноль и прерывание операции
+        //Проверка деления на ноль и прерывание операции
         if (+vars.input === 0) {
             $('#result-text')
                 .html('<span style="color: red">ERROR!</span>');
@@ -411,76 +434,17 @@ const equalBlock = {
         if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer * +vars.input;
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-            }
-            if (vars.result.toString().length < 13) {
-                $('#result-text').text('')
-                    .text(vars.result);
-                $('#input-text').text('');
-                vars.input = 0;
-                vars.buffer = 0;
-                return;
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-                /* $('#result-text')
-                    .html('<span style="color: red; font-size: 16px">error-long number</span>');
-                setTimeout(() => { $('#result-text').text(''); }, 1500); */
-                $('#input-text').text('');
-            }
+            vars.input = 0;
+            vars.buffer = 0;
+            funcPanel.checkResult();
         }
         if (+vars.buffer !== 0 && +vars.input === 0 && vars.result !== 0) {
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-            }
-            if (vars.result.toString().length < 13) {
-                $('#result-text').text('')
-                    .text(vars.result);
-                $('#input-text').text('');
-                vars.input = 0;
-                vars.buffer = 0;
-                return;
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-                /* $('#result-text')
-                    .html('<span style="color: red; font-size: 16px">error-long number</span>');
-                setTimeout(() => { $('#result-text').text(''); }, 1500); */
-                $('#input-text').text('');
-            }
+            funcPanel.checkResult();
         } else {
             vars.result = +vars.buffer * +vars.input;
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-            }
-            if (vars.result.toString().length < 13) {
-                $('#result-text').text('')
-                    .text(vars.result);
-                $('#input-text').text('');
-                vars.input = 0;
-                vars.buffer = 0;
-                return;
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-                /* $('#result-text')
-                    .html('<span style="color: red; font-size: 16px">error-long number</span>');
-                setTimeout(() => { $('#result-text').text(''); }, 1500); */
-                $('#input-text').text('');
-            }
+            vars.input = 0;
+            vars.buffer = 0;
+            funcPanel.checkResult();
         }
     },
     equalSub: function () {
@@ -491,27 +455,7 @@ const equalBlock = {
             vars.result = +vars.buffer - +vars.input;
             vars.input = 0;
             vars.buffer = 0;
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-                if (vars.result.toString().length < 13) {
-                    $('#result-text').text('')
-                        .text(vars.result);
-                    $('#input-text').text('');
-                    vars.input = 0;
-                    vars.buffer = 0;
-                    return;
-                } else {
-                    $('#result-text').text('')
-                        .text((+vars.result).toFixed(vars.numAfterDot));
-                    $('#input-text').text('');
-                }
-            }
-            $('#input-text').text('');
-            return;
+            funcPanel.checkResult();
         }
         if (vars.buffer === 0 && vars.result === 0) {
             return;
@@ -519,75 +463,19 @@ const equalBlock = {
         if (+vars.buffer === 0 && +vars.input !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer - +vars.input;
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-                if (vars.result.toString().length < 13) {
-                    $('#result-text').text('')
-                        .text(vars.result);
-                    $('#input-text').text('');
-                    vars.input = 0;
-                    vars.buffer = 0;
-                    return;
-                }
-            }
-            if (+vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
-                $('#input-text').text('-');
-                return;
-            } else {
-                vars.result = +vars.buffer - +vars.input;
-                if (Number.isInteger(vars.result)) {
-                    $('#result-text').text('')
-                        .text(vars.result);
-                } else {
-                    $('#result-text').text('')
-                        .text((+vars.result).toFixed(vars.numAfterDot));
-                }
-                if (vars.result.toString().length < 13) {
-                    $('#result-text').text('')
-                        .text(vars.result);
-                    $('#input-text').text('');
-                    vars.input = 0;
-                    vars.buffer = 0;
-                    return;
-                } else {
-                    $('#result-text').text('')
-                        .text((+vars.result).toFixed(vars.numAfterDot));
-                    /* $('#result-text')
-                        .html('<span style="color: red; font-size: 16px">error-long number</span>');
-                    setTimeout(() => { $('#result-text').text(''); }, 1500); */
-                    $('#input-text').text('');
-                }
-            }
-            return;
+            vars.input = 0;
+            vars.buffer = 0;
+            funcPanel.checkResult();
         }
-        if (+vars.buffer !== 0 && +vars.input !== 0 && vars.result !== 0) {
+        if (+vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
+            $('#input-text').text('-');
+            return;
+        } else {
             vars.result = +vars.buffer - +vars.input;
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-                $('#input-text').text('');
-                return;
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-                if (vars.result.toString().length < 13) {
-                    $('#result-text').text('')
-                        .text(vars.result);
-                    $('#input-text').text('');
-                    vars.input = 0;
-                    vars.buffer = 0;
-                    return;
-                } else {
-                    $('#result-text').text('')
-                        .text((+vars.result).toFixed(vars.numAfterDot));
-                    $('#input-text').text('');
-                }
-                return;
-            }
+            vars.input = 0;
+            vars.buffer = 0;
+            funcPanel.checkResult();
+            return;
         }
     },
     equalSum: function () {
@@ -598,28 +486,14 @@ const equalBlock = {
             vars.buffer = vars.result;
         }
         vars.result = +vars.buffer + +vars.input;
-        if (Number.isInteger(vars.result)) {
-            $('#result-text').text('')
-                .text(vars.result);
-        } else {
-            $('#result-text').text('')
-                .text((+vars.result).toFixed(vars.numAfterDot));
-        }
-        if (vars.result.toString().length < 13) {
-            $('#result-text').text('')
-                .text(vars.result);
-            $('#input-text').text('');
-            vars.input = 0;
-            vars.buffer = 0;
-            return;
-        } else {
-            $('#result-text').text('')
-                .text((+vars.result).toFixed(vars.numAfterDot));
-            /* $('#result-text')
-                .html('<span style="color: red; font-size: 16px">error-long number</span>');
-            setTimeout(() => { $('#result-text').text(''); }, 1500); */
-            $('#input-text').text('');
-        }
+        vars.input = 0;
+        vars.buffer = 0;
+        funcPanel.checkResult();
+    },
+    endOfEqually: function () {
+        $('#input-text').text('');
+        equalBlock.commonEqual();
+        vars.operationID = 0;
     },
 }
 
@@ -676,7 +550,7 @@ $('#normal').on('click', round.toNormal);
 $('#ml').on('click', round.toMilli);
 $('#mk').on('click', round.toMickro);
 $('#random').on('click', funcPanel.random);
-$('#eql').on('click', equalBlock.commonEqual);
+$('#eql').on('click', equalBlock.endOfEqually);
 $('#division').on('click', funcPanel.division);
 $('#multiply').on('click', funcPanel.multiply);
 $('#substruction').on('click', funcPanel.substruction);
