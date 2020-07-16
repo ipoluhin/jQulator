@@ -9,7 +9,7 @@ const vars = {
     result: 0,         //Результат вычислений
     operationID: 0,    //ID фрифметической операции
     numAfterDot: 3,    //Знаков после запятой
-    memory: null,         //Число в памяти
+    memory: 'empty',         //Число в памяти
 }
 
 /**
@@ -504,21 +504,23 @@ const memory = {
     ms: function () {
         if (vars.result !== 0) {
             vars.memory = vars.result.toString();
+            $('#input-text').text('');
         } else {
             vars.memory = vars.input.toString();
+            $('#input-text').text('');
         }
         $('#result-text')
             .html('<span style="color: blue; font-size: 16px">saved</span>');
         setTimeout(() => { $('#result-text').text(''); }, 1500);
     },
     mr: function () {
-        if (+vars.memory === 0 || +vars.memory === null) {
+        if (+vars.memory === 0 || +vars.memory === 'empty') {
             $('#result-text')
                 .html('<span style="color: blue; font-size: 16px">empty slot</span>');
             setTimeout(() => { $('#result-text').text(''); }, 1500);
         } else {
             vars.input = +vars.memory;
-            $('#input-text').text($('#input-text').text() + `${vars.input}.toFixed(vars.numAfterDot)`);
+            $('#input-text').text(+vars.input);
         }
     },
     mc: function () {
