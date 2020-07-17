@@ -125,41 +125,26 @@ const funcPanel = {
     },
 
     division: function () {
-        equalBlock.commonEqual();
+        equalBlock.endOfEqually();
         vars.operationID = 1;
         if ($('#input-text').text().includes(`/`)) {
             $('#input-text').text('');
         } else {
             $('#input-text').text(`/ `);
         }
-        equalBlock.equalDiv();
-        vars.buffer = +vars.input;
-        vars.input = 0;
-        return;
+
     },
     multiply: function () {
-        equalBlock.commonEqual();
+        equalBlock.endOfEqually();
         vars.operationID = 2;
         if ($('#input-text').text().includes(`*`)) {
             $('#input-text').text('');
         } else {
             $('#input-text').text(`* `);
         }
-        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
-            $('#input-text').text(`*`);
-            vars.buffer = vars.input;
-            vars.input = 0;
-            return;
-        }
-        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result !== 0) {
-            $('#input-text').text('*');
-            vars.buffer = vars.result;
-            return;
-        }
-        equalBlock.equalMult();
     },
     substruction: function () {
-        equalBlock.commonEqual();
+        equalBlock.endOfEqually();
         vars.operationID = 3;
         if ($('#input-text').text().includes(`-`)) {
             $('#input-text').text('');
@@ -194,7 +179,7 @@ const funcPanel = {
         return;
     },
     summary: function () {
-        equalBlock.commonEqual();
+        equalBlock.endOfEqually();
         vars.operationID = 4;
         if ($('#input-text').text().includes(`+`)) {
             $('#input-text').text('');
@@ -203,7 +188,6 @@ const funcPanel = {
         }
         if (+vars.buffer === 0 && +vars.input === 0) {
             $('#input-text').text(`+`);
-            return;
         }
         $('#input-text').text('');
         if (+vars.buffer === 0) {
@@ -226,11 +210,11 @@ const funcPanel = {
     reset: function () {
         $('#input-text').text('');
         $('#result-text').text('0');
-
-        return vars.input = 0,
-            vars.buffer = 0,
-            vars.result = 0,
-            vars.operationID = 0;
+        vars.input = 0;
+        vars.buffer = 0;
+        vars.result = 0;
+        vars.operationID = 0;
+        return;
     },
     /**Проверка результата на форму вывода(целое-дробное, количество знаков-округление) */
     checkResult: function () {
@@ -413,6 +397,9 @@ const equalBlock = {
             vars.buffer = 0;
             funcPanel.checkResult();
         }
+        vars.buffer = +vars.input;
+        vars.input = 0;
+        return;
         //Проверка деления на ноль и прерывание операции
         /* if (vars.buffer !== 0 && +vars.input === 0) {
             $('#result-text')
@@ -429,7 +416,14 @@ const equalBlock = {
         if (vars.buffer === 0 && vars.result === 0) {
             return;
         }
-        if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
+            $('#input-text').text(`*`);
+            vars.buffer = vars.input;
+            vars.input = 0;
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result !== 0) {
+            $('#input-text').text('*');
             vars.buffer = vars.result;
             vars.result = +vars.buffer * +vars.input;
             vars.input = 0;
@@ -437,7 +431,7 @@ const equalBlock = {
             funcPanel.checkResult();
             return;
         }
-        if (+vars.buffer !== 0 && +vars.input === 0 && vars.result !== 0) {
+        if (+vars.input === 0 && +vars.buffer !== 0 && vars.result !== 0) {
             funcPanel.checkResult();
             return;
         } else {
