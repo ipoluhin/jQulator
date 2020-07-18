@@ -127,79 +127,56 @@ const funcPanel = {
     division: function () {
         equalBlock.endOfEqually();
         vars.operationID = 1;
+        /* if (vars.operationID === 0 || vars.operationID !== 0 && vars.operationID !== 1) {
+            equalBlock.endOfEqually();
+            vars.operationID = 1;
+        } */
         if ($('#input-text').text().includes(`/`)) {
             $('#input-text').text('');
         } else {
-            $('#input-text').text(`/ `);
+            $('#input-text').text(`/`);
         }
-
     },
     multiply: function () {
         equalBlock.endOfEqually();
         vars.operationID = 2;
+        /* if (vars.operationID === 0 || vars.operationID !== 0 && vars.operationID !== 2) {
+            equalBlock.endOfEqually();
+            vars.operationID = 2;
+        } */
         if ($('#input-text').text().includes(`*`)) {
             $('#input-text').text('');
         } else {
-            $('#input-text').text(`* `);
+            $('#input-text').text(`*`);
         }
     },
     substruction: function () {
         equalBlock.endOfEqually();
         vars.operationID = 3;
+        /* if (vars.operationID === 0 || vars.operationID !== 0 && vars.operationID !== 3) {
+            equalBlock.endOfEqually();
+            vars.operationID = 3;
+        } */
         if ($('#input-text').text().includes(`-`)) {
             $('#input-text').text('');
         } else {
-            $('#input-text').text(`- `);
-            /* vars.input = '-0'; */
-        }
-        if (+vars.buffer === 0 && +vars.input === 0 && vars.result !== 0) {
             $('#input-text').text(`-`);
-            vars.buffer = vars.result;
-            return;
         }
-        if (+vars.buffer === 0 && +vars.input !== 0) {
-            $('#input-text').text(`- `);
-            vars.result = +vars.buffer;
-            vars.buffer = vars.input;
-            $('#result-text').text(vars.result);
-            vars.input = 0;
-            return;
-        }
-        $('#input-text').text('-');
-        if (+vars.buffer === 0) {
-            vars.buffer = vars.input;
-            vars.result = vars.buffer - vars.input;
-            vars.input = 0;
-        } else {
-            equalBlock.equalSub();
-            vars.input = 0;
-            vars.buffer = 0;
-            $('#input-text').text('');
-        }
-        return;
     },
     summary: function () {
         equalBlock.endOfEqually();
         vars.operationID = 4;
+        /* if (vars.operationID === 0 || vars.operationID !== 0 && vars.operationID !== 4) {
+            equalBlock.endOfEqually();
+            vars.operationID = 4;
+        } else {
+            equalBlock.endOfEqually();
+        } */
         if ($('#input-text').text().includes(`+`)) {
             $('#input-text').text('');
         } else {
-            $('#input-text').text(`+ `);
-        }
-        if (+vars.buffer === 0 && +vars.input === 0) {
             $('#input-text').text(`+`);
         }
-        $('#input-text').text('');
-        if (+vars.buffer === 0) {
-            vars.buffer = +vars.input;
-            vars.input = 0;
-        } else {
-            equalBlock.equalSum();
-            vars.input = 0;
-            vars.buffer = 0;
-            $('#input-text').text('');
-        }
-        return;
     },
 
     erase: function () {
@@ -221,9 +198,11 @@ const funcPanel = {
         if (Number.isInteger(vars.result)) {
             $('#result-text').text('')
                 .text(vars.result);
+            $('#input-text').text('');
         } else {
             $('#result-text').text('')
                 .text((+vars.result).toFixed(vars.numAfterDot));
+            $('#input-text').text('');
         }
         if (vars.result.toString().length < 13) {
             $('#result-text').text('')
@@ -321,85 +300,102 @@ const equalBlock = {
                 equalBlock.equalSum();
                 break;
             default:
+                if (+vars.input === 0 && vars.buffer === 0 && vars.result === 0) {
+                    return;
+                }
+                if (+vars.input === 0 && vars.buffer === 0 && vars.result !== 0) {
+                    funcPanel.checkResult();
+                    return;
+                }
+                if (+vars.input !== 0 && vars.buffer === 0 && vars.result === 0) {
+                    vars.input = $('#input-text').text();
+                    vars.buffer = +vars.input;
+                    vars.input = 0;
+                    $('#input-text').text('');
+                    $('#result-text').text(vars.buffer);
+                    return
+                }
                 if (vars.input != 0 && vars.buffer === 0 && vars.result !== 0) {
+                    vars.input = $('#input-text').text();
                     vars.result = +vars.input;
                     vars.input = 0;
                     funcPanel.checkResult();
-                    $('#input-text').text('');
                     return;
                 }
-                /* if (vars.input != 0 && vars.buffer === 0 && vars.result === 0) {
-                    vars.buffer = +vars.input;
+            /* if (vars.input !== 0 && vars.buffer !== 0) {
+                if (vars.operationID === 0) {
                     vars.input = 0;
+                    vars.buffer = 0;
                     funcPanel.checkResult();
-                    $('#input-text').text('');
-                    return;
-                } */
-                if (vars.input === 0 && vars.buffer === 0 && vars.result !== 0) {
-                    if (Number.isInteger(vars.result)) {
-                        $('#result-text').text('')
-                            .text(vars.result);
-                    } else {
-                        $('#result-text').text('')
-                            .text((+vars.result).toFixed(vars.numAfterDot));
-                    }
-                    $('#input-text').text('');
-                    vars.input = 0;
                     return;
                 }
-                if (vars.input !== 0 && vars.buffer !== 0) {
-                    if (vars.operationID === 0) {
-                        vars.input = 0;
-                        vars.buffer = 0; funcPanel.checkResult();
-                        $('#input-text').text('');
-                        funcPanel.checkResult();
-                        return;
-                    }
-                }
+            } */
         }
     },
     /**
      * Выбранные по ID операции
      */
     equalDiv: function () {
-        if (vars.buffer === 0 && +vars.input === 0) {
+        if (+vars.input === 0 && vars.buffer === 0 && vars.result === 0) {
             return;
         }
-        if (vars.buffer === 0 && vars.result === 0) {
+        if (+vars.input === 0 && +vars.buffer === 0 && vars.result !== 0) {
+            vars.buffer = vars.result;
+            vars.result = 0;
+            $('#input-text').text(vars.buffer);
             return;
         }
-        if (+vars.buffer === 0 && +vars.input === 0 && vars.result !== 0) {
-            vars.buffer = +vars.result;
-            $('#result-text').text('')
-                .text((+vars.result).toFixed(vars.numAfterDot));
-            $('#input-text').text('');
-            vars.input = 0;
-            return;
-        }
-        if (+vars.buffer === 0 && +vars.input !== 0 && vars.result !== 0) {
-            vars.buffer = +vars.result;
-            vars.result = +vars.buffer / +vars.input;
+        if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
+            vars.result = vars.buffer;
             vars.input = 0;
             vars.buffer = 0;
-            if (Number.isInteger(vars.result)) {
-                $('#result-text').text('')
-                    .text(vars.result);
-            } else {
-                $('#result-text').text('')
-                    .text((+vars.result).toFixed(vars.numAfterDot));
-            }
             $('#input-text').text('');
+            funcPanel.checkResult();
             return;
         }
-        if (+vars.input !== 0) {
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
+            vars.buffer = vars.input;
+            vars.input = 0;
+            $('#input-text').text(vars.buffer);
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer !== 0 && vars.result === 0) {
             vars.result = +vars.buffer / +vars.input;
             vars.input = 0;
             vars.buffer = 0;
             funcPanel.checkResult();
+            $('#input-text').text('');
+            return;
         }
-        vars.buffer = +vars.input;
-        vars.input = 0;
-        return;
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result !== 0) {
+            vars.buffer = vars.result;
+            vars.result = 0;
+            vars.result = +vars.buffer / h723 + vars.input;
+            vars.input = 0;
+            vars.buffer = 0;
+            funcPanel.checkResult();
+            $('#input-text').text('');
+            return;
+        }
+
+        /* if (+vars.input === 0 && vars.buffer === 0 && vars.result === 0) {
+            return;
+        }
+        if (+vars.input === 0 && +vars.buffer === 0 && vars.result !== 0) {
+            vars.buffer = +vars.result;
+            vars.result = 0;
+            $('input-text').text(vars.buffer);
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result !== 0) {
+            vars.buffer = +vars.result;
+            vars.result = +vars.buffer / +vars.input;
+            vars.buffer = 0;
+            vars.input = 0;
+            funcPanel.checkResult();
+            $('input-text').text('');
+            return;
+        } */
         //Проверка деления на ноль и прерывание операции
         /* if (vars.buffer !== 0 && +vars.input === 0) {
             $('#result-text')
@@ -410,53 +406,111 @@ const equalBlock = {
         } */
     },
     equalMult: function () {
-        if (vars.buffer === 0 && +vars.input === 0) {
+        if (+vars.input === 0 && vars.buffer === 0 && vars.result === 0) {
             return;
         }
-        if (vars.buffer === 0 && vars.result === 0) {
+        if (+vars.input === 0 && +vars.buffer === 0 && vars.result !== 0) {
+            vars.buffer = vars.result;
+            vars.result = 0;
+            $('#input-text').text(vars.buffer);
+            return;
+        }
+        if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
+            vars.result = vars.buffer;
+            vars.input = 0;
+            vars.buffer = 0;
+            $('#input-text').text('');
+            funcPanel.checkResult();
             return;
         }
         if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
-            $('#input-text').text(`*`);
             vars.buffer = vars.input;
             vars.input = 0;
+            $('#input-text').text(vars.buffer);
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer !== 0 && vars.result === 0) {
+            vars.result = +vars.buffer * +vars.input;
+            vars.input = 0;
+            vars.buffer = 0;
+            funcPanel.checkResult();
+            $('#input-text').text('');
             return;
         }
         if (+vars.input !== 0 && +vars.buffer === 0 && vars.result !== 0) {
-            $('#input-text').text('*');
             vars.buffer = vars.result;
+            vars.result = 0;
             vars.result = +vars.buffer * +vars.input;
             vars.input = 0;
             vars.buffer = 0;
             funcPanel.checkResult();
-            return;
-        }
-        if (+vars.input === 0 && +vars.buffer !== 0 && vars.result !== 0) {
-            funcPanel.checkResult();
-            return;
-        } else {
-            vars.result = +vars.buffer * +vars.input;
-            vars.input = 0;
-            vars.buffer = 0;
-            funcPanel.checkResult();
+            $('#input-text').text('');
             return;
         }
     },
     equalSub: function () {
-        if (vars.buffer === 0 && +vars.input === 0) {
+        if (+vars.input === 0 && +vars.buffer === 0 && vars.result === 0) {
             return;
         }
-        if (+vars.buffer === 0 && vars.result === 0 && +vars.input !== 0) {
-            vars.result = +vars.buffer - +vars.input;
+        if (vars.input === 0 && +vars.buffer === 0 && vars.result !== 0) {
+            vars.buffer = vars.result;
+            vars.result = 0;
+            $('#input-text').text(vars.buffer);
+            return;
+        }
+        if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
+            vars.result = vars.buffer;
+            vars.input = 0;
+            vars.buffer = 0;
+            $('#input-text').text('');
+            funcPanel.checkResult();
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
+            vars.input = $('#input-text').text();
+            vars.buffer = +vars.input;
+            $('#result-text').text('').text(vars.buffer);
+            $('#input-text').text('');
+            vars.input = 0;
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result !== 0) {
+            vars.input = $('#input-text').text();
+            vars.buffer = vars.result;
+            vars.result = 0;
+            vars.result = +vars.buffer + +vars.input;
+            vars.input = 0;
+            vars.buffer = 0;
+            $('#input-text').text('');
+            funcPanel.checkResult();
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer !== 0 && vars.result === 0) {
+            vars.input = $('#input-text').text();
+            vars.result = +vars.buffer + +vars.input;
+            vars.input = 0;
+            vars.buffer = 0;
+            $('#input-text').text('');
+            funcPanel.checkResult();
+            return;
+        }
+        /* if (+vars.input === 0 && +vars.buffer === 0 && vars.result === 0) {
+            return;
+        }
+        if (+vars.input === 0 && +vars.buffer === 0 && vars.result !== 0) {
+            vars.buffer = vars.result;
+            $('#input-text').text(vars.buffer);
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer !== 0 && vars.result === 0) {
+            vars.input = +($('#input-text').text());
+            vars.result = +vars.buffer + +vars.input;
             vars.input = 0;
             vars.buffer = 0;
             funcPanel.checkResult();
             return;
         }
-        if (vars.buffer === 0 && vars.result === 0) {
-            return;
-        }
-        if (+vars.buffer === 0 && +vars.input !== 0) {
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = +vars.buffer - +vars.input;
             vars.input = 0;
@@ -464,31 +518,59 @@ const equalBlock = {
             funcPanel.checkResult();
             return;
         }
-        if (+vars.buffer === 0 && +vars.input === 0 && vars.result === 0) {
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
             $('#input-text').text('-');
-            return;
-        } else {
-            vars.result = +vars.buffer - +vars.input;
+            vars.buffer = vars.input;
             vars.input = 0;
-            vars.buffer = 0;
-            funcPanel.checkResult();
+            $('#input-text').text(vars.buffer);
             return;
-        }
+        } */
     },
     equalSum: function () {
-        if (+vars.buffer === 0 && +vars.input === 0) {
+        if (+vars.input === 0 && +vars.buffer === 0 && vars.result === 0) {
             return;
         }
-        if (+vars.buffer === 0) {
+        if (vars.input === 0 && +vars.buffer === 0 && vars.result !== 0) {
             vars.buffer = vars.result;
+            vars.result = 0;
+            $('#input-text').text(vars.buffer);
+            return;
         }
-        vars.result = +vars.buffer + +vars.input;
-        vars.input = 0;
-        vars.buffer = 0;
-        funcPanel.checkResult();
+        if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
+            vars.result = vars.buffer;
+            vars.input = 0;
+            vars.buffer = 0;
+            funcPanel.checkResult();
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
+            vars.input = $('#input-text').text();
+            $('#result-text').text('').text(vars.buffer);
+            $('#input-text').text('');
+            vars.input = 0;
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer === 0 && vars.result !== 0) {
+            vars.input = $('#input-text').text();
+            vars.buffer = vars.result;
+            vars.result = 0;
+            vars.result = +vars.buffer + +vars.input;
+            vars.input = 0;
+            vars.buffer = 0;
+            funcPanel.checkResult();
+            return;
+        }
+        if (+vars.input !== 0 && +vars.buffer !== 0 && vars.result === 0) {
+            vars.input = $('#input-text').text();
+            vars.result = +vars.buffer + +vars.input;
+            vars.input = 0;
+            vars.buffer = 0;
+            funcPanel.checkResult();
+            return;
+        }
     },
-    endOfEqually: function () {
-        $('#input-text').text('');
+    endOfEqually: function () {/* 
+        $('#input-text').text(''); */
         equalBlock.commonEqual();
         vars.operationID = 0;
     },
