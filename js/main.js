@@ -333,12 +333,13 @@ const equalBlock = {
                 funcPanel.checkResult();
                 return;
             }
-            if (vars.input === '00') {
-                errors.divByZero();
-                vars.input = 0;/* 
+            /* if (vars.input === '00') { */
+            vars.input = +vars.input;
+            errors.divByZero();
+            vars.input = 0;/* 
                 $('#result-text').text(vars.buffer); */
-                return;
-            }
+            return;
+            /* } */
         }
         if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
             vars.buffer = vars.input;
@@ -384,14 +385,15 @@ const equalBlock = {
                 funcPanel.checkResult();
                 return;
             }
-            if (vars.input === '00') {
-                vars.result = +vars.buffer * +vars.input;
-                vars.input = 0;
-                vars.buffer = 0;
-                $('#input-text').text('');
-                funcPanel.checkResult();
-                return;
-            }
+            /* if (vars.input === '00') { */
+            vars.input = +vars.input;
+            vars.result = +vars.buffer * +vars.input;
+            vars.input = 0;
+            vars.buffer = 0;
+            $('#input-text').text('');
+            funcPanel.checkResult();
+            return;
+            /* } */
         }
         if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
             vars.buffer = vars.input;
