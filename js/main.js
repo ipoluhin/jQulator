@@ -325,12 +325,20 @@ const equalBlock = {
             return;
         }
         if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
-            vars.result = vars.buffer;
-            vars.input = 0;
-            vars.buffer = 0;
-            $('#input-text').text('');
-            funcPanel.checkResult();
-            return;
+            if (vars.input === '/') {
+                vars.result = +vars.buffer;
+                vars.input = 0;
+                vars.buffer = 0;
+                $('#input-text').text('');
+                funcPanel.checkResult();
+                return;
+            }
+            if (vars.input === '00') {
+                errors.divByZero();
+                vars.input = 0;/* 
+                $('#result-text').text(vars.buffer); */
+                return;
+            }
         }
         if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
             vars.buffer = vars.input;
@@ -504,6 +512,15 @@ const equalBlock = {
         equalBlock.commonEqual();
         vars.operationID = 0;
         $('#input-text').text('');
+    },
+}
+//Ошибки в наборе или результате
+const errors = {
+    //Ошибка при делении на ноль
+    divByZero: function () {
+        $('#result-text')
+            .html('<span style="color: red">ERROR!</span>');
+        setTimeout(() => { $('#result-text').text(''); }, 1500);
     },
 }
 
