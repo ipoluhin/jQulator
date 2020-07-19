@@ -368,12 +368,22 @@ const equalBlock = {
             return;
         }
         if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
-            vars.result = vars.buffer;
-            vars.input = 0;
-            vars.buffer = 0;
-            $('#input-text').text('');
-            funcPanel.checkResult();
-            return;
+            if (vars.input === '*') {
+                vars.result = +vars.buffer;
+                vars.input = 0;
+                vars.buffer = 0;
+                $('#input-text').text('');
+                funcPanel.checkResult();
+                return;
+            }
+            if (vars.input === '00') {
+                vars.result = +vars.buffer * +vars.input;
+                vars.input = 0;
+                vars.buffer = 0;
+                $('#input-text').text('');
+                funcPanel.checkResult();
+                return;
+            }
         }
         if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
             vars.buffer = vars.input;
@@ -411,7 +421,7 @@ const equalBlock = {
             return;
         }
         if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
-            vars.result = vars.buffer;
+            vars.result = +vars.buffer + +vars.input;
             vars.input = 0;
             vars.buffer = 0;
             $('#input-text').text('');
@@ -458,7 +468,7 @@ const equalBlock = {
             return;
         }
         if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
-            vars.result = vars.buffer;
+            vars.result = +vars.buffer + +vars.input;
             vars.input = 0;
             vars.buffer = 0;
             funcPanel.checkResult();
