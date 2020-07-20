@@ -348,12 +348,16 @@ body .calc-body-theme-4 .main .buttons .left-panel .number-block {
 
 body .calc-body-theme-1 .main .buttons .left-panel .memory-function,
 body .calc-body-theme-1 .main .buttons .left-panel .round-function,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation,
 body .calc-body-theme-2 .main .buttons .left-panel .memory-function,
 body .calc-body-theme-2 .main .buttons .left-panel .round-function,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation,
 body .calc-body-theme-3 .main .buttons .left-panel .memory-function,
 body .calc-body-theme-3 .main .buttons .left-panel .round-function,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation,
 body .calc-body-theme-4 .main .buttons .left-panel .memory-function,
-body .calc-body-theme-4 .main .buttons .left-panel .round-function {
+body .calc-body-theme-4 .main .buttons .left-panel .round-function,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -364,20 +368,40 @@ body .calc-body-theme-4 .main .buttons .left-panel .round-function {
 
 body .calc-body-theme-1 .main .buttons .left-panel .memory-function .memory,
 body .calc-body-theme-1 .main .buttons .left-panel .memory-function .round-vol,
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .sqrt,
 body .calc-body-theme-1 .main .buttons .left-panel .round-function .memory,
 body .calc-body-theme-1 .main .buttons .left-panel .round-function .round-vol,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .sqrt,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .memory,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .round-vol,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .sqrt,
 body .calc-body-theme-2 .main .buttons .left-panel .memory-function .memory,
 body .calc-body-theme-2 .main .buttons .left-panel .memory-function .round-vol,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .sqrt,
 body .calc-body-theme-2 .main .buttons .left-panel .round-function .memory,
 body .calc-body-theme-2 .main .buttons .left-panel .round-function .round-vol,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .sqrt,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .memory,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .round-vol,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .sqrt,
 body .calc-body-theme-3 .main .buttons .left-panel .memory-function .memory,
 body .calc-body-theme-3 .main .buttons .left-panel .memory-function .round-vol,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .sqrt,
 body .calc-body-theme-3 .main .buttons .left-panel .round-function .memory,
 body .calc-body-theme-3 .main .buttons .left-panel .round-function .round-vol,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .sqrt,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .memory,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .round-vol,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .sqrt,
 body .calc-body-theme-4 .main .buttons .left-panel .memory-function .memory,
 body .calc-body-theme-4 .main .buttons .left-panel .memory-function .round-vol,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .sqrt,
 body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory,
-body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol {
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .sqrt,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .memory,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .round-vol,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .sqrt {
   box-sizing: border-box;
   border-radius: 2px;
   height: 20px;
@@ -391,20 +415,40 @@ body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol {
 
 body .calc-body-theme-1 .main .buttons .left-panel .memory-function .memory-active,
 body .calc-body-theme-1 .main .buttons .left-panel .memory-function .round-vol-active,
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .sqrt-active,
 body .calc-body-theme-1 .main .buttons .left-panel .round-function .memory-active,
 body .calc-body-theme-1 .main .buttons .left-panel .round-function .round-vol-active,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .sqrt-active,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .memory-active,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .round-vol-active,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .sqrt-active,
 body .calc-body-theme-2 .main .buttons .left-panel .memory-function .memory-active,
 body .calc-body-theme-2 .main .buttons .left-panel .memory-function .round-vol-active,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .sqrt-active,
 body .calc-body-theme-2 .main .buttons .left-panel .round-function .memory-active,
 body .calc-body-theme-2 .main .buttons .left-panel .round-function .round-vol-active,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .sqrt-active,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .memory-active,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .round-vol-active,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .sqrt-active,
 body .calc-body-theme-3 .main .buttons .left-panel .memory-function .memory-active,
 body .calc-body-theme-3 .main .buttons .left-panel .memory-function .round-vol-active,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .sqrt-active,
 body .calc-body-theme-3 .main .buttons .left-panel .round-function .memory-active,
 body .calc-body-theme-3 .main .buttons .left-panel .round-function .round-vol-active,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .sqrt-active,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .memory-active,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .round-vol-active,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .sqrt-active,
 body .calc-body-theme-4 .main .buttons .left-panel .memory-function .memory-active,
 body .calc-body-theme-4 .main .buttons .left-panel .memory-function .round-vol-active,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .sqrt-active,
 body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory-active,
-body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol-active {
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol-active,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .sqrt-active,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .memory-active,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .round-vol-active,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .sqrt-active {
   background-color: grey;
   border: 1px solid;
   box-shadow: -1px -1px 1px #000000;
@@ -413,54 +457,109 @@ body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol-ac
 
 body .calc-body-theme-1 .main .buttons .left-panel .memory-function .memory .round-text,
 body .calc-body-theme-1 .main .buttons .left-panel .memory-function .round-vol .round-text,
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .sqrt .round-text,
 body .calc-body-theme-1 .main .buttons .left-panel .round-function .memory .round-text,
 body .calc-body-theme-1 .main .buttons .left-panel .round-function .round-vol .round-text,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .sqrt .round-text,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .memory .round-text,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .round-vol .round-text,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .sqrt .round-text,
 body .calc-body-theme-2 .main .buttons .left-panel .memory-function .memory .round-text,
 body .calc-body-theme-2 .main .buttons .left-panel .memory-function .round-vol .round-text,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .sqrt .round-text,
 body .calc-body-theme-2 .main .buttons .left-panel .round-function .memory .round-text,
 body .calc-body-theme-2 .main .buttons .left-panel .round-function .round-vol .round-text,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .sqrt .round-text,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .memory .round-text,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .round-vol .round-text,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .sqrt .round-text,
 body .calc-body-theme-3 .main .buttons .left-panel .memory-function .memory .round-text,
 body .calc-body-theme-3 .main .buttons .left-panel .memory-function .round-vol .round-text,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .sqrt .round-text,
 body .calc-body-theme-3 .main .buttons .left-panel .round-function .memory .round-text,
 body .calc-body-theme-3 .main .buttons .left-panel .round-function .round-vol .round-text,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .sqrt .round-text,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .memory .round-text,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .round-vol .round-text,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .sqrt .round-text,
 body .calc-body-theme-4 .main .buttons .left-panel .memory-function .memory .round-text,
 body .calc-body-theme-4 .main .buttons .left-panel .memory-function .round-vol .round-text,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .sqrt .round-text,
 body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory .round-text,
-body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol .round-text {
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .round-vol .round-text,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .sqrt .round-text,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .memory .round-text,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .round-vol .round-text,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .sqrt .round-text {
   position: absolute;
   color: #ffffff;
   font-size: 12px;
+}
+
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .sqrt,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .sqrt,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .sqrt,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .sqrt,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .sqrt,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .sqrt,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .sqrt,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .sqrt,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .sqrt,
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .sqrt,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .sqrt,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .sqrt {
+  background-color: #3d3c3c;
 }
 
 body .calc-body-theme-1 .main .buttons .left-panel .memory-function .memory,
 body .calc-body-theme-1 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .memory,
 body .calc-body-theme-2 .main .buttons .left-panel .memory-function .memory,
 body .calc-body-theme-2 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .memory,
 body .calc-body-theme-3 .main .buttons .left-panel .memory-function .memory,
 body .calc-body-theme-3 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .memory,
 body .calc-body-theme-4 .main .buttons .left-panel .memory-function .memory,
-body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory {
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .memory {
   background-color: #0b5e03;
 }
 
 body .calc-body-theme-1 .main .buttons .left-panel .memory-function .memory .memory-text,
+body .calc-body-theme-1 .main .buttons .left-panel .memory-function .sqrt .sqrt-text,
 body .calc-body-theme-1 .main .buttons .left-panel .round-function .memory .memory-text,
+body .calc-body-theme-1 .main .buttons .left-panel .round-function .sqrt .sqrt-text,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .memory .memory-text,
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation .sqrt .sqrt-text,
 body .calc-body-theme-2 .main .buttons .left-panel .memory-function .memory .memory-text,
+body .calc-body-theme-2 .main .buttons .left-panel .memory-function .sqrt .sqrt-text,
 body .calc-body-theme-2 .main .buttons .left-panel .round-function .memory .memory-text,
+body .calc-body-theme-2 .main .buttons .left-panel .round-function .sqrt .sqrt-text,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .memory .memory-text,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation .sqrt .sqrt-text,
 body .calc-body-theme-3 .main .buttons .left-panel .memory-function .memory .memory-text,
+body .calc-body-theme-3 .main .buttons .left-panel .memory-function .sqrt .sqrt-text,
 body .calc-body-theme-3 .main .buttons .left-panel .round-function .memory .memory-text,
+body .calc-body-theme-3 .main .buttons .left-panel .round-function .sqrt .sqrt-text,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .memory .memory-text,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation .sqrt .sqrt-text,
 body .calc-body-theme-4 .main .buttons .left-panel .memory-function .memory .memory-text,
-body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory .memory-text {
+body .calc-body-theme-4 .main .buttons .left-panel .memory-function .sqrt .sqrt-text,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .memory .memory-text,
+body .calc-body-theme-4 .main .buttons .left-panel .round-function .sqrt .sqrt-text,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .memory .memory-text,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation .sqrt .sqrt-text {
   position: absolute;
   color: #ffffff;
   font-size: 12px;
 }
 
-body .calc-body-theme-1 .main .buttons .left-panel .memory-function,
-body .calc-body-theme-2 .main .buttons .left-panel .memory-function,
-body .calc-body-theme-3 .main .buttons .left-panel .memory-function,
-body .calc-body-theme-4 .main .buttons .left-panel .memory-function {
-  margin: 10px 0 20px 0;
+body .calc-body-theme-1 .main .buttons .left-panel .exponentiation,
+body .calc-body-theme-2 .main .buttons .left-panel .exponentiation,
+body .calc-body-theme-3 .main .buttons .left-panel .exponentiation,
+body .calc-body-theme-4 .main .buttons .left-panel .exponentiation {
+  margin: 7px 0 5px 0;
 }
 
 body .calc-body-theme-1 .main .buttons .func-block,
@@ -484,7 +583,7 @@ body .calc-body-theme-3 .main .buttons .func-block .function,
 body .calc-body-theme-3 .main .buttons .func-block .random,
 body .calc-body-theme-4 .main .buttons .func-block .function,
 body .calc-body-theme-4 .main .buttons .func-block .random {
-  margin: 0 -13px 11px 10px;
+  margin: 1px -13px 12px 10px;
   padding: 3px 20px 3px 20px;
   background-color: #cccccc;
   color: #000000;

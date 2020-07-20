@@ -558,6 +558,14 @@ const memory = {
         setTimeout(() => { $('#result-text').text(''); }, 1500);
     },
 }
+//Квадратный корень. Работает с вводимым числом. Результат выводит в поле ввода.
+const exponentiation = {
+    sqrt: function () {
+        vars.input = Math.sqrt(+vars.input);
+        $('#input-text').text('').text(vars.input);
+        return;
+    }
+}
 
 //Функционал переключения тем
 $('#theme-1').on('click', themesPanel.one);
@@ -588,6 +596,7 @@ $('#division').on('click', funcPanel.division);
 $('#multiply').on('click', funcPanel.multiply);
 $('#substruction').on('click', funcPanel.substruction);
 $('#sum').on('click', funcPanel.summary);
+$('#sqrt').on('click', exponentiation.sqrt);
 
 //reset button
 $('#btn-erase').on('click', funcPanel.erase);

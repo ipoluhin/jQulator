@@ -194,6 +194,7 @@ body
                         margin: 10px 0 0 5px
                     .memory-function,
                     .round-function,
+                    .exponentiation
                         display: flex
                         flex-direction: row
                         align-items: center
@@ -202,6 +203,7 @@ body
                         margin: 5px 0 0 0
                         .memory,
                         .round-vol,
+                        .sqrt
                             box-sizing: border-box
                             border-radius: 2px
                             height: 20px
@@ -220,14 +222,17 @@ body
                                 position: absolute
                                 color: #ffffff
                                 font-size: 12px
+                        .sqrt
+                            background-color: #3d3c3c
                         .memory
                             background-color: #0b5e03
-                        .memory .memory-text
+                        .memory .memory-text,
+                        .sqrt .sqrt-text
                             position: absolute
                             color: #ffffff
                             font-size: 12px
-                    .memory-function
-                        margin: 10px 0 20px 0
+                    .exponentiation
+                        margin: 7px 0 5px 0
                 .func-block
                     width: 30%
                     max-height: 280px
@@ -238,7 +243,7 @@ body
                     margin: 5px 0 0 10px
                     .function,
                     .random
-                        margin: 0 -13px 11px 10px
+                        margin: 1px -13px 12px 10px
                         padding: 3px 20px 3px 20px
                         background-color: #cccccc
                         color: #000000
