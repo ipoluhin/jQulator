@@ -320,8 +320,17 @@ const equalBlock = {
             return;
         }
         if (+vars.input === 0 && +vars.buffer === 0 && vars.result !== 0) {
-            vars.buffer = vars.result;
-            vars.result = 0;
+            if ($('#input-text').text() === '/') {
+                vars.result = +vars.buffer;
+                vars.input = 0;
+                vars.buffer = 0;
+                $('#input-text').text('');
+                funcPanel.checkResult();
+                return;
+            }
+            vars.input = +vars.input;
+            errors.divByZero();
+            vars.input = 0;
             return;
         }
         if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
@@ -333,13 +342,10 @@ const equalBlock = {
                 funcPanel.checkResult();
                 return;
             }
-            /* if (vars.input === '00') { */
             vars.input = +vars.input;
             errors.divByZero();
-            vars.input = 0;/* 
-                $('#result-text').text(vars.buffer); */
+            vars.input = 0;
             return;
-            /* } */
         }
         if (+vars.input !== 0 && +vars.buffer === 0 && vars.result === 0) {
             vars.buffer = vars.input;
@@ -371,9 +377,20 @@ const equalBlock = {
             return;
         }
         if (+vars.input === 0 && +vars.buffer === 0 && vars.result !== 0) {
-            vars.buffer = vars.result;
-            vars.result = 0;
-            $('#input-text').text(vars.buffer);
+            if ($('#input-text').text() === '*') {
+                vars.buffer = +vars.result;
+                vars.input = 0;
+                vars.result = 0;
+                $('#input-text').text('');
+                funcPanel.checkResult();
+                return;
+            }
+            vars.input = +vars.input;
+            vars.result = +vars.buffer * +vars.input;
+            vars.input = 0;
+            vars.buffer = 0;
+            $('#input-text').text('');
+            funcPanel.checkResult();
             return;
         }
         if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
