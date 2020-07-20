@@ -325,7 +325,7 @@ const equalBlock = {
             return;
         }
         if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
-            if (vars.input === '/') {
+            if ($('#input-text').text() === '/') {
                 vars.result = +vars.buffer;
                 vars.input = 0;
                 vars.buffer = 0;
@@ -377,7 +377,7 @@ const equalBlock = {
             return;
         }
         if (+vars.input === 0 && +vars.buffer !== 0 && vars.result === 0) {
-            if (vars.input === '*') {
+            if ($('#input-text').text() === '*') {
                 vars.result = +vars.buffer;
                 vars.input = 0;
                 vars.buffer = 0;
