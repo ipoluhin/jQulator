@@ -154,12 +154,6 @@ const funcPanel = {
     summary: function () {
         equalBlock.endOfEqually();
         vars.operationID = 4;
-        /* if (vars.operationID === 0 || vars.operationID !== 0 && vars.operationID !== 4) {
-            equalBlock.endOfEqually();
-            vars.operationID = 4;
-        } else {
-            equalBlock.endOfEqually();
-        } */
         if ($('#input-text').text().includes(`+`)) {
             $('#input-text').text('');
         } else {
@@ -584,7 +578,13 @@ const exponentiation = {
         } else {
             vars.input = Math.sqrt(+vars.input);
         }
-        $('#input-text').text('').text(vars.input);
+        if (Number.isInteger(+vars.input)) {
+            $('#input-text').text('')
+                .text(vars.input);
+        } else {
+            $('#input-text').text('')
+                .text((+vars.input).toFixed(vars.numAfterDot));
+        }
         return;
     }
 }
