@@ -578,7 +578,11 @@ const memory = {
 //Квадратный корень. Работает с вводимым числом. Результат выводит в поле ввода.
 const exponentiation = {
     sqrt: function () {
-        vars.input = Math.sqrt(+vars.input);
+        if (vars.operationID === 3) {
+            vars.input = -1 * Math.sqrt(+vars.input);
+        } else {
+            vars.input = Math.sqrt(+vars.input);
+        }
         $('#input-text').text('').text(vars.input);
         return;
     }
