@@ -358,7 +358,7 @@ const equalBlock = {
         if (+vars.input !== 0 && +vars.buffer === 0 && vars.result !== 0) {
             vars.buffer = vars.result;
             vars.result = 0;
-            vars.result = +vars.buffer / h723 + vars.input;
+            vars.result = +vars.buffer / + vars.input;
             vars.input = 0;
             vars.buffer = 0;
             funcPanel.checkResult();
@@ -533,7 +533,9 @@ const errors = {
     divByZero: function () {
         $('#result-text')
             .html('<span style="color: red">ERROR!</span>');
-        setTimeout(() => { $('#result-text').text(''); }, 1500);
+        $('#input-text').text('/');
+        setTimeout(() => { $('#result-text').text(vars.result); }, 1500);
+        clearInterval(divByZero());
     },
 }
 
