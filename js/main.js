@@ -576,8 +576,14 @@ const memory = {
 const exponentiation = {
     sqrt: function () {
         if (vars.operationID === 3) {
+            if (vars.input < 0) {
+                vars.input = -1 * vars.input;
+            }
             vars.input = -1 * Math.sqrt(+vars.input);
         } else {
+            if (vars.input < 0) {
+                vars.input = -1 * vars.input;
+            }
             vars.input = Math.sqrt(+vars.input);
         }
         if (Number.isInteger(+vars.input)) {
