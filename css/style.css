@@ -236,8 +236,8 @@ body .calc-body-theme-4 .main .output .result-text::before {
   content: 'Ввод:';
   color: #169126;
   font-size: 10px;
-  top: -2px;
-  left: 0;
+  top: -1px;
+  left: 2px;
 }
 
 body .calc-body-theme-1 .main .output .equally-sign,
@@ -258,12 +258,7 @@ body .calc-body-theme-1 .main .output .result-text::before,
 body .calc-body-theme-2 .main .output .result-text::before,
 body .calc-body-theme-3 .main .output .result-text::before,
 body .calc-body-theme-4 .main .output .result-text::before {
-  position: absolute;
   content: 'Результат:';
-  color: #169126;
-  font-size: 10px;
-  top: -2px;
-  left: 0;
 }
 
 body .calc-body-theme-1 .main .buttons,

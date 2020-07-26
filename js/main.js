@@ -9,7 +9,8 @@ const vars = {
     result: 0,         //Результат вычислений
     operationID: 0,    //ID фрифметической операции
     numAfterDot: 3,    //Знаков после запятой
-    memory: 'empty',         //Число в памяти
+    memory: 'empty',        //Число в памяти
+    date: new Date(),
 }
 
 /**
@@ -639,3 +640,7 @@ $('#mc').on('click', memory.mc);
 
 //Включение :)
 $('#result-text').text('0');
+
+//Дата в футере
+/* let date = new Date(); */
+$('.year').text(vars.date.getFullYear());
