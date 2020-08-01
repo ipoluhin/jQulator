@@ -732,7 +732,7 @@ const errors = {
 }
 
 
-//Функционал переключения тем
+//Переключение тем
 htmlRender.themesRender();
 $('#theme-1').on('click', themesPanel.one);
 $('#theme-2').on('click', themesPanel.two);
@@ -740,13 +740,13 @@ $('#theme-3').on('click', themesPanel.three);
 $('#theme-4').on('click', themesPanel.four);
 
 
-//Функционал числовой панели
+//Округление чисел
 htmlRender.roundRender();
 $('#normal').on('click', round.toNormal);
 $('#ml').on('click', round.toMilli);
 $('#mk').on('click', round.toMickro);
 
-//Функциональная панель
+//memory buttons
 htmlRender.memoryRender();
 $('#ms').on('click', memory.ms);
 $('#mr').on('click', memory.mr);
@@ -756,7 +756,7 @@ $('#mc').on('click', memory.mc);
 htmlRender.exponentiationRender();
 $('#sqrt').on('click', exponentiation.sqrt);
 
-//memory buttons
+//Числовая панель
 htmlRender.digitRender();
 $('#1').on('click', numberPanel.one);
 $('#2').on('click', numberPanel.two);
@@ -770,7 +770,7 @@ $('#9').on('click', numberPanel.nine);
 $('#0').on('click', numberPanel.zero);
 $('#dot').on('click', numberPanel.dot);
 
-//function buttons
+//Функциональная панель
 htmlRender.functionRender();
 $('#random').on('click', funcPanel.random);
 $('#eql').on('click', equalBlock.endOfEqually);
