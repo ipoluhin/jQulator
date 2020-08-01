@@ -10,12 +10,7 @@
 	<body>
 		<section class="calc-body-theme-1" id="calc-body">
 			<header class="header">
-				<nav class="themes">
-					<button class="theme-active" id="theme-1">Сажа</button>
-					<button class="theme" id="theme-2">Неон</button>
-					<button class="theme" id="theme-3">Апельсин</button>
-					<button class="theme" id="theme-4">Небо</button>
-				</nav>
+				<nav class="themes"><!-- Кнопки переключения тем --></nav>
 			</header>
 			<main class="main">
 				<section class="output">
@@ -25,101 +20,18 @@
 				</section>
 				<section class="buttons">
 					<section class="left-panel">
-						<section class="round-function">
-							<button type="button" class="btn round-vol" id="normal">
-								<span class="round-text">F</span>
-							</button>
-							<button type="button" class="btn round-vol" id="ml">
-								<span class="round-text">.00</span>
-							</button>
-							<button type="button" class="btn round-vol round-vol-active" id="mk">
-								<span class="round-text">.000</span>
-							</button>
-						</section>
-						<section class="memory-function">
-							<button type="button" class="btn memory" id="ms">
-								<span class="memory-text">MS</span>
-							</button>
-							<button type="button" class="btn memory" id="mr">
-								<span class="memory-text">MR</span>
-							</button>
-							<button type="button" class="btn memory" id="mc">
-								<span class="memory-text">MC</span>
-							</button>
-						</section>
-						<section class="exponentiation">
-							<button type="button" class="btn sqrt" id="sqrt">
-								<span class="sqrt-text">&#8730x</span>
-							</button>
-							<!-- <button type="button" class="btn new" id="new">
-								<span class="new-text">...</span>
-							</button>
-							<button type="button" class="btn new" id="new">
-								<span class="new-text">...</span>
-							</button> -->
-						</section>
-						<section class="number-block">
-							<button type="button" class="btn number" id="1">
-								<span class="num-text">1</span>
-							</button>
-							<button type="button" class="btn number" id="2">
-								<span class="num-text">2</span>
-							</button>
-							<button type="button" class="btn number" id="3">
-								<span class="num-text">3</span>
-							</button>
-							<button type="button" class="btn number" id="4">
-								<span class="num-text">4</span>
-							</button>
-							<button type="button" class="btn number" id="5">
-								<span class="num-text">5</span>
-							</button>
-							<button type="button" class="btn number" id="6">
-								<span class="num-text">6</span>
-							</button>
-							<button type="button" class="btn number" id="7">
-								<span class="num-text">7</span>
-							</button>
-							<button type="button" class="btn number" id="8">
-								<span class="num-text">8</span>
-							</button>
-							<button type="button" class="btn number" id="9">
-								<span class="num-text">9</span>
-							</button>
-							<button type="button" class="btn number" id="0">
-								<span class="num-text">0</span>
-							</button>
-							<button type="button" class="btn number" id="dot">
-								<span class="num-text special">.</span>
-							</button>
-							<button type="button" class="btn number" id="eql">
-								<span class="num-text special">=</span>
-							</button>
-						</section>
+						<section class="round-function"><!-- Кнопки округления --></section>
+						<section class="memory-function"><!-- Кнопки работы с памятью --></section>
+						<section class="exponentiation"><!-- Доп функции --></section>
+						<section class="number-block"><!-- Цифры --></section>
 					</section>
-					<section class="func-block">
-						<button type="button" class="btn random" id="random">
-							Rand
-						</button>
-						<button type="button" class="btn function" id="division">
-							/
-						</button>
-						<button type="button" class="btn function" id="multiply">x</button>
-						<button type="button" class="btn function" id="substruction">
-							-
-						</button>
-						<button type="button" class="btn function" id="sum">+</button>
-						<button type="button" class="btn function erase" id="btn-erase">
-							<span class="erase-text">C</span>
-						</button>
-						<button type="button" class="btn function reset" id="btn-reset">
-							<span class="reset-text">AC</span>
-						</button>
-					</section>
+					<section class="func-block"><!-- Функции --></section>
 				</section>
 			</main>
 			<footer class="footer">
-				<span class="footer-label">Калькулятор jQuery&nbsp;(<span class="year"></span>)</span>
+				<span class="footer-label"
+					>Калькулятор jQuery&nbsp;&copy;&nbsp;(<span class="year"></span>)</span
+				>
 				<a href="https://github.com/ipoluhin/jQulator.git" class="footer-link">
 					<span class="gitsource-link">/jQulator/</span>
 				</a>
