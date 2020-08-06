@@ -1,9 +1,19 @@
 
-@font-face
-    font-family: 'digital-7'
-    src: url("../fonts/digital-7.ttf")
-    font-weight: 300
-    font-style: normal
+@mixin font($font_name, $file_name, $weight, $style)
+    @font-face
+        font-family: $font_name
+        font-display: swap
+        src: url("../fonts/#{$file_name}.woff") format("woff"), url("../fonts/#{$file_name}.woff2") format("woff2")
+        font-weight: #{$weight}
+        font-style: #{$style}
+
+@import 'fonts'
+
+/** @font-face
+ font-family: 'digital-7'
+ src: url("../fonts/digital-7.ttf")
+ font-weight: 300
+ font-style: normal **/
 
 body
     max-width: 360px
