@@ -76,62 +76,62 @@ const htmlRender = {
      * Данные берутся из массива themes
      */
     themesRender: function () {
-        for (let i = 0; i < buttonsBase.themes.length; i++) {
+        buttonsBase.themes.forEach(function (item, i) {
             $('.themes').html($('.themes').html() + `<button class="${buttonsBase.themes[i].class}" id="${buttonsBase.themes[i].id}">${buttonsBase.themes[i].text}</button>`);
-        }
+        });
     },
     /**
      * Метод roundRender отрисовывает режимы округления
      * Данные берутся из массива round
      */
     roundRender: function () {
-        for (let i = 0; i < buttonsBase.round.length; i++) {
+        buttonsBase.round.forEach(function (item, i) {
             $('.round-function').html($('.round-function').html() + `<button button type = "button" class= "${buttonsBase.round[i].class}" id = "${buttonsBase.round[i].id}" >
-            <span class="round-text">${buttonsBase.round[i].text}</span></button > `);
-        }
+            <span class="round-text">${buttonsBase.round[i].text}</span></button>`);
+        });
     },
     /**
      * Метод memoryRender рисует блок работы с паматью
      * Данные берутся из массива memory
      */
     memoryRender: function () {
-        for (let i = 0; i < buttonsBase.memory.length; i++) {
+        buttonsBase.memory.forEach(function (item, i) {
             $('.memory-function').html($('.memory-function').html() + `<button type="button" class="${buttonsBase.memory[i].class}" id = "${buttonsBase.memory[i].id}">
-            <span class="memory-text">${buttonsBase.memory[i].text}</span>`);
-        }
+            <span class="memory-text">${buttonsBase.memory[i].text}</span></button>`);
+        });
     },
     /**
      * Метод exponentiationRender рисует блок работы с доп функциями
      * Данные берутся из массива exponentiation
      */
     exponentiationRender: function () {
-        for (let i = 0; i < buttonsBase.exponentiation.length; i++) {
+        buttonsBase.exponentiation.forEach(function (item, i) {
             $('.exponentiation').html($('.exponentiation').html() + `
             <button type="button" class="${buttonsBase.exponentiation[i].class}" id = "${buttonsBase.exponentiation[i].id}">
             <span class="sqrt-text">${buttonsBase.exponentiation[i].text}</span></button>`);
-        }
+        });
     },
     /**
      * Метод numberPanelRender отрисовывает числовой блок + кнопки . и =
      * Данные берутся из массива digits
      */
     digitRender: function () {
-        for (let i = 0; i < buttonsBase.digits.length; i++) {
+        buttonsBase.digits.forEach(function (item, i) {
             $('.number-block').html($('.number-block').html() + `
             <button type = "button" class= "${buttonsBase.digits[i].class}" id = "${buttonsBase.digits[i].id}" >
-            <span class="num-text">${buttonsBase.digits[i].text}</span>`);
-        }
+            <span class="num-text">${buttonsBase.digits[i].text}</span></button>`);
+        });
     },
     /**
      * Метод numberPanelRender отрисовывает числовой блок + кнопки . и =
      * Данные берутся из массива digits
      */
     functionRender: function () {
-        for (let i = 0; i < buttonsBase.function.length; i++) {
+        buttonsBase.function.forEach(function (item, i) {
             $('.func-block').html($('.func-block').html() + `
             <button	type="button" class="${buttonsBase.function[i].class}" id="${buttonsBase.function[i].id}">
             ${buttonsBase.function[i].text}</button>`);
-        }
+        });
     },
 }
 
@@ -441,9 +441,6 @@ const funcPanel = {
         } else {
             $('#result-text').text('')
                 .text((+vars.result).toFixed(vars.numAfterDot));
-            /* $('#result-text')
-                .html('<span style="color: red; font-size: 16px">error-long number</span>');
-            setTimeout(() => { $('#result-text').text(''); }, 1500); */
             $('#input-text').text('');
         }
     },
