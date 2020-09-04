@@ -7,3 +7,7 @@ promo/jQulator.png
 promo/qiwi.png
 node_modules
 package-lock.json
+jQulator_to_vendor
+.gitignore
+gulpfile.json
+css
