@@ -288,6 +288,14 @@ const exponentiation = {
             $('#input-text').text('')
                 .text((+vars.input).toFixed(vars.numAfterDot));
         }
+        if (vars.buffer !== 0 && vars.input === 0) {
+            vars.buffer = Math.sqrt(+vars.buffer);
+            $('#result-text').text((vars.buffer).toFixed(vars.numAfterDot));
+        }
+        if (vars.result !== 0 && vars.input === 0) {
+            vars.result = Math.sqrt(+vars.result);
+            $('#result-text').text((vars.result).toFixed(vars.numAfterDot));
+        }
         return;
     },
 }
